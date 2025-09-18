@@ -1,0 +1,62 @@
+{
+  "candidates": [
+    {
+      "courseCode": "PHY101",
+      "materials": [
+        { "type": "text", "content": "Focus on Mechanics, Electromagnetism, and Modern Physics for the admission test. Strong problem-solving skills are crucial." },
+        { "type": "pdf", "title": "Key Formulas & Summary Sheet", "url": "assets/pdfs/sample_notes.pdf" },
+        { "type": "youtube", "title": "Crash Course: Motion in a Straight Line", "youtubePlaylistId": "9vyBvG_iS_A" }
+      ]
+    },
+    {
+      "courseCode": "CHEM101",
+      "materials": [
+        { "type": "text", "content": "Master the Periodic Table, Chemical Bonding, and Organic Chemistry basics. Reaction mechanisms are a high-yield topic." },
+        { "type": "pdf", "title": "Important Reactions Cheat Sheet", "url": "assets/pdfs/sample_notes.pdf" }
+      ]
+    },
+    {
+      "courseCode": "MATH100",
+      "materials": [
+        { "type": "text", "content": "Covers essential topics in Algebra, Geometry, and Trigonometry required for standardized admission tests." },
+        { "type": "youtube", "title": "Essence of Calculus", "youtubePlaylistId": "PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" }
+      ]
+    },
+    {
+      "courseCode": "MATH102",
+      "materials": [
+        { "type": "text", "content": "Deep dive into Calculus (Differentiation, Integration) and Analytical Geometry, crucial for engineering and science admissions." },
+        { "type": "youtube", "title": "Essence of Calculus", "youtubePlaylistId": "PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" }
+      ]
+    },
+    {
+      "courseCode": "ENG101",
+      "materials": [
+        { "type": "text", "content": "Improve your grammar, vocabulary, and reading comprehension. Practice with past admission test papers is key." },
+        { "type": "link", "title": "100 Must-Know Vocabulary Words", "url": "#" },
+        { "type": "youtube", "title": "English Grammar Basics", "youtubePlaylistId": "WxZf_AIZzk4" }
+      ]
+    },
+    {
+      "courseCode": "ENG102",
+      "materials": [
+        { "type": "text", "content": "Focus on advanced composition, literature analysis and critical thinking skills." },
+        { "type": "youtube", "title": "Literature Analysis Techniques", "youtubePlaylistId": "ABC123xyz" },
+        { "type": "pdf", "title": "Advanced Grammar Guide", "url": "assets/pdfs/sample_notes.pdf" }
+      ]
+    },
+    {
+      "courseCode": "BNG101",
+      "materials": [
+        { "type": "text", "content": "Focus on Bengali literature and advanced grammar (\u09ac\u09cd\u09af\u09be\u0995\u09b0\u09a3) as per the admission curriculum." }
+      ]
+    },
+    {
+      "courseCode": "BGS101",
+      "materials": [
+        { "type": "text", "content": "Study the history, geography, and current affairs of Bangladesh and the world. Essential for all admission faculties." },
+        { "type": "pdf", "title": "Timeline of Major Historical Events", "url": "assets/pdfs/sample_notes.pdf" }
+      ]
+    }
+  ]
+}

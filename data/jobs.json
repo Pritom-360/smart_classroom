@@ -1,0 +1,8 @@
+{
+  "jobs": [
+    { "id": 1, "title": "Software Engineer Intern", "company": "Tech Corp", "location": "Remote", "apply_link": "#" },
+    { "id": 2, "title": "Data Analyst", "company": "Data Insights LLC", "location": "New York, NY", "apply_link": "#" },
+    { "id": 3, "title": "Frontend Developer", "company": "Web Solutions", "location": "San Francisco, CA", "apply_link": "#" },
+    { "id": 4, "title": "Backend Engineer (Python)", "company": "Tech Corp", "location": "Remote", "apply_link": "#" }
+  ]
+}

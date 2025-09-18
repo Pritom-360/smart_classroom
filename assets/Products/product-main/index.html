@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover premium digital products and services. Get Canva Pro, ChatGPT Plus, YouTube Premium, Netflix, and social media engagement services.">
+    <meta name="keywords" content="digital products, canva pro, chatgpt plus, youtube premium, netflix, social media services, online services">
+    <title>Digital Products & Services - Elegant Finds Store</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* CSS Styles (largely the same as the previous professional version) */
+        /* Basic CSS Reset */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        img, picture, video, canvas, svg { display: block; max-width: 100%; }
+        input, button, textarea, select { font: inherit; }
+        button { cursor: pointer; }
+        a { text-decoration: none; color: inherit; }
+        ul, ol { list-style: none; }
+
+        :root {
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+            --primary-color: #2A6CB5; 
+            --primary-hover-color: #1E4F8A;
+            --secondary-color: #31A354; 
+            --secondary-hover-color: #24783D;
+            --accent-color: #FFA000; 
+            --bg-light-color: #F8F9FA;
+            --bg-white-color: #FFFFFF;
+            --text-dark-color: #212529;
+            --text-medium-color: #6C757D;
+            --text-light-color: #F8F9FA;
+            --border-color: #DEE2E6;
+            --danger-color: #DC3545; 
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            --border-radius-sm: 0.25rem; 
+            --border-radius-md: 0.5rem;  
+            --border-radius-lg: 0.75rem; 
+            --border-radius-xl: 50px; 
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-light-color);
+            color: var(--text-dark-color);
+        }
+
+        .container {
+            width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto;
+            padding-left: 1rem; padding-right: 1rem;
+        }
+
+        header {
+            background-color: var(--bg-white-color); padding: 1rem 0; box-shadow: var(--shadow-md);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        header .logo a {
+            font-family: var(--font-secondary); font-size: 1.75rem; font-weight: 700;
+            color: var(--primary-color); display: flex; align-items: center;
+        }
+        header .logo i { margin-right: 0.5rem; font-size: 1.5rem; }
+
+        .cart-icon-link {
+            position: relative; padding: 0.5rem; border-radius: var(--border-radius-md);
+            transition: background-color 0.2s ease;
+        }
+        .cart-icon-link:hover { background-color: var(--bg-light-color); }
+        .cart-icon-link .fas { font-size: 1.5rem; color: var(--primary-color); }
+        .cart-item-count {
+            position: absolute; top: -0.25rem; right: -0.25rem; background-color: var(--accent-color);
+            color: var(--bg-white-color); border-radius: var(--border-radius-xl); padding: 0.15rem 0.4rem;
+            font-size: 0.7rem; font-weight: 600; line-height: 1; border: 2px solid var(--bg-white-color);
+        }
+
+        main { padding: 2rem 0; }
+
+        .controls-wrapper {
+            background-color: var(--bg-white-color); padding: 1.5rem; margin-bottom: 2rem;
+            border-radius: var(--border-radius-lg); box-shadow: var(--shadow-sm);
+            display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center;
+        }
+        .search-bar, .filters { display: flex; gap: 0.75rem; align-items: center; }
+        .search-bar { flex-grow: 2; min-width: 250px; }
+        .filters { flex-grow: 1; min-width: 200px; flex-wrap: wrap; justify-content: flex-start; }
+        @media (min-width: 992px) { .filters { justify-content: flex-end; } }
+
+        .form-control {
+            padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-md);
+            font-size: 0.95rem; background-color: var(--bg-white-color);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-control:focus {
+            border-color: var(--primary-color); box-shadow: 0 0 0 0.2rem rgba(42, 108, 181, 0.25); outline: none;
+        }
+        .search-bar input[type="text"] { flex-grow: 1; }
+        .filters select { min-width: 180px; }
+
+        .btn {
+            padding: 0.75rem 1.25rem; border: none; border-radius: var(--border-radius-md);
+            font-size: 0.95rem; font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-primary { background-color: var(--primary-color); color: var(--text-light-color); }
+        .btn-primary:hover { background-color: var(--primary-hover-color); }
+        .btn-secondary { background-color: var(--secondary-color); color: var(--text-light-color); }
+        .btn-secondary:hover { background-color: var(--secondary-hover-color); }
+        .btn-neutral { background-color: var(--text-medium-color); color: var(--text-light-color); }
+        .btn-neutral:hover { background-color: #5a6268; }
+        .btn:active { transform: translateY(1px); }
+
+        #product-catalog {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+        }
+
+        .product-item {
+            background: var(--bg-white-color); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+        .product-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+        .product-item-image-wrapper {
+            overflow: hidden; border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+            background-color: #e9ecef; /* Fallback bg for images */
+            display: flex; align-items: center; justify-content: center;
+            height: 200px; /* Adjusted for digital product icons/logos */
+        }
+        .product-item img { /* Can be an icon or logo */
+            width: auto; /* Let intrinsic size dictate, or set fixed like 100px */
+            max-width: 120px; /* Control max size of logo/icon */
+            height: auto;
+            max-height: 120px;
+            object-fit: contain; /* Use contain for logos/icons */
+            transition: transform 0.4s ease;
+        }
+        .product-item:hover img { transform: scale(1.08); }
+        
+        .product-item-content {
+            padding: 1.25rem; display: flex; flex-direction: column;
+            flex-grow: 1; text-align: left;
+        }
+        .product-item .category-badge {
+            display: inline-block; background-color: var(--primary-color); opacity: 0.8;
+            color: var(--text-light-color); padding: 0.25rem 0.6rem; border-radius: var(--border-radius-sm);
+            font-size: 0.75rem; font-weight: 500; margin-bottom: 0.5rem; align-self: flex-start;
+        }
+        .product-item h3 {
+            font-family: var(--font-secondary); margin: 0 0 0.5rem; font-size: 1.15rem;
+            font-weight: 600; color: var(--text-dark-color); line-height: 1.3; min-height: 2.6em;
+        }
+         .product-item .product-id { font-size: 0.8rem; color: var(--text-medium-color); margin-bottom: 0.75rem; }
+        .product-item p.description {
+            color: var(--text-medium-color); font-size: 0.9rem; margin-bottom: 1rem;
+            line-height: 1.5; flex-grow: 1; min-height: 4.05em;
+        }
+        .product-item-footer {
+            display: flex; justify-content: space-between; align-items: center; margin-top: auto;
+        }
+        .price { font-size: 1.3rem; color: var(--secondary-color); font-weight: 700; }
+        .add-to-cart-btn { border-radius: var(--border-radius-xl); padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+
+        .pagination {
+            display: flex; justify-content: center; align-items: center; margin: 2.5rem 0 1rem;
+        }
+        .pagination button { margin: 0 0.5rem; border-radius: var(--border-radius-xl); padding: 0.6rem 1.2rem; }
+        .pagination button:disabled {
+            background: var(--border-color); color: var(--text-medium-color); cursor: not-allowed; transform: none;
+        }
+        .pagination span { margin: 0 0.75rem; font-size: 1rem; color: var(--text-dark-color); font-weight: 500; }
+
+        #loading-spinner, #no-products-message {
+            text-align: center; padding: 3rem 1rem; font-size: 1.1rem; color: var(--text-medium-color);
+            width: 100%; min-height: 300px; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+        }
+        #loading-spinner i, #no-products-message i {
+            font-size: 2.5rem; margin-bottom: 1rem; color: var(--primary-color);
+        }
+        #no-products-message i { color: var(--text-medium-color); }
+
+        .toast-notification {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background-color: var(--text-dark-color); color: var(--text-light-color);
+            padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-lg);
+            z-index: 2000; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9rem;
+        }
+        .toast-notification.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+        footer {
+            background-color: var(--text-dark-color); color: var(--text-light-color);
+            text-align: center; padding: 2rem 0; margin-top: 3rem;
+        }
+        footer p { margin: 0.25rem 0; font-size: 0.9rem; color: rgba(248, 249, 250, 0.8); }
+        footer a { color: var(--accent-color); font-weight: 500; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 991px) {
+            .controls-wrapper { flex-direction: column; align-items: stretch; }
+            .search-bar, .filters { width: 100%; }
+            .filters { flex-direction: column; gap: 0.75rem; }
+            .filters select, .filters button { width: 100%; }
+        }
+        @media (max-width: 767px) {
+            header .logo a { font-size: 1.5rem; }
+            header .logo i { font-size: 1.3rem; }
+            .cart-icon-link .fas { font-size: 1.3rem; }
+            #product-catalog { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+            .product-item-content { padding: 1rem; }
+            .product-item h3 { font-size: 1.05rem; }
+            .product-item p.description { font-size: 0.85rem; }
+            .price { font-size: 1.15rem; }
+            .add-to-cart-btn { padding: 0.5rem 1rem; font-size: 0.85rem;}
+            .pagination button { padding: 0.5rem 1rem; font-size: 0.9rem; }
+            .pagination span { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <a href="index.html" aria-label="Elegant Finds Store Home">
+                <i class="fas fa-cloud-bolt"></i> Digital Hub <!-- Changed Icon & Name -->
+            </a>
+        </div>
+        <a href="cart.html" class="cart-icon-link" aria-label="View shopping cart">
+            <i class="fas fa-shopping-cart"></i> <!-- Kept cart icon, can be changed if needed -->
+            <span class="cart-item-count" id="cart-item-count">0</span>
+        </a>
+    </div>
+</header>
+
+<main class="container">
+    <section class="controls-wrapper" aria-labelledby="controls-heading">
+        <h2 id="controls-heading" class="sr-only">Product Filters and Search</h2>
+        <div class="search-bar">
+            <input type="text" id="search-input" class="form-control" placeholder="Search services by name or ID..." aria-label="Search products">
+            <button id="search-button" class="btn btn-primary" aria-label="Search">
+                <i class="fas fa-search"></i> <span class="search-button-text">Search</span>
+            </button>
+        </div>
+        <div class="filters">
+            <select id="category-filter" class="form-control" aria-label="Filter by category">
+                <option value="">All Services</option>
+            </select>
+            <select id="price-filter" class="form-control" aria-label="Sort by price">
+                <option value="">Sort by Price</option>
+                <option value="low-to-high">Price: Low to High</option>
+                <option value="high-to-low">Price: High to Low</option>
+            </select>
+            <button id="clear-filters" class="btn btn-neutral">
+                <i class="fas fa-times-circle"></i> Clear
+            </button>
+        </div>
+    </section>
+
+    <section id="product-display-area" aria-live="polite">
+        <div id="loading-spinner" style="display: none;">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <p>Loading services, please wait...</p>
+        </div>
+        <div id="product-catalog"></div>
+        <div id="no-products-message" style="display: none;">
+            <i class="fas fa-box-open"></i>
+            <p>No services match your current selection.</p>
+            <p>Try adjusting your search or filters.</p>
+        </div>
+    </section>
+
+    <nav class="pagination" aria-label="Product Page Navigation">
+        <button id="prev-page" class="btn btn-primary" aria-label="Previous page">
+            <i class="fas fa-chevron-left"></i> Previous
+        </button>
+        <span id="page-info" aria-live="polite">Page 1 of 1</span>
+        <button id="next-page" class="btn btn-primary" aria-label="Next page">
+            Next <i class="fas fa-chevron-right"></i>
+        </button>
+    </nav>
+</main>
+
+<div class="toast-notification" id="toast-notification" role="alert"></div>
+
+<footer>
+    <div class="container">
+        <p>© <span id="current-year"></span> Digital Hub Store. All Rights Reserved.</p>
+        <p>Your one-stop shop for premium digital services. <a href="#top">Back to Top</a></p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- DIGITAL PRODUCT DATABASE (Editable JSON) ---
+        const allProducts = [
+            {
+                id: 'DP001',
+                title: 'Canva Pro Subscription (1 Month)',
+                description: 'Unlock premium features in Canva: unlimited content, background remover, brand kits, and more. Ideal for designers and content creators.',
+                price: 250, // Price in BDT
+                category: 'Design Software',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Canva_icon_2021.svg' // Canva Logo SVG
+                // Add any other relevant fields, e.g., 'duration': '1 Month', 'platform': 'Canva'
+            },
+            {
+                id: 'DP002',
+                title: 'ChatGPT Plus Account (1 Month)',
+                description: 'Access to GPT-4, faster response times, and priority access to new features on ChatGPT. Enhance your productivity and creativity.',
+                price: 2200,
+                category: 'AI Tools',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png' // ChatGPT Logo
+            },
+            {
+                id: 'DP003',
+                title: 'YouTube Premium (1 Month)',
+                description: 'Enjoy ad-free videos, background play, and YouTube Music Premium. Valid for individual accounts.',
+                price: 300,
+                category: 'Streaming Services',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/YouTube_Premium_logo.svg/1280px-YouTube_Premium_logo.svg.png' // YouTube Premium Logo
+            },
+            {
+                id: 'DP004',
+                title: 'Netflix Premium Plan (1 Month)',
+                description: 'Watch unlimited movies and TV shows in Ultra HD (4K). Stream on 4 devices simultaneously. Shared or private account options available.',
+                price: 850, // Price might vary based on shared/private
+                category: 'Streaming Services',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png' // Netflix Logo
+            },
+            {
+                id: 'DP005',
+                title: 'Facebook Page Likes (1000)',
+                description: 'Boost your Facebook page credibility with 1000 high-quality, real-looking page likes. Gradual delivery.',
+                price: 750,
+                category: 'Social Media Boost',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1200px-Facebook_f_logo_%282019%29.svg.png' // Facebook Logo
+            },
+            {
+                id: 'DP006',
+                title: 'YouTube Video Likes (500)',
+                description: 'Increase engagement on your YouTube videos with 500 genuine-looking likes. Helps with video ranking.',
+                price: 400,
+                category: 'Social Media Boost',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png' // YouTube Logo
+            },
+            {
+                id: 'DP007',
+                title: 'Adobe Photoshop CC License (1 Year)',
+                description: 'Official Adobe Photoshop Creative Cloud subscription for 1 year. Full access to all features and updates.',
+                price: 25000,
+                category: 'Design Software',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/1024px-Adobe_Photoshop_CC_icon.svg.png' // Photoshop Logo
+            },
+            {
+                id: 'DP008',
+                title: 'Microsoft 365 Personal (1 Year)',
+                description: 'Includes Premium Office apps (Word, Excel, PowerPoint), 1TB OneDrive cloud storage, and advanced security for one person.',
+                price: 5500,
+                category: 'Productivity Suite',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Microsoft_Office_logo_%282019%E2%80%93present%29.svg/1024px-Microsoft_Office_logo_%282019%E2%80%93present%29.svg.png' // Office Logo
+            },
+            {
+                id: 'DP009',
+                title: 'Spotify Premium (1 Month)',
+                description: 'Ad-free music streaming, offline playback, and high-quality audio with Spotify Premium. Individual account.',
+                price: 280,
+                category: 'Streaming Services',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1024px-Spotify_icon.svg.png' // Spotify Logo
+            },
+            {
+                id: 'DP010',
+                title: 'Instagram Followers (500)',
+                description: 'Grow your Instagram presence with 500 high-quality followers. Organic growth simulation.',
+                price: 500,
+                category: 'Social Media Boost',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png' // Instagram Logo
+            },
+             {
+                id: 'DP011',
+                title: 'Canva Pro Subscription (1 Year)',
+                description: 'Annual access to Canva Pro features. Best value for long-term users and professionals.',
+                price: 2500,
+                category: 'Design Software',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Canva_icon_2021.svg'
+            },
+            {
+                id: 'DP012',
+                title: 'Netflix Basic Plan (1 Month)',
+                description: 'Stream on 1 device in Standard Definition. Affordable option for individual viewing.',
+                price: 350,
+                category: 'Streaming Services',
+                img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png'
+            }
+            // Add more digital products as needed
+        ];
+
+        // --- JavaScript variables and functions (mostly same as previous index.html) ---
+        const productsPerPage = 8; 
+        let currentPage = 1;
+        let filteredProducts = [...allProducts];
+        let cart = [];
+
+        const productCatalogEl = document.getElementById('product-catalog');
+        const loadingSpinnerEl = document.getElementById('loading-spinner');
+        const noProductsMessageEl = document.getElementById('no-products-message');
+        const prevPageButtonEl = document.getElementById('prev-page');
+        const nextPageButtonEl = document.getElementById('next-page');
+        const pageInfoEl = document.getElementById('page-info');
+        const searchInputEl = document.getElementById('search-input');
+        const searchButtonEl = document.getElementById('search-button');
+        const categoryFilterEl = document.getElementById('category-filter');
+        const priceFilterEl = document.getElementById('price-filter');
+        const clearFiltersButtonEl = document.getElementById('clear-filters');
+        const currentYearSpanEl = document.getElementById('current-year');
+        const cartItemCountSpanEl = document.getElementById('cart-item-count');
+        const toastNotificationEl = document.getElementById('toast-notification');
+        const searchButtonTextEl = document.querySelector('.search-button-text');
+
+        function formatPrice(price) { return `৳${price.toLocaleString('en-IN')}`; }
+
+        function showToast(message, type = 'info', duration = 3000) {
+            toastNotificationEl.textContent = message;
+            toastNotificationEl.className = 'toast-notification show';
+            setTimeout(() => { toastNotificationEl.classList.remove('show'); }, duration);
+        }
+        
+        function saveCartToLocalStorage() { localStorage.setItem('digitalHubCart', JSON.stringify(cart)); } // Changed cart name
+
+        function loadCartFromLocalStorage() {
+            const storedCart = localStorage.getItem('digitalHubCart'); // Changed cart name
+            if (storedCart) { cart = JSON.parse(storedCart); }
+            updateCartIcon();
+        }
+
+        function addToCart(productId) {
+            const productToAdd = allProducts.find(p => p.id === productId);
+            if (!productToAdd) return;
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) { existingItem.quantity = (existingItem.quantity || 1) + 1; }
+            else { cart.push({ ...productToAdd, quantity: 1 }); }
+            showToast(`${productToAdd.title} added to cart!`, 'success');
+            updateCartIcon();
+            saveCartToLocalStorage();
+        }
+
+        function updateCartIcon() {
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+            cartItemCountSpanEl.textContent = totalItems;
+            cartItemCountSpanEl.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+        
+        function addEventListenersToProductButtons() {
+            const addToCartButtons = productCatalogEl.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+                newButton.addEventListener('click', (e) => {
+                    const productId = e.currentTarget.dataset.id;
+                    addToCart(productId);
+                });
+            });
+        }
+
+        function showLoadingState() {
+            productCatalogEl.innerHTML = ''; 
+            noProductsMessageEl.style.display = 'none';
+            loadingSpinnerEl.style.display = 'flex'; 
+            prevPageButtonEl.disabled = true;
+            nextPageButtonEl.disabled = true;
+        }
+
+        function hideLoadingState() { loadingSpinnerEl.style.display = 'none'; }
+
+        function renderProducts() {
+            hideLoadingState();
+            productCatalogEl.innerHTML = ''; 
+            if (filteredProducts.length === 0) {
+                noProductsMessageEl.style.display = 'flex';
+                updatePaginationControls();
+                return;
+            }
+            noProductsMessageEl.style.display = 'none';
+
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const currentProductsToDisplay = filteredProducts.slice(startIndex, endIndex);
+            const fragment = document.createDocumentFragment();
+
+            currentProductsToDisplay.forEach(product => {
+                const productItem = document.createElement('article');
+                productItem.classList.add('product-item');
+                productItem.setAttribute('aria-labelledby', `product-title-${product.id}`);
+                productItem.innerHTML = `
+                    <div class="product-item-image-wrapper">
+                        <img src="${product.img}" alt="${product.title} logo" loading="lazy">
+                    </div>
+                    <div class="product-item-content">
+                        <span class="category-badge">${product.category}</span>
+                        <h3 id="product-title-${product.id}">${product.title}</h3>
+                        <p class="product-id">Service ID: ${product.id}</p>
+                        <p class="description">${product.description}</p>
+                        <div class="product-item-footer">
+                            <span class="price">${formatPrice(product.price)}</span>
+                            <button class="btn btn-secondary add-to-cart-btn" data-id="${product.id}" aria-label="Add ${product.title} to cart">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                fragment.appendChild(productItem);
+            });
+            productCatalogEl.appendChild(fragment);
+            addEventListenersToProductButtons();
+            updatePaginationControls();
+        }
+        
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage) || 1;
+            pageInfoEl.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevPageButtonEl.disabled = currentPage === 1;
+            nextPageButtonEl.disabled = currentPage === totalPages || filteredProducts.length === 0;
+        }
+
+        function applyFiltersAndSort() {
+            showLoadingState(); 
+            setTimeout(() => {
+                let tempProducts = [...allProducts];
+                const searchTerm = searchInputEl.value.toLowerCase().trim();
+                const selectedCategory = categoryFilterEl.value;
+                const sortOrder = priceFilterEl.value;
+
+                if (searchTerm) {
+                    tempProducts = tempProducts.filter(product => 
+                        product.title.toLowerCase().includes(searchTerm) ||
+                        product.id.toLowerCase().includes(searchTerm)
+                    );
+                }
+                if (selectedCategory) {
+                    tempProducts = tempProducts.filter(product => product.category === selectedCategory);
+                }
+                if (sortOrder === 'low-to-high') { tempProducts.sort((a, b) => a.price - b.price); }
+                else if (sortOrder === 'high-to-low') { tempProducts.sort((a, b) => b.price - a.price); }
+                
+                filteredProducts = tempProducts;
+                currentPage = 1;
+                renderProducts();
+            }, 250);
+        }
+        
+        function populateCategoryFilter() {
+            const categories = [...new Set(allProducts.map(p => p.category))].sort();
+            const fragment = document.createDocumentFragment();
+            categories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category; option.textContent = category;
+                fragment.appendChild(option);
+            });
+            categoryFilterEl.appendChild(fragment);
+        }
+
+        function updateSearchButtonText() {
+            if (window.innerWidth < 480) { searchButtonTextEl.style.display = 'none'; }
+            else { searchButtonTextEl.style.display = 'inline'; }
+        }
+
+        prevPageButtonEl.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderProducts(); } });
+        nextPageButtonEl.addEventListener('click', () => {
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+            if (currentPage < totalPages) { currentPage++; renderProducts(); }
+        });
+        searchButtonEl.addEventListener('click', applyFiltersAndSort);
+        searchInputEl.addEventListener('keypress', (event) => { if (event.key === 'Enter') { applyFiltersAndSort(); } });
+        categoryFilterEl.addEventListener('change', applyFiltersAndSort);
+        priceFilterEl.addEventListener('change', applyFiltersAndSort);
+        clearFiltersButtonEl.addEventListener('click', () => {
+            searchInputEl.value = ''; categoryFilterEl.value = ''; priceFilterEl.value = '';
+            applyFiltersAndSort(); showToast('Filters cleared!', 'info', 2000);
+        });
+        window.addEventListener('resize', updateSearchButtonText);
+
+        if (currentYearSpanEl) currentYearSpanEl.textContent = new Date().getFullYear();
+        loadCartFromLocalStorage();
+        populateCategoryFilter();
+        applyFiltersAndSort();
+        updateSearchButtonText();
+    });
+</script>
+
+</body>
+</html>

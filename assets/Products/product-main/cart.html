@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Review your selected digital services, complete payment via bKash, and confirm your order.">
+    <title>Cart & Checkout - Digital Hub Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* CSS (Mostly same as previous professional cart.html, with minor tweaks for digital products if needed) */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        img, picture, video, canvas, svg { display: block; max-width: 100%; }
+        input, button, textarea, select { font: inherit; }
+        button { cursor: pointer; }
+        a { text-decoration: none; color: inherit; }
+        ul, ol { list-style: none; }
+
+        :root {
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+            --primary-color: #2A6CB5; 
+            --primary-hover-color: #1E4F8A;
+            --secondary-color: #31A354; 
+            --secondary-hover-color: #24783D;
+            --accent-color: #FFA000; 
+            --bkash-pink-color: #E2136E; 
+            --bg-light-color: #F8F9FA;
+            --bg-white-color: #FFFFFF;
+            --text-dark-color: #212529;
+            --text-medium-color: #6C757D;
+            --text-light-color: #F8F9FA;
+            --border-color: #DEE2E6;
+            --danger-color: #DC3545;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            --border-radius-sm: 0.25rem;
+            --border-radius-md: 0.5rem;
+            --border-radius-lg: 0.75rem;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-light-color);
+            color: var(--text-dark-color);
+        }
+
+        .container {
+            width: 100%; max-width: 1100px; margin-left: auto; margin-right: auto;
+            padding-left: 1rem; padding-right: 1rem;
+        }
+
+        header {
+            background-color: var(--bg-white-color); padding: 1rem 0;
+            box-shadow: var(--shadow-md); margin-bottom: 2rem;
+        }
+        header .container-header {
+            max-width: 1280px; margin: auto; padding: 0 1rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        header .logo a {
+            font-family: var(--font-secondary); font-size: 1.75rem; font-weight: 700;
+            color: var(--primary-color); display: flex; align-items: center;
+        }
+        header .logo i { margin-right: 0.5rem; font-size: 1.5rem; }
+        
+        .btn {
+            padding: 0.75rem 1.25rem; border: none; border-radius: var(--border-radius-md);
+            font-size: 0.95rem; font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-primary { background-color: var(--primary-color); color: var(--text-light-color); }
+        .btn-primary:hover { background-color: var(--primary-hover-color); }
+        .btn-secondary { background-color: var(--secondary-color); color: var(--text-light-color); }
+        .btn-secondary:hover { background-color: var(--secondary-hover-color); }
+        .btn-bkash { background-color: var(--bkash-pink-color); color: var(--text-light-color); }
+        .btn-bkash:hover { background-color: #c0105c; }
+        .btn:active { transform: translateY(1px); }
+
+        .page-title-wrapper { text-align: center; margin-bottom: 2rem; }
+        .page-title {
+            font-family: var(--font-secondary); font-size: 2.25rem; color: var(--text-dark-color);
+            font-weight: 700; padding-bottom: 0.5rem; display: inline-block; position: relative;
+        }
+        .page-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 3px; background-color: var(--primary-color); border-radius: var(--border-radius-sm);
+        }
+        .page-title i { margin-right: 0.75rem; color: var(--primary-color); }
+
+        .cart-main-layout { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media (min-width: 992px) { .cart-main-layout { grid-template-columns: 2fr 1fr; } }
+
+        .card {
+            background-color: var(--bg-white-color); padding: 1.5rem;
+            border-radius: var(--border-radius-lg); box-shadow: var(--shadow-md);
+        }
+        .card-title {
+            font-family: var(--font-secondary); font-size: 1.5rem; margin-top: 0;
+            margin-bottom: 1.5rem; color: var(--primary-color); font-weight: 600;
+        }
+
+        .cart-items-list .cart-item {
+            display: flex; gap: 1rem; padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color);
+        }
+        .cart-items-list .cart-item:last-child { border-bottom: none; margin-bottom: 0; }
+        
+        .cart-item-image { /* Wrapper for image/icon */
+            width: 80px; /* Fixed width for consistency */
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-light-color); /* Fallback bg */
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden; /* If image is larger */
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        .cart-item-image img {
+            max-width: 90%; /* Ensure icon/logo fits well */
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .cart-item-info { flex-grow: 1; display: flex; flex-direction: column; }
+        .cart-item-info h3 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.25rem; color: var(--text-dark-color); }
+        .cart-item-id { font-size: 0.8rem; color: var(--text-medium-color); margin-bottom: 0.5rem; }
+        .cart-item-price-single { font-size: 0.9rem; color: var(--text-medium-color); }
+        .cart-item-subtotal { font-size: 1rem; font-weight: 600; color: var(--secondary-color); margin-top: 0.5rem; }
+        .cart-item-actions { display: flex; align-items: center; gap: 1rem; margin-top: 0.75rem; }
+        .quantity-control { display: flex; align-items: center; }
+        .quantity-control button {
+            background: var(--bg-light-color); border: 1px solid var(--border-color);
+            color: var(--text-dark-color); padding: 0.4rem 0.75rem; font-size: 1rem; line-height: 1;
+        }
+        .quantity-control button:hover { background-color: #e2e6ea; }
+        .quantity-control button:first-child { border-radius: var(--border-radius-md) 0 0 var(--border-radius-md); }
+        .quantity-control button:last-child { border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; }
+        .quantity-control span {
+            padding: 0.4rem 0.75rem; font-size: 1rem; min-width: 30px; text-align: center;
+            border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); line-height: 1.5;
+        }
+        .cart-item-remove-btn {
+            background: none; border: none; color: var(--danger-color);
+            font-size: 1.1rem; padding: 0.5rem; border-radius: var(--border-radius-sm);
+            transition: background-color 0.2s ease;
+        }
+        .cart-item-remove-btn:hover { color: #a71d2a; background-color: rgba(220, 53, 69, 0.1); }
+
+        .cart-summary .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 1rem; }
+        .cart-summary .summary-row.total {
+            font-size: 1.25rem; font-weight: 700; color: var(--text-dark-color);
+            padding-top: 1rem; border-top: 2px solid var(--border-color); margin-top: 1rem;
+        }
+        .cart-summary .summary-row.total .value { color: var(--secondary-color); }
+        .cart-summary .summary-row .label { color: var(--text-medium-color); }
+        
+        .bkash-payment-instructions {
+            border: 2px dashed var(--bkash-pink-color); padding: 1.5rem;
+            border-radius: var(--border-radius-md); margin-bottom: 2rem;
+            background-color: #fff8fb;
+        }
+        .bkash-payment-instructions .card-title { color: var(--bkash-pink-color); display: flex; align-items: center; }
+        .bkash-payment-instructions .card-title img { height: 30px; width: auto; margin-right: 0.75rem; }
+        .bkash-payment-instructions p, .bkash-payment-instructions ul {
+            font-size: 0.95rem; color: var(--text-dark-color); margin-bottom: 0.75rem;
+        }
+        .bkash-payment-instructions ul { list-style: decimal; padding-left: 1.5rem; }
+        .bkash-payment-instructions li { margin-bottom: 0.35rem; }
+        .bkash-payment-instructions strong { font-weight: 600; }
+        .bkash-payment-instructions .bkash-number {
+            font-weight: 700; font-size: 1.2rem; color: var(--bkash-pink-color); letter-spacing: 1px;
+            background-color: #fde7f0; padding: 0.25rem 0.5rem; border-radius: var(--border-radius-sm); display: inline-block;
+        }
+        .bkash-payment-instructions .payment-amount { font-weight: 700; font-size: 1.2rem; color: var(--secondary-color); }
+        .bkash-payment-instructions .note { font-size: 0.85rem; color: var(--text-medium-color); margin-top: 1rem; }
+
+        .billing-form .form-group { margin-bottom: 1rem; }
+        .billing-form .form-group label {
+            display: block; margin-bottom: 0.35rem; font-weight: 500;
+            font-size: 0.9rem; color: var(--text-dark-color);
+        }
+        .billing-form .form-group label .required-asterisk { color: var(--danger-color); }
+        .billing-form .form-control {
+            width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md); font-size: 0.95rem; background-color: var(--bg-white-color);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .billing-form .form-control:focus {
+            border-color: var(--primary-color); box-shadow: 0 0 0 0.2rem rgba(42, 108, 181, 0.25); outline: none;
+        }
+        .billing-form textarea.form-control { resize: vertical; min-height: 80px; } /* Adjusted min-height */
+        
+        .place-order-btn {
+            width: 100%; margin-top: 1rem; font-size: 1.05rem; padding: 0.85rem 1.5rem;
+        }
+        .place-order-btn:disabled {
+            background-color: var(--border-color); color: var(--text-medium-color); cursor: not-allowed;
+        }
+
+        .cart-empty-message {
+            text-align: center; color: var(--text-medium-color); padding: 3rem 1.5rem;
+        }
+        .cart-empty-message i {
+            font-size: 4rem; display: block; margin-bottom: 1.5rem;
+            color: var(--primary-color); opacity: 0.7;
+        }
+        .cart-empty-message p { font-size: 1.2rem; margin-bottom: 1.5rem; }
+
+        .toast-notification {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background-color: var(--text-dark-color); color: var(--text-light-color);
+            padding: 0.75rem 1.5rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-lg);
+            z-index: 2000; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9rem;
+        }
+        .toast-notification.show { opacity: 1; visibility: visible; bottom: 30px; }
+        
+        footer {
+            background-color: var(--text-dark-color); color: var(--text-light-color);
+            text-align: center; padding: 2rem 0; margin-top: 3rem;
+        }
+        footer p { margin: 0.25rem 0; font-size: 0.9rem; color: rgba(248, 249, 250, 0.8); }
+        footer a { color: var(--accent-color); font-weight: 500; }
+        footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 767px) {
+            .page-title { font-size: 1.75rem; }
+            .card { padding: 1rem; }
+            .card-title { font-size: 1.25rem; margin-bottom: 1rem; }
+            .cart-item-image { width: 60px; height: 60px; } /* Smaller image for mobile */
+            .cart-item-info h3 { font-size: 1rem; }
+            .cart-item-actions { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .quantity-control { width: 100%; justify-content: space-between; }
+            .quantity-control button { flex-grow: 1; }
+            .quantity-control span { flex-grow: 2; }
+            .cart-item-remove-btn { align-self: flex-end; }
+            .bkash-payment-instructions { padding: 1rem; }
+            .bkash-payment-instructions .bkash-number, .bkash-payment-instructions .payment-amount { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container-header">
+        <div class="logo">
+            <a href="index.html" aria-label="Digital Hub Store Home">
+                <i class="fas fa-cloud-bolt"></i> Digital Hub
+            </a>
+        </div>
+        <a href="index.html" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Browse Services
+        </a>
+    </div>
+</header>
+
+<main class="container">
+    <div class="page-title-wrapper">
+        <h1 class="page-title"><i class="fas fa-credit-card"></i> Payment & Checkout</h1>
+    </div>
+
+    <div id="cart-content-area" aria-live="polite">
+        <!-- Dynamically populated -->
+    </div>
+</main>
+
+<div class="toast-notification" id="toast-notification" role="alert"></div>
+
+<footer>
+    <div class="container">
+        <p>© <span id="current-year"></span> Digital Hub Store. All Rights Reserved.</p>
+        <p>Premium digital services, secured with manual bKash payment. For support, <a href="tel:+8801737697736">Call Us</a>.</p>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cartContentAreaEl = document.getElementById('cart-content-area');
+        const toastNotificationEl = document.getElementById('toast-notification');
+        const currentYearSpanEl = document.getElementById('current-year');
+        
+        const BKASH_MERCHANT_NUMBER = "017XX XXXXXX"; // YOUR BKASH NUMBER
+        const BKASH_PAYMENT_TYPE = "Send Money"; 
+        const WHATSAPP_NUMBER = "+8801737697736"; 
+
+        let cart = [];
+
+        function formatPrice(price) { return `৳${price.toLocaleString('en-IN')}`; }
+
+        function showToast(message, type = 'info', duration = 3000) {
+            toastNotificationEl.textContent = message;
+            toastNotificationEl.className = 'toast-notification show';
+            setTimeout(() => { toastNotificationEl.classList.remove('show'); }, duration);
+        }
+
+        function saveCartToLocalStorage() { localStorage.setItem('digitalHubCart', JSON.stringify(cart)); }
+
+        function loadCartFromLocalStorage() {
+            const storedCart = localStorage.getItem('digitalHubCart');
+            if (storedCart) { cart = JSON.parse(storedCart); }
+        }
+        
+        function calculateTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            // For digital products, shipping is typically 0 or not applicable.
+            const shippingCost = 0; 
+            const grandTotal = subtotal + shippingCost;
+            return { subtotal, shippingCost, grandTotal };
+        }
+
+        function renderCartPage() {
+            cartContentAreaEl.innerHTML = ''; 
+            const { subtotal, shippingCost, grandTotal } = calculateTotals();
+
+            if (cart.length === 0) {
+                const emptyCartCard = document.createElement('div');
+                emptyCartCard.classList.add('card', 'cart-empty-message');
+                emptyCartCard.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt"></i> <!-- Changed icon -->
+                    <p>Your cart is currently empty.</p>
+                    <p>Browse our digital services and add them to your cart.</p>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Discover Services
+                    </a>`;
+                cartContentAreaEl.appendChild(emptyCartCard);
+                return;
+            }
+
+            const mainLayout = document.createElement('div');
+            mainLayout.classList.add('cart-main-layout');
+
+            const itemsColumn = document.createElement('section');
+            itemsColumn.classList.add('card', 'cart-items-column');
+            itemsColumn.setAttribute('aria-labelledby', 'cart-items-heading');
+            itemsColumn.innerHTML = `<h2 id="cart-items-heading" class="card-title">Review Your Services (${cart.reduce((sum, item) => sum + item.quantity, 0)})</h2><div class="cart-items-list"></div>`;
+            const itemsListContainer = itemsColumn.querySelector('.cart-items-list');
+            
+            cart.forEach(item => {
+                const itemEl = document.createElement('div');
+                itemEl.classList.add('cart-item');
+                itemEl.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.img}" alt="${item.title} logo">
+                    </div>
+                    <div class="cart-item-info">
+                        <h3>${item.title}</h3>
+                        <p class="cart-item-id">Service ID: ${item.id}</p>
+                        <p class="cart-item-price-single">Price: ${formatPrice(item.price)}</p>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn" data-id="${item.id}" data-action="decrease" aria-label="Decrease quantity">−</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" data-id="${item.id}" data-action="increase" aria-label="Increase quantity">+</button>
+                            </div>
+                            <button class="cart-item-remove-btn" data-id="${item.id}" aria-label="Remove service">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                        <p class="cart-item-subtotal">Subtotal: ${formatPrice(item.price * item.quantity)}</p>
+                    </div>
+                `;
+                itemsListContainer.appendChild(itemEl);
+            });
+            mainLayout.appendChild(itemsColumn);
+
+            const sidebarColumn = document.createElement('aside');
+            sidebarColumn.classList.add('cart-sidebar-column'); 
+
+            const summaryCard = document.createElement('div');
+            summaryCard.classList.add('card', 'cart-summary');
+            summaryCard.setAttribute('aria-labelledby', 'order-summary-heading');
+            summaryCard.innerHTML = `
+                <h2 id="order-summary-heading" class="card-title">Order Summary</h2>
+                <div class="summary-row">
+                    <span class="label">Subtotal:</span>
+                    <span class="value">${formatPrice(subtotal)}</span>
+                </div>
+                ${shippingCost > 0 ? `
+                <div class="summary-row">
+                    <span class="label">Delivery Fee:</span>
+                    <span class="value">${formatPrice(shippingCost)}</span>
+                </div>` : ''}
+                <div class="summary-row total">
+                    <span class="label">Grand Total:</span>
+                    <span class="value">${formatPrice(grandTotal)}</span>
+                </div>`;
+            sidebarColumn.appendChild(summaryCard);
+
+            const bkashInstructionsCard = document.createElement('div');
+            bkashInstructionsCard.classList.add('card', 'bkash-payment-instructions');
+            bkashInstructionsCard.style.marginTop = '2rem';
+            bkashInstructionsCard.innerHTML = `
+                <h2 class="card-title">
+                    <img src="https://seeklogo.com/images/B/bkash-logo-FBB258B90C-seeklogo.com.png" alt="bKash Logo">
+                    bKash Payment
+                </h2>
+                <p>Please complete your payment using bKash before submitting your order details.</p>
+                <ul>
+                    <li>Open your bKash App or dial *247#.</li>
+                    <li>Choose "<strong>${BKASH_PAYMENT_TYPE}</strong>".</li>
+                    <li>Enter our bKash Number: <strong class="bkash-number">${BKASH_MERCHANT_NUMBER}</strong></li>
+                    <li>Enter the Amount: <strong class="payment-amount">${formatPrice(grandTotal)}</strong></li>
+                    <li>Enter Reference: Your Name (Optional)</li>
+                    <li>Complete the payment with your bKash PIN.</li>
+                    <li>You will receive a confirmation SMS from bKash with a <strong>Transaction ID (TrxID)</strong>.</li>
+                </ul>
+                <p class="note">Save the TrxID. You will need to provide it in the form below.</p>`;
+            sidebarColumn.appendChild(bkashInstructionsCard);
+            
+            const billingCard = document.createElement('div');
+            billingCard.classList.add('card', 'billing-form-card');
+            billingCard.style.marginTop = '2rem';
+            billingCard.setAttribute('aria-labelledby', 'billing-details-heading');
+            billingCard.innerHTML = `
+                <h2 id="billing-details-heading" class="card-title">Confirm Order Details</h2>
+                <form id="billing-form" class="billing-form" novalidate>
+                    <div class="form-group">
+                        <label for="bkash-trxid">bKash Transaction ID (TrxID) <span class="required-asterisk">*</span></label>
+                        <input type="text" id="bkash-trxid" name="bkashTrxId" class="form-control" required placeholder="e.g., 9X3KG6E7P2">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-name">Full Name <span class="required-asterisk">*</span></label>
+                        <input type="text" id="customer-name" name="customerName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-phone">Contact Phone <span class="required-asterisk">*</span></label>
+                        <input type="tel" id="customer-phone" name="customerPhone" class="form-control" required placeholder="e.g., 017xxxxxxxx">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email Address <span class="required-asterisk">*</span></label>
+                        <input type="email" id="customer-email" name="customerEmail" class="form-control" required placeholder="For service delivery & updates">
+                    </div>
+                    <div class="form-group">
+                        <label for="account-details">Account/Link for Service</label>
+                        <textarea id="account-details" name="accountDetails" rows="2" class="form-control" placeholder="e.g., Your YouTube channel link, Canva email, Facebook page link. Provide necessary info for service delivery."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="order-notes">Additional Notes</label>
+                        <textarea id="order-notes" name="orderNotes" rows="2" class="form-control" placeholder="Any specific instructions?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-bkash place-order-btn" id="place-order-btn">
+                        <i class="fab fa-whatsapp"></i> Confirm & Send Order via WhatsApp
+                    </button>
+                </form>`;
+            sidebarColumn.appendChild(billingCard);
+            mainLayout.appendChild(sidebarColumn);
+            cartContentAreaEl.appendChild(mainLayout);
+
+            addCartActionListeners();
+        }
+
+        function addCartActionListeners() {
+            const quantityButtons = cartContentAreaEl.querySelectorAll('.quantity-btn');
+            quantityButtons.forEach(btn => btn.addEventListener('click', handleQuantityChange));
+            const removeButtons = cartContentAreaEl.querySelectorAll('.cart-item-remove-btn');
+            removeButtons.forEach(btn => btn.addEventListener('click', handleRemoveItem));
+            const billingFormEl = document.getElementById('billing-form');
+            if (billingFormEl) billingFormEl.addEventListener('submit', handlePlaceOrder);
+        }
+
+        function handleQuantityChange(event) {
+            const productId = event.currentTarget.dataset.id;
+            const action = event.currentTarget.dataset.action;
+            const itemInCart = cart.find(item => item.id === productId);
+            if (!itemInCart) return;
+            if (action === 'increase') {
+                itemInCart.quantity++;
+                showToast(`${itemInCart.title} quantity updated.`, 'info', 1500);
+            } else if (action === 'decrease') {
+                itemInCart.quantity--;
+                if (itemInCart.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                    showToast(`${itemInCart.title} removed from cart.`, 'info', 2000);
+                } else {
+                    showToast(`${itemInCart.title} quantity updated.`, 'info', 1500);
+                }
+            }
+            saveCartToLocalStorage(); renderCartPage(); 
+        }
+
+        function handleRemoveItem(event) {
+            const productId = event.currentTarget.dataset.id;
+            const itemToRemove = cart.find(item => item.id === productId);
+            if(itemToRemove) showToast(`${itemToRemove.title} removed from cart.`, 'info', 2000);
+            cart = cart.filter(item => item.id !== productId);
+            saveCartToLocalStorage(); renderCartPage();
+        }
+
+        function validateAndMarkField(field, condition, message) {
+            if (!condition) {
+                field.style.borderColor = 'var(--danger-color)';
+                field.setAttribute('aria-invalid', 'true');
+                return false;
+            }
+            field.style.borderColor = 'var(--border-color)';
+            field.removeAttribute('aria-invalid');
+            return true;
+        }
+
+        function handlePlaceOrder(event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const bkashTrxIdEl = form.elements.bkashTrxId;
+            const customerNameEl = form.elements.customerName;
+            const customerPhoneEl = form.elements.customerPhone;
+            const customerEmailEl = form.elements.customerEmail; // Now required for digital services
+            const accountDetailsEl = form.elements.accountDetails; // New field
+            const orderNotesEl = form.elements.orderNotes;
+
+            let isValid = true;
+            isValid &= validateAndMarkField(bkashTrxIdEl, bkashTrxIdEl.value.trim().length > 5, "bKash TrxID is required.");
+            isValid &= validateAndMarkField(customerNameEl, customerNameEl.value.trim() !== '', "Full Name is required.");
+            const phoneRegex = /^(?:\+88|88)?(01[3-9]\d{8})$/;
+            isValid &= validateAndMarkField(customerPhoneEl, phoneRegex.test(customerPhoneEl.value.trim()), "Valid BD phone number required.");
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+            isValid &= validateAndMarkField(customerEmailEl, emailRegex.test(customerEmailEl.value.trim()), "Valid Email is required for service delivery.");
+            // Account details might be optional depending on the service, but good to check if needed by any cart item
+            // For simplicity, not making it strictly required here, but you could add logic.
+
+            if (!isValid) {
+                showToast("Please correct the errors in the form.", 'error', 3000);
+                const firstInvalid = form.querySelector('[aria-invalid="true"]');
+                if (firstInvalid) firstInvalid.focus();
+                return;
+            }
+
+            const { subtotal, shippingCost, grandTotal } = calculateTotals();
+            const bkashTrxId = bkashTrxIdEl.value.trim();
+            const customerName = customerNameEl.value.trim();
+            const customerPhone = customerPhoneEl.value.trim();
+            const customerEmail = customerEmailEl.value.trim();
+            const accountDetails = accountDetailsEl.value.trim();
+            const orderNotes = orderNotesEl.value.trim();
+
+            let orderMessage = "🛍️ *New Digital Service Order (Paid) - Digital Hub* 🛍️\n\n";
+            orderMessage += "====================================\n";
+            orderMessage += `*bKash TrxID:* ${bkashTrxId}\n`;
+            orderMessage += "====================================\n";
+            orderMessage += "*Ordered Services:*\n";
+            cart.forEach(item => {
+                orderMessage += `\n➡️ *${item.title}*\n`;
+                orderMessage += `   ID: ${item.id}, Qty: ${item.quantity}\n`;
+                orderMessage += `   Price: ${formatPrice(item.price * item.quantity)}\n`;
+            });
+            orderMessage += "====================================\n";
+            orderMessage += `*Subtotal:* ${formatPrice(subtotal)}\n`;
+            if (shippingCost > 0) orderMessage += `*Delivery Fee:* ${formatPrice(shippingCost)}\n`; // Should be 0 for digital
+            orderMessage += `*TOTAL PAID:* *${formatPrice(grandTotal)}*\n`;
+            orderMessage += "====================================\n\n";
+            orderMessage += "*Customer & Account Info:*\n";
+            orderMessage += `Name: ${customerName}\n`;
+            orderMessage += `Phone: ${customerPhone}\n`;
+            orderMessage += `Email: ${customerEmail}\n`; // Important for digital delivery
+            if (accountDetails) orderMessage += `Account/Link: ${accountDetails}\n`; // Include if provided
+            if (orderNotes) orderMessage += `Notes: ${orderNotes}\n`;
+            orderMessage += "====================================\n\n";
+            orderMessage += "Please verify payment and deliver the services. Thank you! 🙏";
+
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER.replace('+', '')}?text=${encodeURIComponent(orderMessage)}`;
+            const newWindow = window.open(whatsappUrl, '_blank');
+            if (!newWindow || newWindow.closed || typeof newWindow.closed=='undefined') {
+                 showToast("Could not open WhatsApp. Please copy order details manually.", 'error', 5000);
+            }
+
+            cart = []; 
+            saveCartToLocalStorage();
+            form.reset();
+            [bkashTrxIdEl, customerNameEl, customerPhoneEl, customerEmailEl].forEach(el => {
+                el.style.borderColor = 'var(--border-color)';
+                el.removeAttribute('aria-invalid');
+            });
+            showToast("Order Confirmed! Details sent to WhatsApp.", 'success', 4000);
+            setTimeout(() => { renderCartPage(); }, 1000); 
+        }
+
+        if (currentYearSpanEl) currentYearSpanEl.textContent = new Date().getFullYear();
+        loadCartFromLocalStorage();
+        renderCartPage();
+    });
+</script>
+
+</body>
+</html>

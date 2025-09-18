@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulators - Smart Classroom</title>
+
+    <!-- Google Fonts for Professional Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Professional Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <!-- begin _header.html -->
+    <header>
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="assets/icon/iconi.png" alt="SCL">
+            <h1>Smart Classroom</h1>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="desktop-nav">
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="subjects.html">Subjects</a>
+                <a href="simulators.html">Simulators</a>
+                <a href="cp.html">CP</a>
+                <a href="jobs.html">Jobs</a>
+                <a href="./assets/Product/product-main/index.html">Store</a>
+                <a href="community.html">Community</a>
+            </nav>
+            <div class="controls">
+                <div class="role-switch">
+                    <span>Candidate</span>
+                    <label class="switch">
+                        <input type="checkbox" id="role-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Student</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<!-- Off-Canvas Navigation Slider for Mobile -->
+<div id="nav-overlay" class="nav-overlay"></div>
+<div id="nav-slider" class="nav-slider">
+    <div class="slider-header">
+        <h3>Menu</h3>
+        <button id="close-nav-button" aria-label="Close Menu">&times;</button>
+    </div>
+    <div class="slider-content">
+        <!-- Navigation links will be injected here by JS -->
+    </div>
+</div>
+    <!-- end _header.html -->
+
+    <main class="container">
+        <div class="page-header">
+            <h2>Interactive Simulators</h2>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="simulator-search" placeholder="Search (e.g., ball, gravity, physics)...">
+            </div>
+        </div>
+        <p>Experiment with concepts in physics and mathematics. Click and drag within the simulators to interact.</p>
+        
+        <!-- This grid is the container for our dynamic simulators. -->
+        <!-- The 'loading-text' provides feedback to the user while scripts load. -->
+        <div id="simulators-grid" class="grid-3">
+            <p class="loading-text">Loading interactive simulators...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <!-- begin _footer.html -->
+    <footer>
+    <div class="container">
+        <p>&copy; 2024 Smart Classroom. All Rights Reserved.</p>
+        <div class="footer-inner">
+            <div class="stay-connected">
+                <h4>📱 Stay Connected:</h4>
+                <ul class="connect-list">
+                    <li>🔗 <a href="https://www.facebook.com/profile.php?id=61576756049338" target="_blank">Facebook Page</a></li>
+                    <li>🔗 <a href="https://linkedin.com/in/pritom" target="_blank">LinkedIn</a></li>
+                    <li>🔗 <a href="https://www.facebook.com/groups/1240993220731995" target="_blank">Facebook Group</a></li>
+                    <li>🔗 <a href="https://www.youtube.com/@CodeWithPritom-360" target="_blank">YouTube Channel</a></li>
+                    <li>🔗 <a href="https://github.com/CodeWithPritom" target="_blank">GitHub</a></li>
+                    <li>🔗 <a href="https://glittering-florentine-b6f323.netlify.app/" target="_blank">Portfolio</a></li>
+                    <li>🔗 <a href="https://codewithpritom.blogspot.com/" target="_blank">Blog</a></li>
+                    <li>🔗 <a href="https://vjudge.net/group/ewu-codeventure?r=BJDoPOik5SIqUz3uV9J8" target="_blank">Our CP Group</a></li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61576756049338" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com/groups/1240993220731995" target="_blank" aria-label="Facebook Group"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://linkedin.com/in/pritom" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/@CodeWithPritom-360" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://github.com/CodeWithPritom" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+    <!-- end _footer.html -->
+    
+    <!-- INSTRUCTION MANUAL FLOATING ICON & MODAL (Site-wide component) -->
+    <div class="instruction-container">
+        <button id="instruction-button" aria-label="Instructions">
+            <i class="fas fa-question-circle"></i>
+        </button>
+    </div>
+
+    <div id="instruction-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>How to Use This Site</h2>
+            <p>Welcome to the Smart Classroom! Here are a few tips to get you started:</p>
+            <ul>
+                <li>
+                    <strong><i class="fas fa-toggle-on"></i> Role Switcher:</strong> Use the toggle in the top-right corner to switch between the <strong>Admission Candidate</strong> and <strong>University Student</strong> view. Each role has access to different resources.
+                </li>
+                <li>
+                    <strong><i class="fas fa-book"></i> Subjects:</strong> As a candidate, you'll find admission prep materials. As a student, you'll get full access to lecture notes, videos, and assignments.
+                </li>
+                <li>
+                    <strong><i class="fas fa-shopping-cart"></i> Cart & Role:</strong> Your selected role and shopping cart items are saved in your browser, so they'll be here when you return!
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- SCRIPT LOADING: The 'defer' attribute ensures scripts execute in order after the HTML is parsed -->
+    
+    <!-- 1. External libraries first -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
+
+    <!-- 2. Main site logic (handles header, footer, nav, etc.) -->
+    <script src="js/main.js" defer></script>
+    
+    <!-- 3. Page-specific logic last (depends on libraries and main.js) -->
+    <script src="js/simulators.js" defer></script>
+
+</body>
+</html>

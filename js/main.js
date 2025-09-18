@@ -24,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error(`Error loading ${url}:`, error));
     };
 
-    loadHTML('#header-placeholder', '_header.html');
-    loadHTML('#footer-placeholder', '_footer.html');
+
 
     // --- Active Nav Link ---
     const setActiveLink = () => {

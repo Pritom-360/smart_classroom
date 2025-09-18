@@ -158,5 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Initialize Non-Header Scripts ---
     initializeInstructionModal();
+    // Ensure header-dependent controls are initialized on pages that include the
+    // header inline (instead of using a placeholder). This guarantees the
+    // role switch (which reads from localStorage) is applied immediately on
+    // load so the student view doesn't disappear after a refresh.
+    initializeHeaderControls();
 });
 

@@ -1435,7 +1435,10 @@ footer .container {
         max-width: 100%; 
     }
     
-    .role-switch span { 
+    /* Hide the textual labels next to the toggle in the compact header only.
+       Keep labels visible inside the mobile slider controls so users see
+       "Candidate / Student" when the off-canvas menu is opened. */
+    .desktop-nav .role-switch span { 
         display: none; 
     }
     

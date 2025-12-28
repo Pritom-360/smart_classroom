@@ -39,6 +39,29 @@
         }
       ]
     },
+
+    {
+      "courseCode": "CSE103",
+      "subject": "CSE",
+      "title": "CSE 103",
+      "materials": [
+        {
+          "type": "youtube",
+          "title": "Full CSE 103 Lecture Series",
+          "youtubePlaylistId": "PLPwbpfnR90kusHO-a-pfUazKmKc_O-YDP"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 103 Slides",
+          "url": "https://drive.google.com/drive/folders/1fT3gIFmIDUhNTE2D7RxvAzepgDiAikeW?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 103 Materials",
+          "url": "https://drive.google.com/drive/folders/1fT3gIFmIDUhNTE2D7RxvAzepgDiAikeW?usp=sharing"
+        }
+      ]
+    },
     {
       "courseCode": "CSE110",
       "subject": "CSE",

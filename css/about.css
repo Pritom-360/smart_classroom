@@ -1,0 +1,445 @@
+/* About Page Specific Styles */
+
+.about-content {
+    padding: 30px 0;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(80, 227, 194, 0.05));
+    border-radius: 20px;
+    margin-bottom: 50px;
+}
+
+.profile-image {
+    flex-shrink: 0;
+}
+
+.avatar-placeholder {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+}
+
+.avatar-placeholder i {
+    font-size: 5rem;
+    color: white;
+}
+
+.profile-info h3 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.profile-info .title {
+    font-size: 1.2rem;
+    color: #4A90E2;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.profile-info .bio {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn.github {
+    background: #333;
+    color: white;
+}
+
+.social-btn.linkedin {
+    background: #0077B5;
+    color: white;
+}
+
+.social-btn.youtube {
+    background: #FF0000;
+    color: white;
+}
+
+/* Section Headers */
+.skills-section h3,
+.education-section h3,
+.projects-section h3,
+.contact-section h3 {
+    font-size: 1.5rem;
+    color: #4A90E2;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+}
+
+/* Skills Section */
+.skills-section {
+    margin-bottom: 50px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.skill-item {
+    background: white;
+    padding: 25px 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+}
+
+.skill-item i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.skill-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Education Section */
+.education-section {
+    margin-bottom: 50px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    border-radius: 3px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    position: relative;
+}
+
+.timeline-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: -40px;
+}
+
+.timeline-icon i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.timeline-content h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.timeline-content .degree {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.timeline-content .duration {
+    font-size: 0.9rem;
+    color: #4A90E2;
+    font-weight: 500;
+}
+
+/* Projects Section */
+.projects-section {
+    margin-bottom: 50px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #4A90E2;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+}
+
+.project-card h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(80, 227, 194, 0.05));
+    border-radius: 20px;
+}
+
+.contact-section p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.contact-btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(74, 144, 226, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .profile-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .social-buttons {
+        justify-content: center;
+    }
+
+    .avatar-placeholder {
+        width: 150px;
+        height: 150px;
+    }
+
+    .avatar-placeholder i {
+        font-size: 4rem;
+    }
+
+    .contact-info {
+        justify-content: center;
+    }
+}
+
+/* Contact Info in Profile */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.contact-info span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-info i {
+    color: #4A90E2;
+}
+
+/* Portfolio Button */
+.social-btn.portfolio {
+    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    color: white;
+}
+
+/* Experience Section */
+.experience-section {
+    margin-bottom: 50px;
+}
+
+.experience-section h3 {
+    font-size: 1.5rem;
+    color: #4A90E2;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+}
+
+.responsibilities {
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #666;
+}
+
+.responsibilities li {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+.timeline-content .organization {
+    color: #4A90E2;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.timeline-content .gpa {
+    color: #50E3C2;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.timeline-content .gpa i {
+    color: #ffc107;
+}
+
+/* Languages Section */
+.languages-section {
+    margin-bottom: 50px;
+}
+
+.languages-section h3 {
+    font-size: 1.5rem;
+    color: #4A90E2;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+}
+
+.languages-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.language-item {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 150px;
+}
+
+.language-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.language-level {
+    font-size: 0.85rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.language-level.fluent {
+    background: rgba(80, 227, 194, 0.2);
+    color: #2ecc71;
+}
+
+.language-level.intermediate {
+    background: rgba(74, 144, 226, 0.2);
+    color: #4A90E2;
+}
+
+.language-level.basic {
+    background: rgba(255, 193, 7, 0.2);
+    color: #f39c12;
+}

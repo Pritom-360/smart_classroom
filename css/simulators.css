@@ -1,0 +1,140 @@
+/* Simulators Page Specific Styles */
+
+/* Categories */
+.category-section {
+    margin-bottom: 50px;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    color: #4A90E2;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Grid Layout */
+.simulators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Simulator Card */
+.simulator-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.simulator-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+}
+
+.simulator-card h4 {
+    padding: 15px 20px;
+    margin: 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fullscreen-btn {
+    background: none;
+    border: none;
+    color: #4A90E2;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s;
+}
+
+.fullscreen-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Container for the actual simulation (iframe or canvas) */
+.sim-container {
+    width: 100%;
+    height: 250px;
+    /* Fixed height for preview */
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+/* Fullscreen Mode */
+/* Fullscreen Mode (Native) */
+.sim-container:fullscreen,
+.sim-container:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Close button for fullscreen */
+.close-fs-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 2147483647;
+    /* Max z-index */
+    display: none;
+}
+
+.sim-container:fullscreen .close-fs-btn,
+.sim-container:-webkit-full-screen .close-fs-btn {
+    display: block;
+}
+
+.sim-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Loading state for iframes */
+.sim-container.loading::before {
+    content: 'Loading Simulation...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .simulators-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sim-container {
+        height: 250px;
+    }
+}

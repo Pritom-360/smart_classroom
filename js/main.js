@@ -38,21 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-    
+
     // --- NEW: Off-Canvas Navigation Slider Logic ---
     const initializeNavSlider = () => {
         const slider = document.getElementById('nav-slider');
         const overlay = document.getElementById('nav-overlay');
         const openBtn = document.getElementById('menu-toggle');
         const closeBtn = document.getElementById('close-nav-button');
-        
+
         if (!slider || !overlay || !openBtn || !closeBtn) return;
-        
+
         // Clone desktop nav and controls into the slider for mobile
         const desktopNav = document.querySelector('.desktop-nav nav');
         const desktopControls = document.querySelector('.desktop-nav .controls');
         const sliderContent = document.querySelector('.slider-content');
-        
+
         if (desktopNav && desktopControls && sliderContent) {
             sliderContent.innerHTML = ''; // Clear any existing content
             sliderContent.appendChild(desktopNav.cloneNode(true));
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Role Switch Logic ---
     const handleRoleSwitch = () => {
         const body = document.body;
-        
+
         const setRole = (role) => {
             if (role === 'student') {
                 body.classList.add('role-student');
@@ -97,8 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             localStorage.setItem('userRole', role);
             updateRoleToggles(role);
+            window.dispatchEvent(new CustomEvent('roleChanged', { detail: { role: role } }));
         };
-        
+
         const updateRoleToggles = (role) => {
             // Update both desktop and mobile toggles
             const roleToggles = document.querySelectorAll('#role-toggle');
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentRole = localStorage.getItem('userRole') || 'candidate';
         setRole(currentRole);
     };
-    
+
     // --- Cart Count Update ---
     const updateCartCount = () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (el) el.textContent = cart.length;
         });
     };
-    
+
     // --- Instruction Modal Logic ---
     const initializeInstructionModal = () => {
         const modal = document.getElementById('instruction-modal');
@@ -148,16 +149,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- Scroll Animations (Intersection Observer) ---
+    const handleScrollAnimations = () => {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        const elements = document.querySelectorAll('.reveal');
+        elements.forEach(el => observer.observe(el));
+    };
+
+    // --- Sticky Header Logic ---
+    const handleStickyHeader = () => {
+        const header = document.querySelector('header');
+        if (!header) return;
+
+        const onScroll = () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+
+        window.addEventListener('scroll', onScroll);
+        // Check initial state
+        onScroll();
+    };
+
     // --- Initialize All Header-Dependent Scripts ---
     const initializeHeaderControls = () => {
         initializeNavSlider();
         handleRoleSwitch();
         updateCartCount();
         setActiveLink();
+        handleStickyHeader(); // Add this
     };
-    
+
     // --- Initialize Non-Header Scripts ---
     initializeInstructionModal();
+    handleScrollAnimations(); // Add this
+
     // Ensure header-dependent controls are initialized on pages that include the
     // header inline (instead of using a placeholder). This guarantees the
     // role switch (which reads from localStorage) is applied immediately on

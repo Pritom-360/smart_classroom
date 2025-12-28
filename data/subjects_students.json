@@ -2,55 +2,122 @@
   "students": [
     {
       "courseCode": "PHY101",
+      "subject": "Physics",
+      "title": "University Physics I",
       "materials": [
-        { "type": "youtube", "title": "Full University Physics I Lecture Series", "youtubePlaylistId": "Kk91tGskkfk" },
-        { "type": "pdf", "title": "Lecture 1: Kinematics", "url": "assets/pdfs/sample_notes.pdf" },
-        { "type": "pdf", "title": "Problem Set 1", "url": "assets/pdfs/sample_notes.pdf" }
+        {
+          "type": "youtube",
+          "title": "Full University Physics I Lecture Series",
+          "youtubePlaylistId": "Kk91tGskkfk"
+        },
+        {
+          "type": "pdf",
+          "title": "Lecture 1: Kinematics",
+          "url": "assets/pdfs/sample_notes.pdf"
+        },
+        {
+          "type": "pdf",
+          "title": "Problem Set 1",
+          "url": "assets/pdfs/sample_notes.pdf"
+        }
       ]
     },
     {
       "courseCode": "CHEM101",
+      "subject": "Chemistry",
+      "title": "General Chemistry I",
       "materials": [
-        { "type": "youtube", "title": "Full General Chemistry Lecture Series", "youtubePlaylistId": "0e_z_6XdbJ4" },
-        { "type": "pdf", "title": "Lab Manual: Titration", "url": "assets/pdfs/sample_notes.pdf" }
+        {
+          "type": "youtube",
+          "title": "Full General Chemistry Lecture Series",
+          "youtubePlaylistId": "0e_z_6XdbJ4"
+        },
+        {
+          "type": "pdf",
+          "title": "Lab Manual: Titration",
+          "url": "assets/pdfs/sample_notes.pdf"
+        }
       ]
     },
     {
       "courseCode": "MATH101",
+      "subject": "Mathematics",
+      "title": "Differential and Integral Calculus",
       "materials": [
-        { "type": "youtube", "youtubePlaylistId": "PLPwbpfnR90kukwzAjY0U5ECCmTcbjdoH6" },
-        { "type": "pdf", "title": "Calculus Book Anton with Solution", "url": "https://drive.google.com/drive/folders/1SF_DEJX4aOCeHmgvc3gMcECzbZMZ-0wK?usp=sharing" }
+        {
+          "type": "youtube",
+          "youtubePlaylistId": "PLPwbpfnR90kukwzAjY0U5ECCmTcbjdoH6"
+        },
+        {
+          "type": "pdf",
+          "title": "Calculus Book Anton with Solution",
+          "url": "https://drive.google.com/drive/folders/1SF_DEJX4aOCeHmgvc3gMcECzbZMZ-0wK?usp=sharing"
+        }
       ]
     },
     {
       "courseCode": "MATH102",
+      "subject": "Mathematics",
+      "title": "Higher Math & Calculus II",
       "materials": [
-        { "type": "youtube", "title": "University Calculus I Full Playlist", "youtubePlaylistId": "7K1sB05pE0A" },
-        { "type": "pdf", "title": "Advanced Problem Set: Derivatives", "url": "assets/pdfs/sample_notes.pdf" }
+        {
+          "type": "youtube",
+          "title": "University Calculus I Full Playlist",
+          "youtubePlaylistId": "7K1sB05pE0A"
+        },
+        {
+          "type": "pdf",
+          "title": "Advanced Problem Set: Derivatives",
+          "url": "assets/pdfs/sample_notes.pdf"
+        }
       ]
     },
     {
       "courseCode": "ENG101",
+      "subject": "English",
+      "title": "English Language Skills",
       "materials": [
-        { "type": "link", "title": "Read English Compilation", "url": "Students/English/English 101/index.html" }
-     ]
+        {
+          "type": "link",
+          "title": "Read English Compilation",
+          "url": "Students/English/English 101/index.html"
+        }
+      ]
     },
     {
       "courseCode": "ENG102",
+      "subject": "English",
+      "title": "Advanced English",
       "materials": [
-     { "type": "pdf", "title": "Literary Analysis Workshop", "url": "assets/pdfs/sample_notes.pdf" }
+        {
+          "type": "pdf",
+          "title": "Literary Analysis Workshop",
+          "url": "assets/pdfs/sample_notes.pdf"
+        }
       ]
     },
     {
       "courseCode": "BNG101",
+      "subject": "Bengali",
+      "title": "History of Bengali Literature",
       "materials": [
-        { "type": "pdf", "title": "History of Bengali Literature", "url": "assets/pdfs/sample_notes.pdf" }
+        {
+          "type": "pdf",
+          "title": "History of Bengali Literature",
+          "url": "assets/pdfs/sample_notes.pdf"
+        }
       ]
     },
     {
       "courseCode": "BGS101",
+      "subject": "General Knowledge",
+      "title": "Bangladesh & Global Studies",
       "materials": [
-        { "type": "pdf", "title": "In-depth analysis of International Relations", "url": "assets/pdfs/sample_notes.pdf" }
+        {
+          "type": "pdf",
+          "title": "In-depth analysis of International Relations",
+          "url": "assets/pdfs/sample_notes.pdf"
+        }
       ]
     }
   ]

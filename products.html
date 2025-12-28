@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulators - Smart Classroom</title>
+    <title>Featured Products - Smart Classroom</title>
+    <meta name="description"
+        content="Explore our collection of educational tools and applications designed to enhance your learning experience.">
 
     <!-- Google Fonts for Professional Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +19,7 @@
 
     <!-- Main Professional Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/simulators.css">
+    <link rel="stylesheet" href="css/products.css">
 </head>
 
 <body>
@@ -34,9 +36,9 @@
                 <nav>
                     <a href="index.html">Home</a>
                     <a href="subjects.html">Subjects</a>
-                    <a href="simulators.html" class="active">Simulators</a>
+                    <a href="simulators.html">Simulators</a>
                     <a href="https://ewu-studentsdesk.vercel.app/" target="_blank">EWU Desk</a>
-                    <a href="products.html">Products</a>
+                    <a href="products.html" class="active">Products</a>
                     <a href="https://codewithpritom.github.io/digital-hub/" target="_blank">Store</a>
                     <a href="about.html">About</a>
                 </nav>
@@ -70,20 +72,111 @@
 
     <main class="container">
         <div class="page-header reveal">
-            <h2 class="gradient-text">Interactive Simulators</h2>
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="simulator-search" placeholder="Search (e.g., ball, gravity, physics)...">
-            </div>
-        </div>
-        <div class="reveal" style="animation-delay: 0.1s;">
-            <p>Experiment with concepts in physics and mathematics. Click and drag within the simulators to interact.
-            </p>
+            <h2 class="gradient-text">Featured Products</h2>
+            <p class="tagline">Explore our collection of educational tools and applications designed to enhance your
+                learning experience.</p>
         </div>
 
-        <!-- This grid is the container for our dynamic simulators. -->
-        <div id="simulators-grid" class="grid-3 reveal" style="animation-delay: 0.2s;">
-            <p class="loading-text">Loading interactive simulators...</p>
+        <div class="products-grid reveal" style="animation-delay: 0.1s;">
+
+            <!-- Education Tools -->
+            <div class="product-category">
+                <h3 class="category-header"><i class="fas fa-graduation-cap"></i> Education Tools</h3>
+                <div class="product-cards">
+
+                    <a href="https://pritom-360.github.io/ewu_admission-model_test/" target="_blank"
+                        class="product-card">
+                        <div class="product-icon"><i class="fas fa-file-alt"></i></div>
+                        <h4>EWU Admission Exam</h4>
+                        <p>Practice with model questions for EWU admission preparation.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://pritom-360.github.io/c_problem_solving/c_problem/intro/" target="_blank"
+                        class="product-card">
+                        <div class="product-icon"><i class="fas fa-code"></i></div>
+                        <h4>Programming Contest Series</h4>
+                        <p>Sharpen your competitive programming skills with curated problems.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://pritom-360.github.io/math-tools/math_tools/Diff%20and%20Int%20calculator.html"
+                        target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-calculator"></i></div>
+                        <h4>Calculus Calculator</h4>
+                        <p>Solve differential and integral calculus problems instantly.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Language Learning -->
+            <div class="product-category">
+                <h3 class="category-header"><i class="fas fa-language"></i> Language Learning</h3>
+                <div class="product-cards">
+
+                    <a href="https://pritom36.github.io/Comic-Linguist/" target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-book-open"></i></div>
+                        <h4>Comic Linguist</h4>
+                        <p>Learn languages through engaging comic-style content.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://pritom-360.github.io/vocab/" target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-spell-check"></i></div>
+                        <h4>Online Dictionary</h4>
+                        <p>Quick and comprehensive word lookup with definitions.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://pritom-360.github.io/vocabulary_ielts/IELTS%20Vocabulary/ielts_vocabulary.html"
+                        target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-globe"></i></div>
+                        <h4>Vocabulary for IELTS</h4>
+                        <p>Build your IELTS vocabulary with targeted word lists.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://pritom-360.github.io/Typing-Practice/" target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-keyboard"></i></div>
+                        <h4>Visual Bengali Typing</h4>
+                        <p>Practice and improve your Bengali typing skills visually.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Kids & Wellness -->
+            <div class="product-category">
+                <h3 class="category-header"><i class="fas fa-child"></i> Kids & Wellness</h3>
+                <div class="product-cards">
+
+                    <a href="https://pritom-360.github.io/kids_story_book/" target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-book-reader"></i></div>
+                        <h4>Interactive Kids Story Books</h4>
+                        <p>Engaging and interactive stories for young learners.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://sites.google.com/view/biksedu-stu/home" target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-shapes"></i></div>
+                        <h4>Kids Section</h4>
+                        <p>A dedicated space for kids' educational activities.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                    <a href="https://codewithpritom.github.io/meditation/home" target="_blank" class="product-card">
+                        <div class="product-icon"><i class="fas fa-spa"></i></div>
+                        <h4>Meditation</h4>
+                        <p>Find peace and focus with guided meditation sessions.</p>
+                        <span class="product-link">Visit <i class="fas fa-external-link-alt"></i></span>
+                    </a>
+
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -91,6 +184,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
+                <!-- Brand -->
                 <div class="footer-brand">
                     <h3>Smart Classroom</h3>
                     <p>Empowering students with interactive learning resources and educational tools.</p>
@@ -105,6 +199,8 @@
                                 class="fab fa-github"></i></a>
                     </div>
                 </div>
+
+                <!-- Links -->
                 <div class="footer-links">
                     <div class="footer-links-group">
                         <h4>Quick Links</h4>
@@ -129,6 +225,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
             </div>
@@ -158,23 +255,15 @@
                     materials. As a student, you'll get full access to lecture notes, videos, and assignments.
                 </li>
                 <li>
-                    <strong><i class="fas fa-shopping-cart"></i> Cart & Role:</strong> Your selected role and shopping
-                    cart items are saved in your browser, so they'll be here when you return!
+                    <strong><i class="fas fa-box"></i> Products:</strong> Explore our featured educational tools and
+                    applications.
                 </li>
             </ul>
         </div>
     </div>
 
     <!-- SCRIPT LOADING -->
-    <!-- 1. External libraries first -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
-
-    <!-- 2. Main site logic -->
     <script src="js/main.js" defer></script>
-
-    <!-- 3. Page-specific logic -->
-    <script src="js/simulators.js" defer></script>
 
 </body>
 

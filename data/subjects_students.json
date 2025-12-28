@@ -40,6 +40,23 @@
       ]
     },
     {
+      "courseCode": "CSE110",
+      "subject": "CSE",
+      "title": "CSE 110",
+      "materials": [
+        {
+          "type": "youtube",
+          "title": "Full CSE 110 Lecture Series",
+          "youtubePlaylistId": ""
+        },
+        {
+          "type": "Images",
+          "title": "Java OOP Note",
+          "url": "https://drive.google.com/drive/folders/1z5tDEmG6CDewgr_VglJaoUWf33r8tXUe?usp=sharing"
+        }
+      ]
+    },
+    {
       "courseCode": "MATH101",
       "subject": "Mathematics",
       "title": "Differential and Integral Calculus",

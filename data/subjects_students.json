@@ -1,41 +1,71 @@
 {
   "students": [
     {
-      "courseCode": "PHY101",
+      "courseCode": "PHY109",
       "subject": "Physics",
-      "title": "University Physics I",
+      "title": "Physics 109",
       "materials": [
         {
           "type": "youtube",
-          "title": "Full University Physics I Lecture Series",
+          "title": "Full Physics 109 Lecture Series",
           "youtubePlaylistId": "Kk91tGskkfk"
         },
         {
           "type": "pdf",
-          "title": "Lecture 1: Kinematics",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "Physics 109 Notes",
+          "url": "https://drive.google.com/drive/folders/13NNbdK9Z-BAJ5o_7Iqcq0DZxwbrnTByi?usp=drive_link"
         },
         {
           "type": "pdf",
-          "title": "Problem Set 1",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "Physics 109 Assignments",
+          "url": "https://drive.google.com/drive/folders/1TYLvDlzCEt655dthsebH9umooDmidyf3?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Physics 109 Book",
+          "url": "https://drive.google.com/drive/folders/1mmr5U2ViTE5ePEQFACDvDbYzT3P6h-JZ?usp=sharing"
         }
       ]
     },
     {
-      "courseCode": "CHEM101",
+      "courseCode": "CHEM109",
       "subject": "Chemistry",
-      "title": "General Chemistry I",
+      "title": "Engineering Chemistry I",
       "materials": [
         {
           "type": "youtube",
-          "title": "Full General Chemistry Lecture Series",
+          "title": "Full Engineering Chemistry I Lecture Series",
           "youtubePlaylistId": "0e_z_6XdbJ4"
         },
         {
           "type": "pdf",
-          "title": "Lab Manual: Titration",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "Engineering Chemistry I Notes",
+          "url": "https://drive.google.com/drive/folders/1MtBIB5NEQLTpd268_-xVW38VJ6TP0wg7?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Engineering Chemistry I Assignments",
+          "url": "https://drive.google.com/drive/folders/1FbCCg40FX-gDVNsFr5zLDr_mXpkbGS-9?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Engineering Chemistry I Books",
+          "url": "https://drive.google.com/drive/folders/1vdQ-rFUYhVKlkuivyI1pKkJ9y6k0yK4i?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Engineering Chemistry I Lab Materials",
+          "url": "https://drive.google.com/drive/folders/1RzNWJsN9cFXnWwiMoW6FQWsqc8dI0tRT?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Engineering Chemistry I Presentation",
+          "url": "https://drive.google.com/drive/folders/1CFtuk90ieFj0sgfih2pmnG5Iz0Ji1Ikk?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Engineering Chemistry I Slides",
+          "url": "https://drive.google.com/drive/folders/1uBXh3P86JvZAU_cRh0XqLVKVNJRA1K3U?usp=drive_link"
         }
       ]
     },
@@ -57,8 +87,60 @@
         },
         {
           "type": "pdf",
-          "title": "CSE 103 Materials",
+          "title": "CSE 103 Notes",
+          "url": "https://drive.google.com/drive/folders/1S-_cEoz_pTywYLK79e2_yOA5_2bydhqW?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 103 Projects",
+          "url": "https://drive.google.com/drive/folders/1GXe6qCZesg1VfaRn2hMmn-uw4qTN6fYP?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 103 Lab Materials",
+          "url": "https://drive.google.com/drive/folders/1JrZdbNYNcZuDGvMeE1zlbX5YOQvYnst5?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 103 Book",
+          "url": "https://drive.google.com/drive/folders/1JrZdbNYNcZuDGvMeE1zlbX5YOQvYnst5?usp=sharing"
+        }
+      ]
+    },
+        {
+      "courseCode": "CSE106",
+      "subject": "CSE",
+      "title": "CSE 106",
+      "materials": [
+        {
+          "type": "youtube",
+          "title": "Full CSE 106 Lecture Series",
+          "youtubePlaylistId": "PLPwbpfnR90kusHO-a-pfUazKmKc_O-YDP"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 106 Slides",
           "url": "https://drive.google.com/drive/folders/1fT3gIFmIDUhNTE2D7RxvAzepgDiAikeW?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 106 Notes",
+          "url": "https://drive.google.com/drive/folders/1S-_cEoz_pTywYLK79e2_yOA5_2bydhqW?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 106 Projects",
+          "url": "https://drive.google.com/drive/folders/1GXe6qCZesg1VfaRn2hMmn-uw4qTN6fYP?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 106 Lab Materials",
+          "url": "https://drive.google.com/drive/folders/1JrZdbNYNcZuDGvMeE1zlbX5YOQvYnst5?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "CSE 106 Book",
+          "url": "https://drive.google.com/drive/folders/1JrZdbNYNcZuDGvMeE1zlbX5YOQvYnst5?usp=sharing"
         }
       ]
     },
@@ -80,6 +162,47 @@
       ]
     },
     {
+      "courseCode": "CSE200",
+      "subject": "CSE",
+      "title": "CSE 200",
+      "materials": [
+        {
+          "type": "youtube",
+          "title": "Full CSE 200 Lecture Series",
+          "youtubePlaylistId": ""
+        },
+        {
+          "type": "pdf",
+          "title": "Resources Not Available",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE209",
+      "subject": "CSE",
+      "title": "CSE 209",
+      "materials": [
+        {
+          "type": "youtube",
+          "title": "Full CSE 209 Lecture Series",
+          "youtubePlaylistId": ""
+        },
+        {
+          "type": "pdf",
+          "title": "Resources Not Available",
+          "url": ""
+        }
+      ]
+    },
+
+
+
+
+
+
+
+    {
       "courseCode": "MATH101",
       "subject": "Mathematics",
       "title": "Differential and Integral Calculus",
@@ -91,7 +214,22 @@
         {
           "type": "pdf",
           "title": "Calculus Book Anton with Solution",
-          "url": "https://drive.google.com/drive/folders/1SF_DEJX4aOCeHmgvc3gMcECzbZMZ-0wK?usp=sharing"
+          "url": "https://drive.google.com/drive/folders/1Fz1BDYMUSqh-AaidP7P380lQTRXrdU5B?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Math101 Presentation",
+          "url": "https://drive.google.com/drive/folders/1OAvT_XiGTkKRMIeKQkSEkonj1g-Zo1c0?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Math101 Class Lecture",
+          "url": "https://drive.google.com/drive/folders/15b6uIUIJQykmbYwz705M-cZYD05tdpll?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Math101 Notes",
+          "url": "https://drive.google.com/drive/folders/192dEqnc3eKpIV4aADwzhRbvg9otsRwpw?usp=drive_link"
         }
       ]
     },
@@ -121,6 +259,21 @@
           "type": "link",
           "title": "Read English Compilation",
           "url": "Students/English/English 101/index.html"
+        },
+        {
+          "type": "pdf",
+          "title": "English 101 Books",
+          "url": "https://drive.google.com/drive/folders/160W32wIXM68tN2_lrXr9zhrfUm8eQ_CR?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "English 101 Materials",
+          "url": "https://drive.google.com/drive/folders/1wuPG_sU97DRAYDL4otQudpJ1QTso4cml?usp=sharing"
+        },
+        {
+          "type": "link",
+          "title": "AI & Plagiarism Detector",
+          "url": "https://drive.google.com/file/d/1LswplAiSjW0rhS2SrV5sa07dtbukx_ur/view?usp=drive_link"
         }
       ]
     },
@@ -131,8 +284,23 @@
       "materials": [
         {
           "type": "pdf",
-          "title": "Literary Analysis Workshop",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "Term Paper & Presentation",
+          "url": "https://drive.google.com/drive/folders/1PUzDA-DRJ85YugNsqbA07tizCmWM_e2W?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "English 102 Books",
+          "url": "https://drive.google.com/drive/folders/1YP56HT61gvSlg0iVVNtYxq22ZA0TJr6i?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "English 102 Materials",
+          "url": "https://drive.google.com/drive/folders/1a2rgS6u6k1Mgb284OJuwY4FT9VBNqF1s?usp=sharing"
+        },
+        {
+          "type": "link",
+          "title": "AI & Plagiarism Detector",
+          "url": "https://drive.google.com/file/d/1LswplAiSjW0rhS2SrV5sa07dtbukx_ur/view?usp=drive_link"
         }
       ]
     },
@@ -143,8 +311,8 @@
       "materials": [
         {
           "type": "pdf",
-          "title": "History of Bengali Literature",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "Resources Not Available",
+          "url": ""
         }
       ]
     },
@@ -155,8 +323,8 @@
       "materials": [
         {
           "type": "pdf",
-          "title": "In-depth analysis of International Relations",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "Resources Not Available",
+          "url": ""
         }
       ]
     }

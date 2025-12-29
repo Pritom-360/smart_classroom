@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Smart Classroom | সহায়তা করুন</title>
+    <meta name="description"
+        content="Support Smart Classroom - A non-profit educational initiative. Donate via Bkash or contribute resources for students. শিক্ষার্থীদের জন্য সহায়তা করুন।">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/donation.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/icon/iconi.png" alt="SCL">
+                <span>Smart Classroom</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="subjects.html">Subjects</a>
+                    <a href="simulators.html">Simulators</a>
+                    <a href="https://ewu-studentsdesk.vercel.app/" target="_blank">EWU Desk</a>
+                    <a href="products.html">Products</a>
+                    <a href="https://codewithpritom.github.io/digital-hub/" target="_blank">Store</a>
+                    <a href="donation.html" class="active">Support Us</a>
+                    <a href="about.html">About</a>
+                </nav>
+                <div class="controls">
+                    <div class="role-switch">
+                        <span>Candidate</span>
+                        <label class="switch">
+                            <input type="checkbox" id="role-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Student</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Navigation Slider for Mobile -->
+    <div id="nav-overlay" class="nav-overlay"></div>
+    <div id="nav-slider" class="nav-slider">
+        <div class="slider-header">
+            <h3>Menu</h3>
+            <button id="close-nav-button" aria-label="Close Menu">&times;</button>
+        </div>
+        <div class="slider-content">
+            <!-- Navigation links will be injected here by JS -->
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- Language Toggle -->
+        <div class="language-toggle" style="margin-top: 2rem;">
+            <button id="btn-english" class="active" onclick="switchLanguage('en')">
+                <i class="fas fa-globe"></i> English
+            </button>
+            <button id="btn-bengali" onclick="switchLanguage('bn')">
+                <i class="fas fa-language"></i> বাংলা
+            </button>
+        </div>
+
+        <!-- ENGLISH CONTENT -->
+        <div id="content-en" class="content-en active">
+            <!-- Hero Section -->
+            <section class="donation-hero reveal">
+                <i class="fas fa-heart heart-icon"></i>
+                <h2>Support Our Mission</h2>
+                <p>Smart Classroom is a 100% non-profit educational initiative. Your generosity helps us provide free,
+                    high-quality learning resources to students who need them most.</p>
+            </section>
+
+            <!-- Motivation Section -->
+            <section class="motivation-section reveal">
+                <h3><i class="fas fa-star"></i> Why Your Support Matters</h3>
+                <p class="motivation-text">
+                    Education is the most powerful weapon we can use to change the world. <strong>Smart
+                        Classroom</strong> was born from a simple dream — to make quality education accessible to every
+                    student, regardless of their financial background.
+                    <br><br>
+                    We are a <strong>completely non-profit initiative</strong>. Every donation, every resource you
+                    share, directly impacts a student's future. Your support helps us create video tutorials, develop
+                    interactive simulators, maintain our platforms, and expand our reach to remote areas.
+                    <br><br>
+                    <strong>We don't accept donations for profit — we accept them for potential.</strong> Together, we
+                    can build a community where knowledge is free, accessible, and transformative.
+                </p>
+            </section>
+
+            <!-- Donation Options -->
+            <section class="donation-section reveal">
+                <h3 class="section-title"><i class="fas fa-hand-holding-heart"></i> How to Contribute</h3>
+
+                <div class="donation-grid">
+                    <!-- Bkash Card -->
+                    <div class="donation-card bkash">
+                        <div class="card-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Donate via Bkash</h3>
+                        <p class="description">Send your donation directly to our Bkash number. Every contribution, big
+                            or small, makes a difference!</p>
+
+                        <div class="number-display">
+                            <span class="number">01853343176</span>
+                            <button class="copy-btn" onclick="copyNumber('01853343176', this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Manual Process:</h4>
+                        <ol class="steps-list">
+                            <li>Open your Bkash app</li>
+                            <li>Select "Send Money"</li>
+                            <li>Enter: <strong>01853343176</strong></li>
+                            <li>Enter your donation amount</li>
+                            <li>Add reference: "Smart Classroom"</li>
+                            <li>Enter PIN and confirm</li>
+                        </ol>
+                    </div>
+
+                    <!-- WhatsApp Card -->
+                    <div class="donation-card whatsapp">
+                        <div class="card-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>Contact Us on WhatsApp</h3>
+                        <p class="description">Have questions? Want to discuss your contribution or offer help in other
+                            ways? Message us directly!</p>
+
+                        <div class="number-display">
+                            <span class="number">01737697736</span>
+                            <button class="copy-btn" onclick="copyNumber('01737697736', this)">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+
+                        <a href="https://wa.me/8801737697736?text=Hello!%20I%20want%20to%20support%20Smart%20Classroom."
+                            class="action-btn whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Start Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <!-- Resources Card -->
+                    <div class="donation-card resources">
+                        <div class="card-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3>Contribute Resources</h3>
+                        <p class="description">Can't donate money? No problem! You can contribute educational resources,
+                            study materials, or your expertise to help students.</p>
+
+                        <h4 style="margin-top: 1rem; margin-bottom: 0.75rem;">What We Accept:</h4>
+                        <div class="resource-examples">
+                            <span class="resource-tag"><i class="fas fa-book"></i> Books & Notes</span>
+                            <span class="resource-tag"><i class="fas fa-file-pdf"></i> PDF Materials</span>
+                            <span class="resource-tag"><i class="fas fa-video"></i> Video Tutorials</span>
+                            <span class="resource-tag"><i class="fas fa-laptop"></i> Old Laptops</span>
+                            <span class="resource-tag"><i class="fas fa-calculator"></i> Calculators</span>
+                            <span class="resource-tag"><i class="fas fa-pen"></i> Stationery</span>
+                            <span class="resource-tag"><i class="fas fa-chalkboard-teacher"></i> Teaching Time</span>
+                        </div>
+
+                        <a href="https://wa.me/8801737697736?text=Hello!%20I%20want%20to%20contribute%20resources%20to%20Smart%20Classroom."
+                            class="action-btn whatsapp-btn" target="_blank" style="margin-top: 1.5rem;">
+                            <i class="fab fa-whatsapp"></i> Discuss Resources
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Impact Stats -->
+            <section class="impact-section reveal">
+                <h3 class="section-title" style="justify-content: center;"><i class="fas fa-chart-line"></i> Our Impact
+                </h3>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <i class="fas fa-users"></i>
+                        <span class="number">500+</span>
+                        <span class="label">Students Helped</span>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-video"></i>
+                        <span class="number">100+</span>
+                        <span class="label">Video Tutorials</span>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-book-open"></i>
+                        <span class="number">50+</span>
+                        <span class="label">Study Materials</span>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-heart"></i>
+                        <span class="number">100%</span>
+                        <span class="label">Non-Profit</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thank You -->
+            <section class="thank-you-section reveal">
+                <i class="fas fa-pray"></i>
+                <h3>Thank You for Your Kindness!</h3>
+                <p>Every contribution brings us one step closer to our dream of accessible education for all. May your
+                    generosity be returned to you manifold. 🙏</p>
+            </section>
+        </div>
+
+        <!-- BENGALI CONTENT -->
+        <div id="content-bn" class="content-bn">
+            <!-- Hero Section -->
+            <section class="donation-hero reveal">
+                <i class="fas fa-heart heart-icon"></i>
+                <h2>আমাদের মিশনে সহায়তা করুন</h2>
+                <p>স্মার্ট ক্লাসরুম একটি ১০০% অলাভজনক শিক্ষামূলক উদ্যোগ। আপনার উদারতা আমাদের সবচেয়ে প্রয়োজনীয়
+                    শিক্ষার্থীদের বিনামূল্যে মানসম্পন্ন শিক্ষা উপকরণ সরবরাহ করতে সাহায্য করে।</p>
+            </section>
+
+            <!-- Motivation Section -->
+            <section class="motivation-section reveal">
+                <h3><i class="fas fa-star"></i> আপনার সহায়তা কেন গুরুত্বপূর্ণ</h3>
+                <p class="motivation-text">
+                    শিক্ষাই হলো পৃথিবী বদলানোর সবচেয়ে শক্তিশালী অস্ত্র। <strong>স্মার্ট ক্লাসরুম</strong> একটি সহজ
+                    স্বপ্ন থেকে জন্ম নিয়েছে — প্রতিটি শিক্ষার্থীর জন্য মানসম্পন্ন শিক্ষা সুলভ করা, তাদের আর্থিক
+                    পরিস্থিতি যাই হোক না কেন।
+                    <br><br>
+                    আমরা একটি <strong>সম্পূর্ণ অলাভজনক উদ্যোগ</strong>। আপনার প্রতিটি দান, প্রতিটি সম্পদ যা আপনি শেয়ার
+                    করেন, সরাসরি একজন শিক্ষার্থীর ভবিষ্যতে প্রভাব ফেলে। আপনার সহায়তা আমাদের ভিডিও টিউটোরিয়াল তৈরি
+                    করতে, ইন্টারেক্টিভ সিমুলেটর বিকাশ করতে, আমাদের প্ল্যাটফর্ম রক্ষণাবেক্ষণ করতে এবং প্রত্যন্ত অঞ্চলে
+                    আমাদের পৌঁছানো বাড়াতে সাহায্য করে।
+                    <br><br>
+                    <strong>আমরা লাভের জন্য দান গ্রহণ করি না — আমরা সম্ভাবনার জন্য গ্রহণ করি।</strong> একসাথে, আমরা এমন
+                    একটি সম্প্রদায় গড়ে তুলতে পারি যেখানে জ্ঞান বিনামূল্যে, সুলভ এবং রূপান্তরকারী।
+                </p>
+            </section>
+
+            <!-- Donation Options -->
+            <section class="donation-section reveal">
+                <h3 class="section-title"><i class="fas fa-hand-holding-heart"></i> কীভাবে সহায়তা করবেন</h3>
+
+                <div class="donation-grid">
+                    <!-- Bkash Card -->
+                    <div class="donation-card bkash">
+                        <div class="card-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>বিকাশে দান করুন</h3>
+                        <p class="description">সরাসরি আমাদের বিকাশ নম্বরে আপনার দান পাঠান। প্রতিটি অবদান, বড় বা ছোট,
+                            পরিবর্তন আনে!</p>
+
+                        <div class="number-display">
+                            <span class="number">০১৮৫৩৩৪৩১৭৬</span>
+                            <button class="copy-btn" onclick="copyNumber('01853343176', this)">
+                                <i class="fas fa-copy"></i> কপি
+                            </button>
+                        </div>
+
+                        <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">পদ্ধতি:</h4>
+                        <ol class="steps-list">
+                            <li>আপনার বিকাশ অ্যাপ খুলুন</li>
+                            <li>"সেন্ড মানি" নির্বাচন করুন</li>
+                            <li>নম্বর দিন: <strong>০১৮৫৩৩৪৩১৭৬</strong></li>
+                            <li>আপনার দানের পরিমাণ লিখুন</li>
+                            <li>রেফারেন্স: "Smart Classroom"</li>
+                            <li>পিন দিয়ে নিশ্চিত করুন</li>
+                        </ol>
+                    </div>
+
+                    <!-- WhatsApp Card -->
+                    <div class="donation-card whatsapp">
+                        <div class="card-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>হোয়াটসঅ্যাপে যোগাযোগ করুন</h3>
+                        <p class="description">প্রশ্ন আছে? আপনার অবদান নিয়ে আলোচনা করতে চান বা অন্যভাবে সাহায্য করতে
+                            চান? সরাসরি মেসেজ করুন!</p>
+
+                        <div class="number-display">
+                            <span class="number">০১৭৩৭৬৯৭৭৩৬</span>
+                            <button class="copy-btn" onclick="copyNumber('01737697736', this)">
+                                <i class="fas fa-copy"></i> কপি
+                            </button>
+                        </div>
+
+                        <a href="https://wa.me/8801737697736?text=হ্যালো!%20আমি%20স্মার্ট%20ক্লাসরুমে%20সাহায্য%20করতে%20চাই।"
+                            class="action-btn whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে চ্যাট শুরু করুন
+                        </a>
+                    </div>
+
+                    <!-- Resources Card -->
+                    <div class="donation-card resources">
+                        <div class="card-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3>সম্পদ অবদান রাখুন</h3>
+                        <p class="description">টাকা দান করতে পারছেন না? কোন সমস্যা নেই! আপনি শিক্ষামূলক সম্পদ, পড়ার
+                            উপকরণ, বা আপনার দক্ষতা অবদান রাখতে পারেন।</p>
+
+                        <h4 style="margin-top: 1rem; margin-bottom: 0.75rem;">আমরা যা গ্রহণ করি:</h4>
+                        <div class="resource-examples">
+                            <span class="resource-tag"><i class="fas fa-book"></i> বই ও নোট</span>
+                            <span class="resource-tag"><i class="fas fa-file-pdf"></i> পিডিএফ</span>
+                            <span class="resource-tag"><i class="fas fa-video"></i> ভিডিও টিউটোরিয়াল</span>
+                            <span class="resource-tag"><i class="fas fa-laptop"></i> পুরনো ল্যাপটপ</span>
+                            <span class="resource-tag"><i class="fas fa-calculator"></i> ক্যালকুলেটর</span>
+                            <span class="resource-tag"><i class="fas fa-pen"></i> স্টেশনারি</span>
+                            <span class="resource-tag"><i class="fas fa-chalkboard-teacher"></i> শেখানোর সময়</span>
+                        </div>
+
+                        <a href="https://wa.me/8801737697736?text=হ্যালো!%20আমি%20স্মার্ট%20ক্লাসরুমে%20সম্পদ%20অবদান%20রাখতে%20চাই।"
+                            class="action-btn whatsapp-btn" target="_blank" style="margin-top: 1.5rem;">
+                            <i class="fab fa-whatsapp"></i> সম্পদ নিয়ে আলোচনা করুন
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Impact Stats -->
+            <section class="impact-section reveal">
+                <h3 class="section-title" style="justify-content: center;"><i class="fas fa-chart-line"></i> আমাদের
+                    প্রভাব</h3>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <i class="fas fa-users"></i>
+                        <span class="number">৫০০+</span>
+                        <span class="label">শিক্ষার্থী সাহায্যপ্রাপ্ত</span>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-video"></i>
+                        <span class="number">১০০+</span>
+                        <span class="label">ভিডিও টিউটোরিয়াল</span>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-book-open"></i>
+                        <span class="number">৫০+</span>
+                        <span class="label">পড়ার উপকরণ</span>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-heart"></i>
+                        <span class="number">১০০%</span>
+                        <span class="label">অলাভজনক</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thank You -->
+            <section class="thank-you-section reveal">
+                <i class="fas fa-pray"></i>
+                <h3>আপনার দয়ার জন্য ধন্যবাদ!</h3>
+                <p>প্রতিটি অবদান আমাদের সবার জন্য সুলভ শিক্ষার স্বপ্নের এক ধাপ কাছে নিয়ে আসে। আপনার উদারতা বহুগুণে
+                    আপনার কাছে ফিরে আসুক। 🙏</p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <h3>Smart Classroom</h3>
+                    <p>Empowering students with interactive learning resources and educational tools.</p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=61576756049338" target="_blank"
+                            aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://linkedin.com/in/pritom" target="_blank" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@CodeWithPritom-360" target="_blank" aria-label="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/CodeWithPritom" target="_blank" aria-label="GitHub"><i
+                                class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="footer-links">
+                    <div class="footer-links-group">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="subjects.html"><i class="fas fa-book"></i> Subjects</a></li>
+                            <li><a href="simulators.html"><i class="fas fa-flask"></i> Simulators</a></li>
+                            <li><a href="products.html"><i class="fas fa-box"></i> Products</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-group">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="https://ewu-studentsdesk.vercel.app/" target="_blank"><i
+                                        class="fas fa-university"></i> EWU Desk</a></li>
+                            <li><a href="donation.html"><i class="fas fa-heart"></i> Donate</a></li>
+                            <li><a href="about.html"><i class="fas fa-user"></i> About</a></li>
+                            <li><a href="mailto:pritombhowmik360@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        // Language Switcher
+        function switchLanguage(lang) {
+            const enContent = document.getElementById('content-en');
+            const bnContent = document.getElementById('content-bn');
+            const btnEnglish = document.getElementById('btn-english');
+            const btnBengali = document.getElementById('btn-bengali');
+
+            if (lang === 'en') {
+                enContent.classList.add('active');
+                bnContent.classList.remove('active');
+                btnEnglish.classList.add('active');
+                btnBengali.classList.remove('active');
+            } else {
+                bnContent.classList.add('active');
+                enContent.classList.remove('active');
+                btnBengali.classList.add('active');
+                btnEnglish.classList.remove('active');
+            }
+
+            // Re-trigger reveal animations
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.classList.remove('active');
+                setTimeout(() => el.classList.add('active'), 100);
+            });
+        }
+
+        // Copy Number Function
+        function copyNumber(number, button) {
+            navigator.clipboard.writeText(number).then(() => {
+                const originalHtml = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHtml;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Fallback for older browsers
+                const textArea = document.createElement("textarea");
+                textArea.value = number;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Initialize reveal animations on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

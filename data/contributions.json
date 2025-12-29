@@ -1,0 +1,41 @@
+{
+    "financial_donors": [
+        {
+            "name": "Arup Bhowmik Pritom",
+            "email": "pritombhowmik360@gmail.com",
+            "amount": "Initial Fund",
+            "method": "Personal",
+            "date": "2025-12-27"
+        },
+        {
+            "name": "Tasmia Rahman",
+            "amount": "500 BDT",
+            "method": "Bkash",
+            "date": "2025-12-29"
+        },
+        {
+            "name": "Anonymous Donor",
+            "amount": "1000 BDT",
+            "method": "Cash",
+            "date": "2025-12-29"
+        }
+    ],
+
+
+
+
+    "resource_contributors": [
+        {
+            "name": "Pritom Bhowmik",
+            "email": "pritombhowmik360@gmail.com",
+            "resource": "Video Tutorials & Platform Development",
+            "date": "2025-12-27"
+        },
+        {
+            "name": "MD. Shakib Hossan ",
+            "email": "hossanshakib1000@gmail.com",
+            "resource": "Java OOP Handnotes, CSE209 Handnote",
+            "date": "2025-12-27"
+        }
+    ]
+}

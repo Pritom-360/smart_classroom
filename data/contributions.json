@@ -14,10 +14,16 @@
             "date": "2025-12-29"
         },
         {
-            "name": "Anonymous Donor",
-            "amount": "1000 BDT",
+            "name": "Audib Mahmud",
+            "amount": "100 BDT",
             "method": "Cash",
-            "date": "2025-12-29"
+            "date": "2025-12-31"
+        },
+                {
+            "name": "Annonymus (He doesn’t want to mention his name)",
+            "amount": "100 BDT",
+            "method": "Cash",
+            "date": "2025-12-01"
         }
     ],
 
@@ -38,7 +44,7 @@
             "date": "2025-12-27"
         },
         {
-            "name": "Masharat Begum Smitha",
+            "name": "Masarrat Begum Smita",
             "email": "",
             "resource": "PHY109 Handnote, CHEM109 Handnote",
             "date": ""

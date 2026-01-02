@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appreciations - Smart Classroom</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/updates.css">
+    <style>
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .appreciation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .appreciation-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .appreciation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .appreciation-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/icon/iconi.png" alt="SCL">
+                <span>Smart Classroom</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="subjects.html">Subjects</a>
+                    <a href="simulators.html">Simulators</a>
+                    <a href="https://codewithpritom.github.io/digital-hub/" target="_blank">Store</a>
+                    <a href="https://ewu-studentsdesk.vercel.app/" target="_blank">EWU Desk</a>
+                    <a href="products.html">Products</a>
+                    <a href="appreciation.html" class="active">Appreciations</a>
+                    <a href="donation.html">Support Us</a>
+                    <a href="about.html">About</a>
+                </nav>
+                <div class="controls">
+                    <div class="role-switch">
+                        <span>Candidate</span>
+                        <label class="switch">
+                            <input type="checkbox" id="role-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Student</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Off-Canvas Navigation Slider for Mobile -->
+    <div id="nav-overlay" class="nav-overlay"></div>
+    <div id="nav-slider" class="nav-slider">
+        <div class="slider-header">
+            <h3>Menu</h3>
+            <button id="close-nav-button" aria-label="Close Menu">&times;</button>
+        </div>
+        <div class="slider-content">
+            <!-- Navigation links will be injected here by JS -->
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="page-header reveal">
+            <h1 class="gradient-text">Thank You for the Appreciation</h1>
+            <p>Messages and recognition appreciating my work.</p>
+        </section>
+
+        <section class="appreciation-grid">
+            <div class="appreciation-card reveal">
+                <img src="assets/images/appre/1.jpeg" alt="Appreciation 1">
+            </div>
+            <div class="appreciation-card reveal" style="animation-delay: 0.1s;">
+                <img src="assets/images/appre/2.jpeg" alt="Appreciation 2">
+            </div>
+            <div class="appreciation-card reveal" style="animation-delay: 0.2s;">
+                <img src="assets/images/appre/3.jpeg" alt="Appreciation 3">
+            </div>
+            <div class="appreciation-card reveal" style="animation-delay: 0.3s;">
+                <img src="assets/images/appre/4.jpeg" alt="Appreciation 4">
+            </div>
+            <div class="appreciation-card reveal" style="animation-delay: 0.4s;">
+                <img src="assets/images/appre/5.jpeg" alt="Appreciation 5">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

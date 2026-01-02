@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "type": "appreciation",
+        "title": "Heartfelt Thanks from a Physics Student",
+        "date": "2024-03-15",
+        "description": "A student sent this encouraging message about how our interactive simulators are making difficult concepts easy to visualize.",
+        "image": "assets/images/appre/1.jpeg",
+        "author": "Ariful Islam"
+    },
+    {
+        "id": 2,
+        "type": "appreciation",
+        "title": "Sakib Contributed Chemistry Notes",
+        "date": "2024-03-10",
+        "description": "A student share appreciation for the chemistry notes.",
+        "image": "assets/images/appre/2.jpeg",
+        "author": "Sakib Ahmed"
+    },
+    {
+        "id": 3,
+        "type": "appreciation",
+        "title": "Feedback from a Student",
+        "date": "2024-03-18",
+        "description": "Appreciation for the new interactive features.",
+        "image": "assets/images/appre/3.jpeg",
+        "author": "Pritom Bhowmik"
+    },
+    {
+        "id": 4,
+        "type": "appreciation",
+        "title": "Parent's Acknowledgment",
+        "date": "2024-03-05",
+        "description": "An appreciative message from a parent whose child is using our platform for university admission prep.",
+        "image": "assets/images/appre/4.jpeg",
+        "author": "Mrs. Rahana"
+    },
+    {
+        "id": 5,
+        "type": "appreciation",
+        "title": "Student's Support",
+        "date": "2024-03-20",
+        "description": "A great feedback from a student who used our study materials.",
+        "image": "assets/images/appre/5.jpeg",
+        "author": "Tanvir Hossain"
+    }
+]

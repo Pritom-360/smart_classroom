@@ -27,6 +27,12 @@
         }
       ]
     },
+
+
+
+
+
+
     {
       "courseCode": "CHEM109",
       "subject": "Chemistry",
@@ -70,6 +76,11 @@
       ]
     },
 
+
+
+
+
+
     {
       "courseCode": "CSE103",
       "subject": "CSE",
@@ -107,7 +118,7 @@
         }
       ]
     },
-        {
+    {
       "courseCode": "CSE106",
       "subject": "CSE",
       "title": "CSE 106",
@@ -185,7 +196,126 @@
         }
       ]
     },
-
+    {
+      "courseCode": "CSE207",
+      "subject": "CSE",
+      "title": "Data Structure",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1yHHBBJ4TCzthm2bXoVgb0k9cuEdSlNt7?usp=sharing"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE303",
+      "subject": "CSE",
+      "title": "Statistics for Data Science",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1-Prz79gDfocIsUk5WyrZc-13GVc0P-m3?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE345",
+      "subject": "CSE",
+      "title": "Digital Logic Design",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/14yIW_lpF7Tqil-Cj-LC-EVpGdhClv5JH?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE406",
+      "subject": "CSE",
+      "title": "Internet of Things",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1PTytoX_ihYMpBUmnoCmOziBEmuxaFBd7?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE412",
+      "subject": "CSE",
+      "title": "Software Engineering",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1lt5-mWqB1C_E169b84-xrh20v4Iyruw4?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE438",
+      "subject": "CSE",
+      "title": "Digital Image Processing",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1OJ46nprHBfGk7vPdB-89PSwS4Zaz4U__?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE464",
+      "subject": "CSE",
+      "title": "Advanced Database System",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1HusfpyB48gQNlAju0Z6AabhJWAhOjS7R?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE479",
+      "subject": "CSE",
+      "title": "Web Programming",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1Pp_zGl6o-k7PJWL094ks3EdM2DYZ2DyR?usp=sharing"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE487",
+      "subject": "CSE",
+      "title": "Cyber Security, Ethics and Law",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1OLyxd3xeJf9DIepcD9WFCj8A2Jg_i5d-?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE495",
+      "subject": "CSE",
+      "title": "IT Project Management and Entrepreneurship",
+      "materials": [
+        {
+          "type": "link",
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1dklQInkizyR28w6zJ8zG_2g29Vj97gem?usp=drive_link"
+        }
+      ]
+    },
 
 
 
@@ -240,6 +370,10 @@
         }
       ]
     },
+
+
+
+
     {
       "courseCode": "ENG101",
       "subject": "English",
@@ -294,27 +428,19 @@
         }
       ]
     },
+
+
+
+
     {
-      "courseCode": "BNG101",
-      "subject": "Bengali",
-      "title": "History of Bengali Literature",
+      "courseCode": "FIN101",
+      "subject": "Finance",
+      "title": "Principles of Finance",
       "materials": [
         {
           "type": "pdf",
-          "title": "Resources Not Available",
-          "url": ""
-        }
-      ]
-    },
-    {
-      "courseCode": "BGS101",
-      "subject": "General Knowledge",
-      "title": "Bangladesh & Global Studies",
-      "materials": [
-        {
-          "type": "pdf",
-          "title": "Resources Not Available",
-          "url": ""
+          "title": "All Resources",
+          "url": "https://drive.google.com/drive/folders/1dzET6UvGYi-3-VQVWuAWYYwdcx9YgNfv?usp=drive_link"
         }
       ]
     }

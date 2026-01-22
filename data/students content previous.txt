@@ -24,6 +24,11 @@
           "type": "pdf",
           "title": "Physics 109 Book",
           "url": "https://drive.google.com/drive/folders/1mmr5U2ViTE5ePEQFACDvDbYzT3P6h-JZ?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Physics 109 Lab Materials",
+          "url": "https://drive.google.com/drive/folders/1On7Lxq2d8OQzUEFVMsGNiAHctGrn-sU7?usp=sharing"
         }
       ]
     },

@@ -111,6 +111,160 @@
     gap: 10px;
 }
 
+/* Category Description */
+.category-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Search Container */
+.search-container {
+    position: relative;
+    margin-bottom: 25px;
+    max-width: 600px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4A90E2;
+    font-size: 1.1rem;
+    z-index: 2;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 50px 15px 50px;
+    border: 2px solid rgba(74, 144, 226, 0.2);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 5px 20px rgba(74, 144, 226, 0.15);
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 5px;
+}
+
+.clear-search-btn:hover {
+    color: #4A90E2;
+}
+
+/* Software Count */
+.software-count {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Product Tag */
+.product-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(80, 227, 194, 0.1));
+    color: #4A90E2;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Software Item Animation */
+.software-item {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.no-results i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.3;
+}
+
+.no-results p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Hidden State */
+.software-item.hidden {
+    display: none;
+}
+
+/* Loading and Error Messages */
+.loading-message,
+.error-message {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
+.loading-message i {
+    font-size: 2.5rem;
+    color: #4A90E2;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.error-message {
+    color: #e74c3c;
+}
+
+.error-message i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+    opacity: 0.5;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .product-cards {
@@ -119,5 +273,14 @@
 
     .category-header {
         font-size: 1.4rem;
+    }
+
+    .search-container {
+        max-width: 100%;
+    }
+
+    .search-input {
+        font-size: 0.9rem;
+        padding: 12px 45px 12px 45px;
     }
 }

@@ -1,0 +1,24 @@
+{
+    "software": [
+        {
+            "id": 1,
+            "name": "IntelliJ IDEA",
+            "description": "A powerful integrated development environment (IDE) mainly used for Java and other JVM-based languages.",
+            "category": "Development",
+            "icon": "fas fa-code",
+            "keywords": "IDE, Java, Kotlin, Spring, Developer Tools",
+            "downloadLink": "https://drive.google.com/file/d/1XiKKWzS9ogmMVT1P8alG5FHVq6aqgXK5/view?usp=sharing",
+            "featured": true
+        },
+        {
+            "id": 2,
+            "name": "AutoCAD 2023",
+            "description": "Professional computer-aided design (CAD) software used for 2D drafting and 3D modeling.",
+            "category": "Design & Engineering",
+            "icon": "fas fa-drafting-compass",
+            "keywords": "CAD, AutoCAD, Engineering, Architecture, 3D Design",
+            "downloadLink": "https://drive.google.com/file/d/13UllphH6E0TBbp7g952OVecnUoblnk4C/view?usp=sharing",
+            "featured": true
+        }
+    ]
+}

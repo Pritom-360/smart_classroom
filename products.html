@@ -150,6 +150,34 @@
                 </div>
             </div>
 
+            <!-- Student Software -->
+            <div class="product-category">
+                <h3 class="category-header"><i class="fas fa-download"></i> Student Software</h3>
+                <p class="category-description">Essential software tools for students - Free educational versions and
+                    cracked software for learning purposes.</p>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="software-search" class="search-input"
+                        placeholder="Search software by name, category, or description...">
+                    <button id="clear-search" class="clear-search-btn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div id="software-count" class="software-count"></div>
+
+                <div class="product-cards" id="software-cards">
+                    <!-- Software items will be loaded dynamically from data/software.json -->
+                </div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <p>No software found matching your search.</p>
+                </div>
+            </div>
+
             <!-- Kids & Wellness -->
             <div class="product-category">
                 <h3 class="category-header"><i class="fas fa-child"></i> Kids & Wellness</h3>
@@ -269,6 +297,7 @@
 
     <!-- SCRIPT LOADING -->
     <script src="js/main.js" defer></script>
+    <script src="js/products.js" defer></script>
 
 </body>
 

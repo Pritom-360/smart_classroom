@@ -1,0 +1,40 @@
+# Robots.txt for Smart Classroom
+# https://www.catalyst-smart-classroom.me/
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.catalyst-smart-classroom.me/sitemap.xml
+
+# Allow Google
+User-agent: Googlebot
+Allow: /
+
+# Allow Bing
+User-agent: Bingbot
+Allow: /
+
+# Allow Yahoo
+User-agent: Slurp
+Allow: /
+
+# Allow DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Allow Baidu
+User-agent: Baiduspider
+Allow: /
+
+# Allow Yandex
+User-agent: YandexBot
+Allow: /
+
+# Disallow crawling of private/admin areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl delay for polite crawling
+Crawl-delay: 1

@@ -48,6 +48,31 @@ SMART CLASSROOM - CLEAN & MODERN THEME
     --font-body: 'Plus Jakarta Sans', sans-serif;
 }
 
+/* Dark Theme Variables */
+body.dark-theme {
+    --primary-color: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary-color: #94a3b8;
+    --accent-color: #38bdf8;
+
+    /* Dark Backgrounds */
+    --bg-body: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-subtle: #334155;
+
+    /* Dark Text */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #0f172a;
+
+    /* Dark Borders */
+    --border-color: #334155;
+
+    /* Dark Shadows */
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}
+
 /* --- 2. Reset & Base --- */
 *,
 *::before,
@@ -63,6 +88,7 @@ body {
     color: var(--text-main);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {
@@ -270,6 +296,48 @@ input:checked+.slider:before {
     color: var(--text-main);
 }
 
+/* Theme Toggle Button */
+#theme-toggle {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: rotate(20deg) scale(1.1);
+}
+
+#theme-toggle i {
+    transition: transform 0.3s ease;
+}
+
+body.dark-theme #theme-toggle i.fa-sun {
+    display: inline-block;
+}
+
+body.dark-theme #theme-toggle i.fa-moon {
+    display: none;
+}
+
+body:not(.dark-theme) #theme-toggle i.fa-sun {
+    display: none;
+}
+
+body:not(.dark-theme) #theme-toggle i.fa-moon {
+    display: inline-block;
+}
+
 /* --- 5. Components --- */
 /* Buttons */
 .btn {
@@ -314,7 +382,7 @@ input:checked+.slider:before {
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
     padding: 2rem;
-    transition: 0.2s;
+    transition: all 0.3s ease;
     height: 100%;
 }
 
@@ -446,12 +514,28 @@ input:checked+.slider:before {
 }
 
 .modal-content {
-    background: white;
+    background: var(--bg-surface);
     margin: 10% auto;
     padding: 2rem;
     max-width: 600px;
     border-radius: var(--radius);
     position: relative;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.modal-content h2 {
+    color: var(--text-main);
+}
+
+.modal-content p,
+.modal-content ul {
+    color: var(--text-muted);
+}
+
+.modal-content li {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
 }
 
 .close-button {
@@ -519,6 +603,39 @@ footer {
         display: block;
     }
 
+    .controls {
+        gap: 0.5rem;
+    }
+
+    .role-switch {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .switch {
+        width: 32px;
+        height: 18px;
+    }
+
+    .slider:before {
+        height: 14px;
+        width: 14px;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(14px);
+    }
+
+    #theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
     .grid-3,
     .grid-4 {
         grid-template-columns: 1fr;
@@ -531,6 +648,68 @@ footer {
     h2 {
         font-size: 1.75rem;
     }
+
+    .hero {
+        padding: 4rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .modal-content {
+        margin: 20% auto;
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h2 {
+        font-size: 1.75rem;
+    }
+
+    .hero .tagline {
+        font-size: 1rem;
+    }
+
+    .grid-4 {
+        gap: 1rem;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+
+    .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+    }
+
+    .instruction-container {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    #instruction-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.25rem;
+    }
 }
 
 /* Mobile Nav Slider */
@@ -540,11 +719,26 @@ footer {
     right: -300px;
     width: 300px;
     height: 100%;
-    background: white;
+    background: var(--bg-surface);
     z-index: 2001;
     transition: 0.3s ease;
     padding: 2rem;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+}
+
+#close-nav-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 0;
+    line-height: 1;
+}
+
+.slider-header h3 {
+    margin: 0;
+    color: var(--text-main);
 }
 
 .nav-slider.open {

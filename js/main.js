@@ -118,6 +118,51 @@ document.addEventListener('DOMContentLoaded', () => {
         setRole(currentRole);
     };
 
+    // --- Theme Toggle Logic ---
+    const handleThemeToggle = () => {
+        const body = document.body;
+
+        const setTheme = (theme) => {
+            if (theme === 'dark') {
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+            }
+            localStorage.setItem('theme', theme);
+        };
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            setTheme(currentTheme);
+        } else {
+            // Optional: Use system preference
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            } else {
+                setTheme('light');
+            }
+        }
+
+        // Listen for theme toggle button clicks
+        document.body.addEventListener('click', (e) => {
+            if (e.target && (e.target.id === 'theme-toggle' || e.target.closest('#theme-toggle'))) {
+                const isDark = body.classList.contains('dark-theme');
+                setTheme(isDark ? 'light' : 'dark');
+            }
+        });
+
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.getItem('theme')) {
+                    setTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    };
+
     // --- Cart Count Update ---
     const updateCartCount = () => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -192,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeHeaderControls = () => {
         initializeNavSlider();
         handleRoleSwitch();
+        handleThemeToggle();
         updateCartCount();
         setActiveLink();
         handleStickyHeader(); // Add this

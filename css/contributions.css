@@ -300,3 +300,45 @@ CONTRIBUTIONS PAGE - PREMIUM STYLES
 .content-bn.active {
     display: block;
 }
+
+/* Dark Mode Overrides */
+body.dark-theme .contributions-hero {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+}
+
+body.dark-theme .contribution-card {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .contribution-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .contribution-table th {
+    background: var(--bg-subtle);
+    color: var(--text-main);
+}
+
+body.dark-theme .contribution-table td {
+    color: var(--text-muted);
+}
+
+body.dark-theme .contribution-table tr:hover td {
+    background: var(--bg-subtle);
+}
+
+body.dark-theme .badge-bkash {
+    background: rgba(219, 39, 119, 0.2);
+    color: #f9a8d4;
+}
+
+body.dark-theme .badge-cash {
+    background: rgba(5, 150, 105, 0.2);
+    color: #6ee7b7;
+}
+
+body.dark-theme .badge-resource {
+    background: rgba(37, 99, 235, 0.2);
+    color: #93c5fd;
+}

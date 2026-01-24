@@ -1,0 +1,148 @@
+/* ================================================
+   DARK MODE ADDITIONS FOR ALL PAGES
+   Add to contributions.css and updates.css
+   ================================================ */
+
+/* Contributions Page Dark Mode */
+body.dark-theme .contributions-hero {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+}
+
+body.dark-theme .contribution-card {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .contribution-table {
+    background: var(--bg-surface);
+    color: var(--text-main);
+}
+
+body.dark-theme .contribution-table thead {
+    background: var(--bg-subtle);
+}
+
+body.dark-theme .contribution-table th {
+    color: var(--text-main);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .contribution-table td {
+    color: var(--text-muted);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .contribution-table tr:hover {
+    background: var(--bg-subtle);
+}
+
+body.dark-theme .donor-name {
+    color: var(--text-main);
+}
+
+body.dark-theme .badge {
+    opacity: 0.9;
+}
+
+body.dark-theme .stats-banner {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .stats-item .count {
+    color: var(--primary-color);
+}
+
+body.dark-theme .stats-item .label {
+    color: var(--text-muted);
+}
+
+body.dark-theme .search-container input {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+    color: var(--text-main);
+}
+
+body.dark-theme .search-container input::placeholder {
+    color: #6b7280;
+}
+
+body.dark-theme .search-container i {
+    color: var(--primary-color);
+}
+
+/* Updates/Appreciations Page Dark Mode */
+body.dark-theme .update-card {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .update-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .update-header {
+    background: var(--bg-subtle);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .update-content {
+    color: var(--text-muted);
+}
+
+body.dark-theme .update-footer {
+    border-top-color: var(--border-color);
+    color: var(--text-muted);
+}
+
+body.dark-theme .filter-btn {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+    color: var(--text-main);
+}
+
+body.dark-theme .filter-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+body.dark-theme .filter-btn:hover:not(.active) {
+    background: var(--bg-subtle);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Tutorial Dark Mode */
+body.dark-theme .tutorial-overlay {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+body.dark-theme .tutorial-box {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+    color: var(--text-main);
+}
+
+body.dark-theme .tutorial-box h3 {
+    color: var(--primary-color);
+}
+
+body.dark-theme .tutorial-box p {
+    color: var(--text-muted);
+}
+
+body.dark-theme .tutorial-nav button {
+    background: var(--bg-subtle);
+    color: var(--text-main);
+}
+
+body.dark-theme .tutorial-nav button:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+body.dark-theme .tutorial-nav .btn-primary {
+    background: var(--primary-color);
+    color: white;
+}

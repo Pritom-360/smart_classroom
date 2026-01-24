@@ -207,3 +207,51 @@
 .error-text {
     color: #ef4444;
 }
+
+/* Dark Mode Overrides for Better Visibility */
+body.dark-theme .subject-section {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .course-card {
+    background: var(--bg-subtle);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .course-card:hover {
+    border-color: var(--primary-color);
+}
+
+body.dark-theme .material-list li {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .material-list li:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--primary-color);
+}
+
+body.dark-theme .material-list li a {
+    color: var(--text-main);
+}
+
+body.dark-theme .role-info-box {
+    background: rgba(14, 165, 233, 0.15);
+    border-color: rgba(14, 165, 233, 0.3);
+    color: #7dd3fc;
+}
+
+body.dark-theme .role-info-box strong {
+    color: #38bdf8;
+}
+
+body.dark-theme .loading-text,
+body.dark-theme .info-text {
+    color: var(--text-muted);
+}
+
+body.dark-theme .error-text {
+    color: #fca5a5;
+}

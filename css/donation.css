@@ -494,3 +494,73 @@ DONATION PAGE - PREMIUM STYLES
         font-size: 0.85rem;
     }
 }
+
+/* Dark Mode Overrides */
+body.dark-theme .donation-hero {
+    background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+}
+
+body.dark-theme .donation-card {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .donation-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .number-display {
+    background: var(--bg-subtle);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .motivation-section {
+    background: rgba(5, 150, 105, 0.15);
+    border-color: rgba(5, 150, 105, 0.3);
+}
+
+body.dark-theme .motivation-section h3 {
+    color: #34d399;
+}
+
+body.dark-theme .motivation-text {
+    color: #a7f3d0;
+}
+
+body.dark-theme .motivation-text strong {
+    color: #6ee7b7;
+}
+
+body.dark-theme .impact-item {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .bilingual-text {
+    background: var(--bg-subtle);
+}
+
+body.dark-theme .thank-you-section {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+body.dark-theme .thank-you-section h3 {
+    color: #fbbf24;
+}
+
+body.dark-theme .thank-you-section p {
+    color: #fde68a;
+}
+
+body.dark-theme .text-en,
+body.dark-theme .text-bn {
+    color: var(--text-main);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .language-toggle button {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+    color: var(--text-main);
+}

@@ -138,3 +138,28 @@
         height: 250px;
     }
 }
+
+/* Dark Mode Overrides */
+body.dark-theme .category-title {
+    color: var(--primary-color);
+    border-bottom-color: rgba(59, 130, 246, 0.3);
+}
+
+body.dark-theme .simulator-card {
+    background: var(--bg-surface);
+    border-color: var(--border-color);
+}
+
+body.dark-theme .simulator-card:hover {
+    box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+}
+
+body.dark-theme .simulator-card h4 {
+    background: var(--bg-subtle);
+    color: var(--text-main);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .fullscreen-btn {
+    color: var(--primary-color);
+}

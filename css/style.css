@@ -481,7 +481,7 @@ body:not(.dark-theme) #theme-toggle i.fa-moon {
 /* Instruction Modal */
 .instruction-container {
     position: fixed;
-    bottom: 2rem;
+    bottom: 7rem;
     right: 2rem;
     z-index: 90;
 }
@@ -701,7 +701,7 @@ footer {
     }
 
     .instruction-container {
-        bottom: 1rem;
+        bottom: 6rem;
         right: 1rem;
     }
 
@@ -920,10 +920,6 @@ footer {
     }
 }
 
-#bp-web-widget-container,
-.bp-widget-widget {
+#bp-web-widget-container {
     z-index: 999999 !important;
-    left: 20px !important;
-    right: auto !important;
-    bottom: 20px !important;
 }

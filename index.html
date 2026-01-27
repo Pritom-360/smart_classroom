@@ -318,8 +318,28 @@
 <script>
   window.botpressWebChat.init({
     configUrl: "https://files.bpcontent.cloud/2026/01/27/16/20260127162900-D4NTHT7O.json",
+
+    botName: "Smart Classroom AI",
+    botDescription: "Ask me for roadmaps, subjects & guidance",
+
+    theme: "light",
+    showPoweredBy: false,
+
+    enableReset: true,
+    enableTranscriptDownload: false,
+
+    containerWidth: "380px",
+    layoutWidth: "380px",
+
+    hideWidget: false
   });
 </script>
+
+  setTimeout(() => {
+    window.botpressWebChat.sendEvent({ type: "show" });
+  }, 2000);
+</script>
+
 </body>
 
 </html>

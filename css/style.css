@@ -919,3 +919,7 @@ footer {
         justify-content: center;
     }
 }
+
+#bp-web-widget-container {
+  z-index: 999999 !important;
+}

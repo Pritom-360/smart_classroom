@@ -920,6 +920,10 @@ footer {
     }
 }
 
-#bp-web-widget-container {
-  z-index: 999999 !important;
+#bp-web-widget-container,
+.bp-widget-widget {
+    z-index: 999999 !important;
+    left: 20px !important;
+    right: auto !important;
+    bottom: 20px !important;
 }

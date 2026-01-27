@@ -314,33 +314,27 @@
     <div id="footer-placeholder"></div>
     <script src="js/main.js"></script>
     <script src="js/tutorial.js"></script>
-    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
-<script>
-  window.botpressWebChat.init({
-    configUrl: "https://files.bpcontent.cloud/2026/01/27/16/20260127162900-D4NTHT7O.json",
 
-    botName: "Smart Classroom AI",
-    botDescription: "Ask me for roadmaps, subjects & guidance",
-
-    theme: "light",
-    showPoweredBy: false,
-
-    enableReset: true,
-    enableTranscriptDownload: false,
-
-    containerWidth: "380px",
-    layoutWidth: "380px",
-
-    hideWidget: false
-  });
-</script>
-
-<script>
-  setTimeout(() => {
-    window.botpressWebChat.sendEvent({ type: "show" });
-  }, 2000);
-</script>
-
+    <!-- Botpress Webchat -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpressWebChat.init({
+            "botId": "1cfea0e5-6c42-4b24-8885-39c21a9dc2eb",
+            "clientId": "5048ca33-40a7-43c3-b8f4-9c43efd35cfc",
+            "hostUrl": "https://cdn.botpress.cloud/webchat/v2.2",
+            "messagingUrl": "https://messaging.botpress.cloud",
+            "botName": "Smart Classroom Assistant",
+            "avatarUrl": "https://files.bpcontent.cloud/2026/01/27/17/20260127171154-E87WZM1E.jpeg",
+            "composerPlaceholder": "Ask about smart classroom",
+            "emailAddress": "pritombhowmik360@gmail.com",
+            "phoneNumber": "+8801853343176",
+            "website": "https://glittering-florentine-b6f323.netlify.app/",
+            "frontendVersion": "v2",
+            "showPoweredBy": true,
+            "theme": "prism",
+            "themeColor": "#2563EB"
+        });
+    </script>
 </body>
 
 </html>

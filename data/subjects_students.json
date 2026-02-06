@@ -208,7 +208,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1yHHBBJ4TCzthm2bXoVgb0k9cuEdSlNt7?usp=sharing"
         }
       ]
@@ -220,7 +220,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1-Prz79gDfocIsUk5WyrZc-13GVc0P-m3?usp=drive_link"
         }
       ]
@@ -232,7 +232,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/14yIW_lpF7Tqil-Cj-LC-EVpGdhClv5JH?usp=drive_link"
         }
       ]
@@ -244,8 +244,25 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1PTytoX_ihYMpBUmnoCmOziBEmuxaFBd7?usp=drive_link"
+        }
+      ]
+    },
+    {
+      "courseCode": "CSE405",
+      "subject": "CSE",
+      "title": "Data Science",
+      "materials": [
+        {
+          "type": "link",
+          "title": "Lectures",
+          "url": "https://drive.google.com/drive/folders/146kgc49DFftppmxrMNwX6PcQGl5tCRwX?usp=sharing"
+        },
+        {
+          "type": "link",
+          "title": "Labs",
+          "url": "https://drive.google.com/drive/folders/15JyTr_6k9JDGUsaVSxTKJEepvS2yATTx?usp=sharing"
         }
       ]
     },
@@ -256,7 +273,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1lt5-mWqB1C_E169b84-xrh20v4Iyruw4?usp=drive_link"
         }
       ]
@@ -268,7 +285,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1OJ46nprHBfGk7vPdB-89PSwS4Zaz4U__?usp=drive_link"
         }
       ]
@@ -280,7 +297,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1HusfpyB48gQNlAju0Z6AabhJWAhOjS7R?usp=drive_link"
         }
       ]
@@ -292,7 +309,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1Pp_zGl6o-k7PJWL094ks3EdM2DYZ2DyR?usp=sharing"
         }
       ]
@@ -304,7 +321,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1OLyxd3xeJf9DIepcD9WFCj8A2Jg_i5d-?usp=drive_link"
         }
       ]
@@ -316,7 +333,7 @@
       "materials": [
         {
           "type": "link",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1dklQInkizyR28w6zJ8zG_2g29Vj97gem?usp=drive_link"
         }
       ]
@@ -444,7 +461,7 @@
       "materials": [
         {
           "type": "pdf",
-          "title": "All Resources",
+          "title": "Slides",
           "url": "https://drive.google.com/drive/folders/1dzET6UvGYi-3-VQVWuAWYYwdcx9YgNfv?usp=drive_link"
         }
       ]

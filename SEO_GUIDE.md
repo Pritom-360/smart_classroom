@@ -234,7 +234,7 @@ Best: `/courses/` with subpages `/courses/cse103.html`
   ],
   "sameAs": [
     "https://github.com/CodeWithPritom",
-    "https://linkedin.com/in/pritom",
+    "https://www.linkedin.com/in/arup-bhowmik-pritom-a7a7a23a4/",
     "https://www.youtube.com/@CodeWithPritom-360"
   ],
   "knowsAbout": ["Computer Science", "C Programming", "Web Development", "Educational Content Creation"],

@@ -48,6 +48,84 @@
     <!-- Main Professional Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/simulators.css">
+
+    <!-- ItemList Schema for Simulators -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Smart Classroom Interactive Simulators",
+        "description": "Free interactive physics and math simulators for students. Includes ball physics, gravity simulations, and educational demonstrations.",
+        "url": "https://www.catalyst-smart-classroom.me/simulators.html",
+        "numberOfItems": 5,
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Ball Physics Simulator",
+                    "applicationCategory": "EducationalApplication",
+                    "description": "Interactive ball physics simulation for learning mechanics and motion",
+                    "operatingSystem": "Web Browser",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Gravity Simulation",
+                    "applicationCategory": "EducationalApplication",
+                    "description": "Virtual gravity experiments for understanding gravitational forces",
+                    "operatingSystem": "Web Browser",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Math Visualizations",
+                    "applicationCategory": "EducationalApplication",
+                    "description": "Interactive math demonstrations and visualizations",
+                    "operatingSystem": "Web Browser",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                }
+            }
+        ],
+        "author": {
+            "@type": "Person",
+            "name": "Arup Bhowmik Pritom",
+            "alternateName": ["Pritom Bhowmik", "Code With Pritom"],
+            "url": "https://www.catalyst-smart-classroom.me/about.html"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.catalyst-smart-classroom.me/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Simulators",
+                "item": "https://www.catalyst-smart-classroom.me/simulators.html"
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -68,7 +146,8 @@
                     <a href="https://codewithpritom.github.io/digital-hub/" target="_blank">Store</a>
                     <a href="https://ewu-studentsdesk.vercel.app/" target="_blank">EWU Desk</a>
                     <a href="products.html">Products</a>
-                    <a href="appreciation.html">Appreciations</a>
+                    <a href="https://codewithpritom.blogspot.com/" target="_blank" class="nav-blog-highlight"><i
+                            class="fas fa-blog"></i> Blog</a>
                     <a href="donation.html">Support Us</a>
                     <a href="about.html">About</a>
                 </nav>

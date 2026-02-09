@@ -42,20 +42,136 @@
     {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "University Course Materials",
-        "description": "Free university course materials and study resources",
+        "name": "University Course Materials - EWU Study Resources",
+        "description": "Free university course materials, lecture notes, and study resources for East West University students and admission candidates in Bangladesh",
         "url": "https://www.catalyst-smart-classroom.me/subjects.html",
-        "numberOfItems": 10,
+        "numberOfItems": 20,
         "itemListElement": [
             {
-                "@type": "Course",
+                "@type": "ListItem",
                 "position": 1,
-                "name": "English 101",
-                "description": "Fundamental English language and communication course",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "Smart Classroom"
+                "item": {
+                    "@type": "Course",
+                    "name": "CSE103 - Structured Programming in C",
+                    "courseCode": "CSE103",
+                    "description": "Introduction to programming using C language. Covers fundamentals, control structures, functions, arrays, and file handling.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
                 }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Course",
+                    "name": "PHY109 - Physics for Engineers",
+                    "courseCode": "PHY109",
+                    "description": "Fundamental physics concepts for engineering students including mechanics, thermodynamics, and waves.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Course",
+                    "name": "MATH101 - Differential and Integral Calculus",
+                    "courseCode": "MATH101",
+                    "description": "Calculus course covering differentiation, integration, limits, and applications.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "Course",
+                    "name": "CHEM109 - Engineering Chemistry I",
+                    "courseCode": "CHEM109",
+                    "description": "Chemistry fundamentals for engineering students including organic and inorganic chemistry.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "Course",
+                    "name": "ENG101 - English Language Skills",
+                    "courseCode": "ENG101",
+                    "description": "English language and communication skills for university students.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 6,
+                "item": {
+                    "@type": "Course",
+                    "name": "CSE106 - Discrete Mathematics",
+                    "courseCode": "CSE106",
+                    "description": "Mathematical foundations for computer science including logic, sets, and graph theory.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 7,
+                "item": {
+                    "@type": "Course",
+                    "name": "CSE207 - Data Structures",
+                    "courseCode": "CSE207",
+                    "description": "Data structures course covering arrays, linked lists, trees, graphs, and algorithms.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 8,
+                "item": {
+                    "@type": "Course",
+                    "name": "CSE110 - Object Oriented Programming (Java)",
+                    "courseCode": "CSE110",
+                    "description": "Object-oriented programming concepts using Java including classes, inheritance, and polymorphism.",
+                    "provider": {"@type": "Organization", "name": "Smart Classroom"},
+                    "isAccessibleForFree": true,
+                    "educationalLevel": "Undergraduate"
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.catalyst-smart-classroom.me/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Subjects & Courses",
+                "item": "https://www.catalyst-smart-classroom.me/subjects.html"
             }
         ]
     }

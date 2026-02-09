@@ -1,88 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
   <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://www.catalyst-smart-classroom.me/</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.catalyst-smart-classroom.me/assets/icon/iconi.png</image:loc>
+      <image:title>Smart Classroom - Free University Course Materials</image:title>
+    </image:image>
   </url>
 
-  <!-- Main Navigation Pages - High Priority -->
+  <!-- Core Educational Content - High Priority -->
   <url>
     <loc>https://www.catalyst-smart-classroom.me/subjects.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  
   <url>
     <loc>https://www.catalyst-smart-classroom.me/simulators.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
+  
   <url>
     <loc>https://www.catalyst-smart-classroom.me/products.html</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- University Resources -->
+  <url>
+    <loc>https://www.catalyst-smart-classroom.me/Students/English/English%20101/index.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About & Authority Pages -->
   <url>
     <loc>https://www.catalyst-smart-classroom.me/about.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/cp.html</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.catalyst-smart-classroom.me/assets/profile/profile.jpg</image:loc>
+      <image:title>Arup Bhowmik Pritom - Creator of Smart Classroom</image:title>
+    </image:image>
   </url>
 
   <!-- Support & Community Pages -->
   <url>
-    <loc>https://www.catalyst-smart-classroom.me/jobs.html</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/community.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <loc>https://www.catalyst-smart-classroom.me/donation.html</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  
   <url>
-    <loc>https://www.catalyst-smart-classroom.me/contact.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <loc>https://www.catalyst-smart-classroom.me/contributions.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.catalyst-smart-classroom.me/appreciation.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.catalyst-smart-classroom.me/community.html</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  
   <url>
-    <loc>https://www.catalyst-smart-classroom.me/donation.html</loc>
-    <lastmod>2026-01-23</lastmod>
+    <loc>https://www.catalyst-smart-classroom.me/jobs.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.catalyst-smart-classroom.me/contact.html</loc>
+    <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
+  
   <url>
-    <loc>https://www.catalyst-smart-classroom.me/contributions.html</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/appreciation.html</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.catalyst-smart-classroom.me/cp.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Student Course Pages -->
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/Students/English/English%20101/index.html</loc>
-    <lastmod>2026-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
 </urlset>

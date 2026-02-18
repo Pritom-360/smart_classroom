@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        const currentRole = localStorage.getItem('userRole') || 'candidate';
+        const currentRole = localStorage.getItem('userRole') || 'student';
         setRole(currentRole);
     };
 

@@ -7,11 +7,12 @@
 }
 
 .category-title {
-    font-size: 1.8rem;
-    color: #4A90E2;
-    margin-bottom: 20px;
-    border-bottom: 2px solid rgba(74, 144, 226, 0.2);
-    padding-bottom: 10px;
+    font-size: 1.75rem;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    font-weight: 700;
 }
 
 /* Grid Layout */
@@ -23,29 +24,28 @@
 
 /* Simulator Card */
 .simulator-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 16px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
 }
 
 .simulator-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .simulator-card h4 {
-    padding: 15px 20px;
+    padding: 1rem 1.25rem;
     margin: 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    color: #333;
+    background: var(--bg-subtle);
+    color: var(--text-main);
     font-size: 1.1rem;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;

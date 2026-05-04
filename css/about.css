@@ -7,12 +7,13 @@
 /* Profile Section */
 .profile-section {
     display: flex;
-    gap: 40px;
+    gap: 3rem;
     align-items: center;
-    padding: 40px;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(80, 227, 194, 0.05));
-    border-radius: 20px;
-    margin-bottom: 50px;
+    padding: 2.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: 4rem;
 }
 
 .profile-image {
@@ -20,14 +21,15 @@
 }
 
 .avatar-placeholder {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4A90E2, #50E3C2);
+    width: 160px;
+    height: 160px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+    overflow: hidden;
 }
 
 .avatar-placeholder i {
@@ -119,32 +121,29 @@
 }
 
 .skill-item {
-    background: white;
-    padding: 25px 15px;
-    border-radius: 12px;
+    background: var(--bg-surface);
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius-sm);
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
 }
 
 .skill-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+    border-color: var(--primary-color);
+    background: var(--bg-subtle);
 }
 
 .skill-item i {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #4A90E2, #50E3C2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
 }
 
 .skill-item span {
     font-size: 0.9rem;
-    font-weight: 500;
-    color: #333;
+    font-weight: 600;
+    color: var(--text-main);
 }
 
 /* Education Section */
@@ -222,28 +221,28 @@
 }
 
 .project-card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #4A90E2;
-    transition: transform 0.3s, box-shadow 0.3s;
+    background: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15);
+    background: var(--bg-subtle);
+    border-color: var(--border-color);
 }
 
 .project-card h4 {
     font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 10px;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
 }
 
 .project-card p {
-    font-size: 0.95rem;
-    color: #666;
+    font-size: 0.9rem;
+    color: var(--text-muted);
     line-height: 1.6;
 }
 

@@ -6,61 +6,35 @@ DONATION PAGE - PREMIUM STYLES
 
 /* Hero Banner */
 .donation-hero {
-    background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
-    color: white;
-    padding: 4rem 2rem;
-    border-radius: var(--radius);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    padding: 6rem 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     position: relative;
     overflow: hidden;
 }
 
-.donation-hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-    animation: floatPattern 20s linear infinite;
-}
-
-@keyframes floatPattern {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(30px, 30px) rotate(360deg);
-    }
-}
 
 .donation-hero h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: white;
-    position: relative;
-    z-index: 1;
+    color: var(--text-main);
 }
 
 .donation-hero p {
     font-size: 1.2rem;
-    opacity: 0.95;
     max-width: 700px;
     margin: 0 auto;
-    color: white;
-    position: relative;
-    z-index: 1;
+    color: var(--text-muted);
 }
 
 .donation-hero .heart-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    animation: heartbeat 1.5s ease-in-out infinite;
-    display: inline-block;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
 }
 
 @keyframes heartbeat {
@@ -134,17 +108,17 @@ DONATION PAGE - PREMIUM STYLES
 .donation-card {
     background: var(--bg-surface);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius);
+    border-radius: var(--radius-md);
     padding: 2rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .donation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    border-color: transparent;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .donation-card.bkash {
@@ -186,9 +160,12 @@ DONATION PAGE - PREMIUM STYLES
 }
 
 .donation-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--text-main);
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .donation-card .description {
@@ -295,34 +272,68 @@ DONATION PAGE - PREMIUM STYLES
 
 .action-btn.whatsapp-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+}
+
+.contribution-btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.contribution-btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    color: white;
+}
+
+.appreciation-btn {
+    background: white;
+    color: #ec4899;
+    border: 1px solid #ec4899;
+}
+
+.appreciation-btn:hover {
+    background: #ec4899;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(236, 72, 153, 0.2);
+}
+
+.contribution-btn-solid {
+    background: #f59e0b;
+    color: white;
+}
+
+.contribution-btn-solid:hover {
+    background: #d97706;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+    color: white;
 }
 
 /* Message Section */
 .motivation-section {
-    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    margin: 3rem 0;
-    border: 1px solid #86efac;
+    padding: 4rem 2rem;
+    background: var(--bg-subtle);
+    border-radius: var(--radius-md);
+    text-align: center;
+    margin-top: 5rem;
+    border: 1px solid var(--border-color);
 }
 
-.motivation-section h3 {
-    color: #059669;
+.motivation-section h2 {
+    font-size: 2rem;
+    color: var(--text-main);
     margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
 }
 
-.motivation-section h3 i {
-    font-size: 1.5rem;
-}
-
-.motivation-text {
+.motivation-section p {
     font-size: 1.1rem;
-    line-height: 1.8;
-    color: #166534;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .motivation-text strong {

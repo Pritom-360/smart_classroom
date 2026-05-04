@@ -32,12 +32,6 @@
         }
       ]
     },
-
-
-
-
-
-
     {
       "courseCode": "CHEM109",
       "subject": "Chemistry",
@@ -80,12 +74,6 @@
         }
       ]
     },
-
-
-
-
-
-
     {
       "courseCode": "CSE103",
       "subject": "CSE",
@@ -162,7 +150,27 @@
         },
         {
           "type": "pdf",
-          "title": "Java OOP Note by MD. Shakib Hossan ",
+          "title": "Lab",
+          "url": "https://drive.google.com/drive/folders/12AM_U-Iuxgl5EJAjj9KmExgIPa-VEYH9?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Project",
+          "url": "https://drive.google.com/drive/folders/1n2t1JRnIoM4eWCQCsbiGM3BD2s0daaCp?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Book",
+          "url": "https://drive.google.com/drive/folders/1ZlugU0wk39uWCtk0KrYyiCOIyG9O6tYC?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Lectures",
+          "url": "https://drive.google.com/drive/folders/1BAtgE48TKTAztxoZWdBqGcmuSvWhxd1l?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Java OOP Notes (MD. Shakib Hossan)",
           "url": "https://drive.google.com/drive/folders/1z5tDEmG6CDewgr_VglJaoUWf33r8tXUe?usp=sharing"
         }
       ]
@@ -175,13 +183,28 @@
         {
           "type": "youtube",
           "title": "Full CSE 200 Lecture Series",
-          "youtubePlaylistId": ""
+          "youtubePlaylistId": "PLPwbpfnR90kvSrxTtilxzx3-cSzoUTnFN&si=jG5yZn_Jmcl2equW"
         },
         {
-          "type": "pdf",
-          "title": "Resources Not Available",
-          "url": ""
-        }
+      "type": "pdf",
+      "title": "Assignments",
+      "url": "https://drive.google.com/drive/folders/1BPk5zArA5ss_2hYXGI-zaD4xYNGIY0iA?usp=drive_link"
+    },
+    {
+      "type": "pdf",
+      "title": "Notes",
+      "url": "https://drive.google.com/file/d/1d5SVDvawAQ4R3bFlR6K-C0Fv0H8DRvOw/view?usp=drive_link"
+    },
+    {
+      "type": "pdf",
+      "title": "Projects",
+      "url": "https://drive.google.com/drive/folders/15btPYcCj_W2gOMs70CAGWtNbabSPGK6f?usp=drive_link"
+    },
+    {
+      "type": "pdf",
+      "title": "Lab Materials",
+      "url": "https://drive.google.com/drive/folders/1hgEFZtsrLfzBzRhAIi4tN2CFtn6wkuT?usp=drive_link"
+    }
       ]
     },
     {
@@ -338,12 +361,6 @@
         }
       ]
     },
-
-
-
-
-
-
     {
       "courseCode": "MATH101",
       "subject": "Mathematics",
@@ -378,24 +395,72 @@
     {
       "courseCode": "MATH102",
       "subject": "Mathematics",
-      "title": "Higher Math & Calculus II",
+      "title": "Differential Equations and Special Functions",
       "materials": [
         {
           "type": "youtube",
-          "title": "University Calculus I Full Playlist",
-          "youtubePlaylistId": "7K1sB05pE0A"
+          "title": "Full CSE 209 Lecture Series",
+          "youtubePlaylistId": ""
         },
         {
           "type": "pdf",
-          "title": "Advanced Problem Set: Derivatives",
-          "url": "assets/pdfs/sample_notes.pdf"
+          "title": "MATH 102 Book",
+          "url": "https://drive.google.com/drive/folders/1-Ex5YJNrdFlKPIulkNZtDNo8KoG0OGLt?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Presentation",
+          "url": "https://drive.google.com/drive/folders/1ShxrXTJJTN8QgW-uQ51PzsmeO9HXPZNp?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Class Lectures",
+          "url": "https://drive.google.com/drive/folders/1FWyQk8ul7rYxe8g20beK7umBKs_ulmiz?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Slides of Another Faculty",
+          "url": "https://drive.google.com/drive/folders/18IJ7Po4-ICd3OBJzH_z9uZHolvUWYNpD?usp=drive_link"
         }
       ]
     },
-
-
-
-
+    {
+      "courseCode": "MATH104",
+      "subject": "Mathematics",
+      "title": "MATH 104",
+      "materials": [
+        {
+          "type": "youtube",
+          "title": "Full CSE 209 Lecture Series",
+          "youtubePlaylistId": ""
+        },
+        {
+          "type": "pdf",
+          "title": "MATH 104 Book",
+          "url": "https://drive.google.com/drive/folders/1nFc3eGJ1c2Ip40ceVVwseAdBwTgd-GPh?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Presentation",
+          "url": "https://drive.google.com/drive/folders/1ShxrXTJJTN8QgW-uQ51PzsmeO9HXPZNp?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Class Lectures Midterm",
+          "url": "https://drive.google.com/drive/folders/1Qx-wkDm0IOAOmy49trluWuoOR610Zb-D?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Class Lectures Final",
+          "url": "https://drive.google.com/drive/folders/1-o5gK3Yh2tdhCM3l4F-A1kQZNqNkbYQv?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Assignments",
+          "url": "https://drive.google.com/drive/folders/1BnbFZuHJww73qWkrj-jM9MFni6BM_E1a?usp=drive_link"
+        }
+      ]
+    },
     {
       "courseCode": "ENG101",
       "subject": "English",
@@ -450,10 +515,6 @@
         }
       ]
     },
-
-
-
-
     {
       "courseCode": "FIN101",
       "subject": "Finance",

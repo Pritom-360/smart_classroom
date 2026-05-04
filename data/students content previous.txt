@@ -179,7 +179,7 @@
         },
         {
           "type": "pdf",
-          "title": "Resources Not Available",
+          "title": "Full CSE 200 Lecture Series",
           "url": ""
         }
       ]

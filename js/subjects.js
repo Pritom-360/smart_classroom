@@ -129,129 +129,177 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Data is already normalized as 'materials'
                         if (course.materials && course.materials.length > 0) {
                             course.materials.forEach(material => {
-                                // ... Existing switch block logic ...
                                 switch (material.type) {
                                     case 'youtube':
+                                    case 'youtube_playlist':
                                         {
                                             const pid = material.youtubePlaylistId || '';
-                                            const imgTag = pid ? `<img src="https://img.youtube.com/vi/${pid.split('&list=')[0]}/mqdefault.jpg" alt="${material.title || ''}">` : '';
-                                            const titleSpan = material.title ? `<span>${material.title}</span>` : '';
+                                            let videoIdForThumb = '';
+                                            
+                                            if (pid.includes('&list=')) {
+                                                videoIdForThumb = pid.split('&list=')[0];
+                                            } else if (pid.includes('?list=')) {
+                                                videoIdForThumb = pid.split('?list=')[0];
+                                            }
+                                            
+                                            let thumbnailHTML = '';
+                                            let isComingSoon = !pid || pid.trim() === '';
+                                            
+                                            if (isComingSoon) {
+                                                // Coming Soon - Elegant placeholder
+                                                thumbnailHTML = `
+                                                    <div class="youtube-thumbnail coming-soon" data-playlist-id="${pid}">
+                                                        <div class="thumbnail-placeholder">
+                                                            <div class="coming-soon-badge">
+                                                                <i class="fas fa-clock"></i>
+                                                                <span>Coming Soon</span>
+                                                            </div>
+                                                            <p class="course-title-elegant">${course.title}</p>
+                                                        </div>
+                                                    </div>`;
+                                            } else {
+                                                // Regular YouTube thumbnail - Elegant design
+                                                thumbnailHTML = `
+                                                    <div class="youtube-thumbnail" data-playlist-id="${pid}">
+                                                        <img src="https://img.youtube.com/vi/${videoIdForThumb}/maxresdefault.jpg" 
+                                                             alt="${material.title || ''}"
+                                                             onerror="this.src='https://img.youtube.com/vi/${videoIdForThumb}/mqdefault.jpg'">
+                                                        <div class="play-overlay">
+                                                            <div class="play-button">
+                                                                <i class="fas fa-play"></i>
+                                                            </div>
+                                                            <div class="overlay-text">
+                                                                <p class="click-text">Click to Watch</p>
+                                                                <p class="course-title-display">${course.title}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>`;
+                                            }
+                                            
+                                            const titleSpan = material.title ? `<span class="material-title">${material.title}</span>` : '';
                                             materialsHTML += `
-                                    <li>
-                                        <i class="fab fa-youtube"></i>
-                                        <div class="youtube-thumbnail" data-playlist-id="${pid}">
-                                            ${imgTag}
-                                            <i class="fas fa-play play-icon"></i>
-                                        </div>
-                                        ${titleSpan}
-                                    </li>`;
+                                                <li>
+                                                    <i class="fab fa-youtube"></i>
+                                                    ${thumbnailHTML}
+                                                    ${titleSpan}
+                                                </li>`;
                                         }
                                         break;
                                     case 'pdf':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-file-pdf"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'link':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-external-link-alt"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'image':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-image"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-image"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'video':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-video"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-video"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'audio':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-headphones"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-headphones"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'site':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-globe"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-globe"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'document':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-file-alt"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'notes':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-sticky-note"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-sticky-note"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'slides':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-chalkboard"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-chalkboard"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'flashcards':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-clone"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-clone"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'website':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-sitemap"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-sitemap"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'resource':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fas fa-book"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fas fa-book"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
-                                        break;
-                                    case 'youtube_playlist':
-                                        {
-                                            const pid = material.youtubePlaylistId || '';
-                                            const imgTag = pid ? `<img src="https://img.youtube.com/vi/${pid.split('&list=')[0]}/mqdefault.jpg" alt="${material.title || ''}">` : '';
-                                            const titleSpan = material.title ? `<span>${material.title}</span>` : '';
-                                            materialsHTML += `
-                                    <li>
-                                        <i class="fab fa-youtube"></i>
-                                        <div class="youtube-thumbnail" data-playlist-id="${pid}">
-                                            ${imgTag}
-                                            <i class="fas fa-play play-icon"></i>
-                                        </div>
-                                        ${titleSpan}
-                                    </li>`;
-                                        }
                                         break;
                                     case 'facebook-video':
                                         materialsHTML += `
                                     <li>
-                                        <i class="fab fa-facebook"></i>
-                                        <a href="${material.url}" target="_blank">${material.title}</a>
+                                        <a href="${material.url}" target="_blank">
+                                            <i class="fab fa-facebook"></i>
+                                            <span>${material.title}</span>
+                                        </a>
                                     </li>`;
                                         break;
                                     case 'text':
@@ -276,9 +324,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     subjectSection.innerHTML = `<h3>${subject.name}</h3>` + coursesHTML;
                     container.appendChild(subjectSection);
                 });
+                
                 // Re-bind events
                 document.querySelectorAll('.youtube-thumbnail').forEach(thumb => {
-                    thumb.addEventListener('click', () => createYouTubePlayer(thumb, thumb.dataset.playlistId));
+                    if (!thumb.classList.contains('coming-soon')) {
+                        thumb.addEventListener('click', () => createYouTubePlayer(thumb, thumb.dataset.playlistId));
+                    } else {
+                        // Coming soon - show alert
+                        thumb.addEventListener('click', () => {
+                            alert('🎬 Video is coming soon! Stay tuned for updates.');
+                        });
+                        thumb.style.cursor = 'not-allowed';
+                    }
                 });
             }
 

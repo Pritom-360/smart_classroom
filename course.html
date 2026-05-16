@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details - Smart Classroom</title>
+    <meta name="description" id="meta-description" content="View detailed course materials, lecture notes, and video tutorials for university students.">
+    
+    <!-- Google AdSense Verification -->
+    <meta name="google-adsense-account" content="ca-pub-9471530696566173">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9471530696566173" crossorigin="anonymous"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/subjects.css">
+    <style>
+        .course-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .course-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        .course-header {
+            margin-bottom: 3rem;
+        }
+
+        .course-code-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .course-long-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-main);
+            margin-bottom: 3rem;
+            text-align: justify;
+        }
+
+        .materials-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary);
+        }
+
+        /* Sidebar AdSense */
+        .ads-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .ad-container {
+            background: var(--bg-surface);
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        .ad-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/icon/iconi.png" alt="SCL">
+                <span>Smart Classroom</span>
+            </a>
+            <div class="desktop-nav">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="subjects.html">Subjects</a>
+                    <a href="simulators.html">Simulators</a>
+                    <a href="about.html">About</a>
+                </nav>
+                <div class="controls">
+                    <button id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+            </div>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; margin: 0 0.5rem;"></i>
+            <a href="subjects.html">Subjects</a> <i class="fas fa-chevron-right" style="font-size: 0.7rem; margin: 0 0.5rem;"></i>
+            <span id="breadcrumb-current">Course</span>
+        </nav>
+
+        <div class="course-layout">
+            <!-- Main Content Area -->
+            <div class="course-main-content">
+                <div id="course-details">
+                    <p class="loading-text">Loading course information...</p>
+                </div>
+
+                <div class="materials-section">
+                    <h3><i class="fas fa-layer-group"></i> Learning Materials</h3>
+                    <div id="materials-container">
+                        <!-- Materials will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Area for AdSense -->
+            <aside class="ads-sidebar">
+                <div>
+                    <span class="ad-label">Advertisement</span>
+                    <div class="ad-container">
+                        <!-- AdSense Display Ad Unit 1 -->
+                        <p>Google AdSense<br>Display Ad (300x600)</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="ad-label">Advertisement</span>
+                    <div class="ad-container" style="min-height: 250px;">
+                        <!-- AdSense Display Ad Unit 2 -->
+                        <p>Google AdSense<br>Rectangle Ad (300x250)</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
+                <div class="footer-links" style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
+                    <a href="index.html">Home</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/course-view.js"></script>
+</body>
+
+</html>

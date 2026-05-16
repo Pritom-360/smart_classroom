@@ -112,242 +112,55 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // New Render Function for Normalized Data
-            const renderNormalizedSubjects = (subjects) => {
-                if (!subjects || subjects.length === 0) {
+            const renderNormalizedSubjects = (data) => {
+                console.log('Rendering Layer 1 (Subjects) with data:', data);
+                if (!data || data.length === 0) {
+                    console.warn('No data found for rendering.');
                     container.innerHTML = '<p class="info-text">No courses available for your selected role.</p>';
                     return;
                 }
                 container.innerHTML = '';
 
-                subjects.forEach(subject => {
-                    const subjectSection = document.createElement('section');
-                    subjectSection.className = 'subject-section';
-
-                    let coursesHTML = '';
-                    subject.courses.forEach(course => {
-                        let materialsHTML = '<ul class="material-list">';
-                        // Data is already normalized as 'materials'
-                        if (course.materials && course.materials.length > 0) {
-                            course.materials.forEach(material => {
-                                switch (material.type) {
-                                    case 'youtube':
-                                    case 'youtube_playlist':
-                                        {
-                                            const pid = material.youtubePlaylistId || '';
-                                            let videoIdForThumb = '';
-                                            
-                                            if (pid.includes('&list=')) {
-                                                videoIdForThumb = pid.split('&list=')[0];
-                                            } else if (pid.includes('?list=')) {
-                                                videoIdForThumb = pid.split('?list=')[0];
-                                            }
-                                            
-                                            let thumbnailHTML = '';
-                                            let isComingSoon = !pid || pid.trim() === '';
-                                            
-                                            if (isComingSoon) {
-                                                // Coming Soon - Elegant placeholder
-                                                thumbnailHTML = `
-                                                    <div class="youtube-thumbnail coming-soon" data-playlist-id="${pid}">
-                                                        <div class="thumbnail-placeholder">
-                                                            <div class="coming-soon-badge">
-                                                                <i class="fas fa-clock"></i>
-                                                                <span>Coming Soon</span>
-                                                            </div>
-                                                            <p class="course-title-elegant">${course.title}</p>
-                                                        </div>
-                                                    </div>`;
-                                            } else {
-                                                // Regular YouTube thumbnail - Elegant design
-                                                thumbnailHTML = `
-                                                    <div class="youtube-thumbnail" data-playlist-id="${pid}">
-                                                        <img src="https://img.youtube.com/vi/${videoIdForThumb}/maxresdefault.jpg" 
-                                                             alt="${material.title || ''}"
-                                                             onerror="this.src='https://img.youtube.com/vi/${videoIdForThumb}/mqdefault.jpg'">
-                                                        <div class="play-overlay">
-                                                            <div class="play-button">
-                                                                <i class="fas fa-play"></i>
-                                                            </div>
-                                                            <div class="overlay-text">
-                                                                <p class="click-text">Click to Watch</p>
-                                                                <p class="course-title-display">${course.title}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>`;
-                                            }
-                                            
-                                            const titleSpan = material.title ? `<span class="material-title">${material.title}</span>` : '';
-                                            materialsHTML += `
-                                                <li>
-                                                    <i class="fab fa-youtube"></i>
-                                                    ${thumbnailHTML}
-                                                    ${titleSpan}
-                                                </li>`;
-                                        }
-                                        break;
-                                    case 'pdf':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-file-pdf"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'link':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-external-link-alt"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'image':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-image"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'video':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-video"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'audio':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-headphones"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'site':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-globe"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'document':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-file-alt"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'notes':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-sticky-note"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'slides':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-chalkboard"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'flashcards':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-clone"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'website':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-sitemap"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'resource':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fas fa-book"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'facebook-video':
-                                        materialsHTML += `
-                                    <li>
-                                        <a href="${material.url}" target="_blank">
-                                            <i class="fab fa-facebook"></i>
-                                            <span>${material.title}</span>
-                                        </a>
-                                    </li>`;
-                                        break;
-                                    case 'text':
-                                        materialsHTML += `
-                                    <li>
-                                        <i class="fas fa-info-circle"></i>
-                                        <p class="material-info-text">${material.content}</p>
-                                    </li>`;
-                                        break;
-                                }
-                            });
-                        } else {
-                            materialsHTML += '<li><p class="info-text">No materials available.</p></li>';
-                        }
-                        materialsHTML += '</ul>';
-                        coursesHTML += `
-                        <div class="course-card">
-                            <h4>${course.code}: ${course.title}</h4>
-                            ${materialsHTML}
-                        </div>`;
-                    });
-                    subjectSection.innerHTML = `<h3>${subject.name}</h3>` + coursesHTML;
-                    container.appendChild(subjectSection);
+                // Extract unique subjects from the pre-grouped data
+                // In our current buildStructure, data is already grouped by subject name
+                data.forEach(item => {
+                    console.log('Processing subject group:', item.name);
+                    const subjectCard = document.createElement('div');
+                    subjectCard.className = 'subject-picker-card';
+                    subjectCard.innerHTML = `
+                        <a href="subject-view.html?subject=${encodeURIComponent(item.name)}" class="subject-link">
+                            <div class="subject-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <div class="subject-info">
+                                <h3>${item.name}</h3>
+                                <p>Explore courses and materials</p>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    `;
+                    container.appendChild(subjectCard);
                 });
-                
-                // Re-bind events
+            };
+
+            // Re-bind events (if any thumbnails are rendered, though unlikely in Layer 1)
+            const bindEvents = () => {
                 document.querySelectorAll('.youtube-thumbnail').forEach(thumb => {
                     if (!thumb.classList.contains('coming-soon')) {
                         thumb.addEventListener('click', () => createYouTubePlayer(thumb, thumb.dataset.playlistId));
-                    } else {
-                        // Coming soon - show alert
-                        thumb.addEventListener('click', () => {
-                            alert('🎬 Video is coming soon! Stay tuned for updates.');
-                        });
-                        thumb.style.cursor = 'not-allowed';
                     }
                 });
-            }
+            };
 
-            // Expose render function for search
-            window.renderFinal = renderNormalizedSubjects;
+            // Expose for search
+            window.renderFinal = (data) => {
+                renderNormalizedSubjects(data);
+                bindEvents();
+            };
             window.allDataFinal = allSubjectsData;
 
             renderCurrentRole();
-
-            // Listen for role changes
             window.addEventListener('roleChanged', renderCurrentRole);
-
         })
         .catch(error => {
             container.innerHTML = '<p class="error-text">Error loading data.</p>';

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Smart Classroom</title>
+    <meta name="description" id="meta-description" content="Explore comprehensive study materials and courses for university students.">
+    
+    <!-- Google AdSense Verification -->
+    <meta name="google-adsense-account" content="ca-pub-9471530696566173">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9471530696566173" crossorigin="anonymous"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/subjects.css">
+    <style>
+        .subject-view-container {
+            padding: 3rem 0;
+        }
+        .subject-header {
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .ad-row {
+            grid-column: 1 / -1;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/icon/iconi.png" alt="SCL">
+                <span>Smart Classroom</span>
+            </a>
+            <div class="desktop-nav">
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="subjects.html">Subjects</a>
+                    <a href="simulators.html">Simulators</a>
+                    <a href="about.html">About</a>
+                </nav>
+            </div>
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="subject-view-container reveal">
+            <div class="subject-header">
+                <div>
+                    <a href="subjects.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Subjects</a>
+                    <h1 class="gradient-text" id="subject-title">Subject Courses</h1>
+                </div>
+            </div>
+
+            <div id="course-list-container" class="course-grid">
+                <p class="loading-text">Loading courses...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
+                <div class="footer-links" style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
+                    <a href="index.html">Home</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/subject-view.js"></script>
+</body>
+
+</html>

@@ -4,6 +4,7 @@
       "courseCode": "PHY109",
       "subject": "Physics",
       "title": "Physics 109",
+      "longDescription": "Physics 109 is a cornerstone course designed specifically for undergraduate engineering students. It provides a rigorous introduction to the physical laws that govern our universe, with a strong emphasis on Classical Mechanics, Thermodynamics, and Electromagnetism. In this course, students move beyond simple observation to mathematical modeling of physical systems. Understanding the principles of forces, energy, and motion is essential for any engineering discipline, as these concepts form the basis for structural analysis, mechanical design, and thermal systems. The materials provided here—ranging from detailed lecture notes to interactive assignments and lab manuals—are crucial for bridging the gap between theoretical derivations and practical experimentation. Physics is the foundation of all engineering, and mastery of PHY109 ensures that students possess the analytical tools necessary to solve real-world problems. By engaging with these resources, students will develop the critical thinking skills required to analyze complex physical phenomena and apply scientific methods to engineering challenges, making this course an indispensable part of their academic journey.",
       "materials": [
         {
           "type": "youtube",
@@ -36,6 +37,7 @@
       "courseCode": "CHEM109",
       "subject": "Chemistry",
       "title": "Engineering Chemistry I",
+      "longDescription": "Engineering Chemistry I is an essential course that introduces students to the chemical principles underlying material science, energy systems, and environmental engineering. This course covers a wide spectrum of topics, including atomic structure, chemical bonding, thermodynamics, and the chemistry of engineering materials like polymers and alloys. For an engineer, understanding the chemical properties of substances is vital for selecting the right materials for construction, manufacturing, and energy production. The resources provided in this hub—including comprehensive slides, lab materials, and assignment guides—are designed to help students master both the conceptual and quantitative aspects of chemistry. Whether you are studying the corrosion of metals or the efficiency of fuel cells, the knowledge gained in CHEM109 is directly applicable to modern engineering problems. These materials offer a structured approach to learning, providing clarity on complex chemical reactions and their industrial applications. By utilizing these resources, students will build a strong scientific foundation that is necessary for success in subsequent engineering courses and professional practice.",
       "materials": [
         {
           "type": "youtube",
@@ -78,6 +80,7 @@
       "courseCode": "CSE103",
       "subject": "CSE",
       "title": "CSE 103",
+      "longDescription": "CSE 103: Structured Programming in C is the foundational course for computer scientists and engineers. It focuses on logic building, control structures, and memory management using the C language. Mastering C provides a deep understanding of how computers manage memory and execute instructions, which is the foundation for all modern software development. The materials provided here—including official slides, projects, and lab manuals—are indispensable for building practical coding skills. Through these resources, students will learn to write efficient, clean, and well-documented code. Programming is a skill learned through practice, and our curated materials offer a variety of challenges to help students progress from basic syntax to complex algorithmic problem-solving. Success in CSE 103 opens the door to more advanced topics in computer science, such as data structures and operating systems.",
       "materials": [
         {
           "type": "youtube",
@@ -115,6 +118,7 @@
       "courseCode": "CSE106",
       "subject": "CSE",
       "title": "CSE 106",
+      "longDescription": "Discrete Mathematics is the mathematical language of computer science. Unlike continuous mathematics like calculus, CSE 106 deals with countable, distinct structures that are fundamental to computer algorithms and data systems. Topics covered include logic, set theory, graph theory, combinatorics, and probability. These concepts are essential for understanding how computers store data, how networks are structured, and how algorithms are analyzed for efficiency. The resources provided in this hub—such as lecture slides, project guides, and textbooks—are designed to help students navigate the abstract nature of discrete math. For a computer scientist, proficiency in discrete mathematics is vital for designing secure cryptographic systems, optimizing database queries, and developing complex software architectures. These materials offer clear explanations of difficult theorems and provide practical examples of their applications in technology. By engaging with these resources, students will develop the logical reasoning and analytical skills necessary to tackle the most challenging problems in computer science and engineering.",
       "materials": [
         {
           "type": "youtube",
@@ -142,6 +146,7 @@
       "courseCode": "CSE110",
       "subject": "CSE",
       "title": "CSE 110",
+      "longDescription": "Object-Oriented Programming (OOP) is the dominant paradigm in modern software development, and CSE 110 introduces students to its core principles using Java. This course focuses on concepts such as classes, objects, inheritance, polymorphism, encapsulation, and abstraction. Understanding OOP is essential for building scalable, maintainable, and reusable software systems. Java, being a robust and platform-independent language, is the perfect tool for learning these concepts. The materials provided here—including lab manuals, project guides, and detailed OOP notes—are crucial for transitioning from procedural programming to object-oriented design. These resources help students learn how to model real-world entities as software objects, making it easier to manage complex software projects. By practicing with these materials, students will gain hands-on experience in designing and implementing Java-based applications. Mastery of CSE 110 is a prerequisite for professional software engineering and is vital for anyone looking to build a career in web development, mobile apps, or enterprise software systems.",
       "materials": [
         {
           "type": "youtube",
@@ -179,6 +184,7 @@
       "courseCode": "CSE200",
       "subject": "CSE",
       "title": "CSE 200",
+      "longDescription": "Algorithms are the heart of computer science, and CSE 200 focuses on the design and analysis of efficient algorithms to solve complex computational problems. This course covers topics such as sorting, searching, dynamic programming, greedy algorithms, and complexity classes like P and NP. Understanding how to measure the efficiency of an algorithm in terms of time and space is vital for developing high-performance software. The materials provided—including assignment solutions, project guides, and lab materials—are essential for mastering algorithmic thinking. For a computer scientist, the ability to select the right algorithm for a specific task can mean the difference between a program that runs in seconds and one that takes years. These resources offer deep insights into algorithmic paradigms and provide practical examples of their implementation. By engaging with these materials, students will learn how to optimize code, reduce computational overhead, and solve problems that were previously thought to be intractable, preparing them for high-level technical roles in the industry.",
       "materials": [
         {
           "type": "youtube",
@@ -211,6 +217,7 @@
       "courseCode": "CSE209",
       "subject": "CSE",
       "title": "CSE 209",
+      "longDescription": "For computer science and electrical engineering students, understanding the hardware layer is as important as the software layer. CSE 209 introduces the fundamental principles of electrical circuits, covering topics such as Ohm's Law, Kirchhoff's Laws, circuit analysis techniques (nodal and mesh analysis), and the behavior of resistors, capacitors, and inductors. This course provides the bridge between physical electronics and digital logic. The materials provided—including detailed hand-notes and lecture guides—are crucial for understanding how electrical signals are used to represent and process information. Even for a pure software developer, knowledge of electrical circuits is vital for understanding computer architecture, embedded systems, and the physical constraints of hardware. These resources offer a structured approach to learning circuit theory, with clear diagrams and solved examples. By utilizing these materials, students will build the foundation necessary to study digital logic design, microprocessors, and communication systems, ensuring a holistic understanding of how modern computers function from the ground up.",
       "materials": [
         {
           "type": "youtube",
@@ -228,6 +235,7 @@
       "courseCode": "CSE207",
       "subject": "CSE",
       "title": "Data Structure",
+      "longDescription": "Data structures are the building blocks of any software application, and CSE 207 is one of the most important courses in the computer science curriculum. It focuses on the different ways data can be organized and stored in a computer's memory to ensure efficient access and modification. Topics include arrays, linked lists, stacks, queues, trees, graphs, and hash tables. The materials provided here—specifically the focused slides and lecture guides—are essential for understanding the trade-offs between different data structures. For a developer, choosing the right data structure is critical for optimizing the performance of a software system. Whether you are building a search engine, a social network, or a financial application, your choice of data structures will determine how fast and scalable your system is. These resources provide clear visualizations of complex structures and explain the logic behind their implementation. By mastering these materials, students will gain the skills necessary to write high-performance code and pass technical interviews at top technology companies.",
       "materials": [
         {
           "type": "link",
@@ -240,6 +248,7 @@
       "courseCode": "CSE303",
       "subject": "CSE",
       "title": "Statistics for Data Science",
+      "longDescription": "In the era of Big Data and Artificial Intelligence, statistics has become a vital skill for every computer scientist. CSE 303 introduces the statistical methods and probability theories used to analyze data, identify patterns, and make informed decisions. Topics include descriptive statistics, inferential statistics, hypothesis testing, regression analysis, and Bayesian probability. This course provides the mathematical foundation for data science, machine learning, and data mining. The materials provided—specifically the focused slides and lecture guides—are essential for understanding how to turn raw data into actionable insights. For a data scientist, the ability to interpret data accurately and validate results is critical for building reliable predictive models. These resources offer a practical approach to learning statistics, with examples tailored to computer science applications. By utilizing these materials, students will learn how to handle uncertainty, analyze large datasets, and apply statistical techniques to solve real-world problems in business, healthcare, and technology.",
       "materials": [
         {
           "type": "link",
@@ -252,6 +261,7 @@
       "courseCode": "CSE345",
       "subject": "CSE",
       "title": "Digital Logic Design",
+      "longDescription": "Digital Logic Design is the study of the fundamental building blocks of digital computers. CSE 345 covers topics such as Boolean algebra, logic gates, combinational circuits (adders, multiplexers), and sequential circuits (flip-flops, registers, counters). This course explains how simple electrical signals are transformed into the complex logic that powers our CPUs and GPUs. The materials provided—specifically the lecture slides and circuit guides—are essential for understanding the architecture of modern digital systems. For any engineer or computer scientist, knowledge of digital logic is vital for designing hardware, developing embedded systems, and optimizing low-level software. These resources offer a step-by-step guide to designing and simulating digital circuits, with a focus on practical implementation. By engaging with these materials, students will learn how to build complex logical systems from basic gates, providing a deep understanding of the internal workings of computers. This course is the prerequisite for computer architecture and microprocessors, making it a vital part of the technical curriculum.",
       "materials": [
         {
           "type": "link",
@@ -264,6 +274,7 @@
       "courseCode": "CSE406",
       "subject": "CSE",
       "title": "Internet of Things",
+      "longDescription": "The Internet of Things (IoT) is a rapidly growing field that connects physical devices to the internet, allowing them to collect and exchange data. CSE 406 introduces the architecture, protocols, and applications of IoT systems, covering topics such as sensor networks, embedded systems, cloud integration, and IoT security. This course is highly practical, focusing on how to build systems that interact with the real world. The materials provided—specifically the focused slides and project guides—are essential for understanding the challenges of developing IoT solutions. For a modern developer, IoT knowledge is vital for building smart homes, industrial automation systems, and connected healthcare devices. These resources offer insights into the latest IoT trends and provide a roadmap for building end-to-end IoT applications. By utilizing these materials, students will learn how to program microcontrollers, connect sensors to the cloud, and analyze data from connected devices, preparing them for the next wave of technological innovation in the connected world.",
       "materials": [
         {
           "type": "link",
@@ -276,6 +287,7 @@
       "courseCode": "CSE405",
       "subject": "CSE",
       "title": "Computer Networks",
+      "longDescription": "Computer Networks are the backbone of the modern internet, and CSE 405 provides a deep dive into how data is transmitted across the globe. This course covers the OSI model, TCP/IP protocols, routing algorithms, wireless networks, and network security. Understanding how packets are switched and how different network layers interact is vital for any software developer, system administrator, or cybersecurity expert. The materials provided—including lecture slides and lab manuals—are essential for gaining hands-on experience in network configuration and analysis. Whether you are building a web application, a distributed system, or a secure network infrastructure, the knowledge of computer networks is indispensable. These resources provide clear explanations of complex protocols and offer practical guides for troubleshooting network issues. By engaging with these materials, students will learn how the internet works at a fundamental level, enabling them to build faster, more reliable, and more secure networked applications in a globalized digital economy.",
       "materials": [
         {
           "type": "link",
@@ -293,6 +305,7 @@
       "courseCode": "CSE412",
       "subject": "CSE",
       "title": "Software Engineering",
+      "longDescription": "Software Engineering is the disciplined application of engineering principles to the development, operation, and maintenance of high-quality software. CSE 412 introduces students to the entire software development lifecycle (SDLC), covering methodologies like Agile and Waterfall, requirements engineering, system design, testing, and project management. This course is vital for anyone looking to work as a professional developer or project lead. The materials provided—specifically the lecture slides and case studies—are essential for understanding how to manage large-scale software projects. In the industry, software is rarely built by a single person; it requires collaboration, version control, and rigorous quality assurance. These resources offer insights into best practices for software design and documentation. By engaging with these materials, students will learn how to build software that is not only functional but also scalable, maintainable, and reliable, preparing them for the complexities of modern enterprise software development.",
       "materials": [
         {
           "type": "link",
@@ -305,6 +318,7 @@
       "courseCode": "CSE438",
       "subject": "CSE",
       "title": "Digital Image Processing",
+      "longDescription": "Digital Image Processing is the study of how computers can analyze and manipulate visual information. CSE 438 covers fundamental topics such as image enhancement, restoration, segmentation, and feature extraction. This course is at the intersection of computer science and signal processing, providing the foundation for modern fields like computer vision, medical imaging, and facial recognition. The materials provided—specifically the focused slides and algorithm guides—are essential for understanding the mathematical operations behind image manipulation. For a developer, image processing skills are vital for building everything from mobile photo editors to autonomous vehicle navigation systems. These resources offer clear explanations of techniques like Fourier transforms, filtering, and morphological operations. By utilizing these materials, students will learn how to process and interpret visual data, enabling them to build intelligent systems that can \"see\" and understand the world around them, making it a vital course for those interested in AI and computer vision.",
       "materials": [
         {
           "type": "link",
@@ -317,6 +331,7 @@
       "courseCode": "CSE464",
       "subject": "CSE",
       "title": "Advanced Database System",
+      "longDescription": "Databases are the foundation of any information system, and CSE 464 goes beyond basic SQL to explore the advanced concepts of data management. This course covers topics such as query optimization, transaction management, concurrency control, distributed databases, and NoSQL systems. Understanding how to manage large volumes of data efficiently is vital for building modern web and enterprise applications. The materials provided—specifically the focused slides and technical guides—are essential for mastering the internal workings of database management systems (DBMS). For a backend developer or data architect, the ability to design high-performance database schemas and optimize complex queries is a critical skill. These resources provide deep insights into data storage techniques and explain how to ensure data integrity in a distributed environment. By engaging with these materials, students will learn how to build scalable and robust data infrastructures, preparing them for the challenges of managing \"Big Data\" in the modern technological landscape.",
       "materials": [
         {
           "type": "link",
@@ -329,6 +344,7 @@
       "courseCode": "CSE479",
       "subject": "CSE",
       "title": "Web Programming",
+      "longDescription": "Web Programming is the study of building dynamic, interactive, and scalable applications for the internet. CSE 479 covers both frontend and backend development, focusing on technologies like HTML5, CSS3, JavaScript, and modern web frameworks. This course explains how the client and server interact through HTTP protocols and RESTful APIs. The materials provided—specifically the lecture slides and coding guides—are essential for understanding the full stack of web development. For a modern developer, web programming skills are indispensable, as most software today is delivered via the browser. These resources provide a practical roadmap for building everything from simple websites to complex web-based platforms. By utilizing these materials, students will learn how to create responsive user interfaces, manage server-side logic, and connect to databases, ensuring they have the skills necessary to build the next generation of web-powered technologies. Mastery of this course is vital for anyone looking to enter the professional world of web development and digital services.",
       "materials": [
         {
           "type": "link",
@@ -341,6 +357,7 @@
       "courseCode": "CSE487",
       "subject": "CSE",
       "title": "Cyber Security, Ethics and Law",
+      "longDescription": "In an increasingly connected world, protecting information is more important than ever. CSE 487 introduces the fundamental principles of cybersecurity, covering topics such as cryptography, network security, risk management, and the ethical and legal frameworks governing the digital world. This course explains how to protect systems from attacks while respecting user privacy and intellectual property laws. The materials provided—specifically the focused slides and legal guides—are essential for understanding the landscape of digital threats and defenses. For any professional in technology, knowledge of cybersecurity is vital for building secure systems and complying with international regulations. These resources offer insights into the latest security trends and provide a guide for implementing ethical hacking and defense strategies. By engaging with these materials, students will learn how to secure data, analyze vulnerabilities, and navigate the complex legal issues surrounding cyber warfare and data protection, making it a vital course for any responsible technologist.",
       "materials": [
         {
           "type": "link",
@@ -353,6 +370,7 @@
       "courseCode": "CSE495",
       "subject": "CSE",
       "title": "IT Project Management and Entrepreneurship",
+      "longDescription": "Success in the technology industry requires more than just technical skills; it requires the ability to manage projects and innovate. CSE 495 introduces the principles of IT project management and the basics of entrepreneurship. This course covers project planning, budgeting, risk assessment, team leadership, and the process of turning a technical idea into a viable business. The materials provided—specifically the focused slides and business guides—are essential for understanding how to lead a technical team and launch a startup. For an aspiring CTO or entrepreneur, the ability to bridge the gap between technology and business is a critical differentiator. These resources provide practical tools for managing timelines, resources, and stakeholders in a complex IT environment. By utilizing these materials, students will learn how to manage technical projects from inception to completion and gain the entrepreneurial mindset necessary to innovate and grow in the competitive global tech market.",
       "materials": [
         {
           "type": "link",
@@ -365,6 +383,7 @@
       "courseCode": "MATH101",
       "subject": "Mathematics",
       "title": "Differential and Integral Calculus",
+      "longDescription": "Calculus is the language of science and engineering, and MATH 101 is the foundational course that introduces students to the mathematics of change. This course covers the principles of differentiation and integration, focusing on limits, derivatives, integrals, and their numerous applications in physics and engineering. Understanding calculus is vital for modeling physical processes, optimizing systems, and analyzing continuous data. The materials provided—including lecture videos, textbooks with solutions, and detailed notes—are essential for mastering these often-difficult concepts. Whether you are calculating the rate of a chemical reaction or the stress on a bridge, calculus provides the necessary tools. These resources offer clear explanations of fundamental theorems and provide a variety of solved examples to build students' problem-solving confidence. By engaging with these materials, students will develop the mathematical rigor required for all subsequent engineering and science courses, making MATH 101 one of the most important prerequisites in their entire academic career.",
       "materials": [
         {
           "type": "youtube",
@@ -396,6 +415,7 @@
       "courseCode": "MATH102",
       "subject": "Mathematics",
       "title": "Differential Equations and Special Functions",
+      "longDescription": "Differential Equations are the mathematical models of the real world, describing how physical systems evolve over time. MATH 102 introduces students to ordinary differential equations (ODEs), covering first-order and higher-order equations, Laplace transforms, and special mathematical functions. This course is vital for anyone studying physics, electrical circuits, or mechanical systems, as these fields rely heavily on differential equations for modeling behavior. The materials provided—specifically the lecture slides, textbooks, and class notes—are essential for learning how to solve these complex equations. For an engineer, the ability to solve differential equations is critical for predicting the stability of a circuit or the vibration of a structure. These resources provide a structured approach to learning, with focused guides on different solution methods. By utilizing these materials, students will build the mathematical maturity necessary to tackle advanced engineering problems, making it a vital course for those pursuing research and high-level technical design.",
       "materials": [
         {
           "type": "youtube",
@@ -428,6 +448,7 @@
       "courseCode": "MATH104",
       "subject": "Mathematics",
       "title": "MATH 104",
+      "longDescription": "MATH 104 is an advanced mathematics course that typically covers topics such as linear algebra, complex variables, and vector analysis. These subjects are essential for high-level engineering and physics, providing the tools for analyzing multi-dimensional systems and complex signal processing. Understanding how to manipulate matrices, work with complex numbers, and perform vector calculus is vital for fields like control systems, electromagnetics, and data science. The materials provided—including textbooks, presentation slides, and class lectures—are essential for mastering these abstract yet powerful mathematical tools. For a modern engineer or computer scientist, proficiency in advanced mathematics is a key skill for developing complex algorithms and simulating physical systems. These resources offer deep insights into mathematical theory while providing practical examples of its applications. By engaging with these materials, students will gain the skills necessary to analyze and solve the most challenging mathematical problems in their academic and professional careers.",
       "materials": [
         {
           "type": "youtube",
@@ -465,6 +486,7 @@
       "courseCode": "ENG101",
       "subject": "English",
       "title": "English Language Skills",
+      "longDescription": "Effective communication is one of the most important skills for any professional, and ENG 101 focuses on helping students master the English language for academic and professional success. This course covers grammar, academic writing, reading comprehension, and oral communication skills. For an engineering or computer science student, the ability to write clear reports, document code, and present ideas to stakeholders is vital. The materials provided—including English compilations, textbooks, and plagiarism detection guides—are essential tools for improving linguistic precision. Our resources focus on the specific language needs of technical students, helping them communicate complex ideas simply and effectively. By utilizing these materials, students will improve their writing fluency and gain the confidence to engage in professional discourse in a globalized world. Mastery of English is not just an academic requirement but a career-long asset that enables collaboration across borders and cultures, making this course a fundamental part of the university curriculum.",
       "materials": [
         {
           "type": "link",
@@ -492,6 +514,7 @@
       "courseCode": "ENG102",
       "subject": "English",
       "title": "Advanced English",
+      "longDescription": "Advanced English builds on basic language skills to focus on the higher-level competencies of research writing, term paper composition, and professional presentation. This course is vital for preparing students for the rigors of university-level research and professional technical communication. Topics include source evaluation, citation styles, critical analysis, and persuasive speaking. The materials provided—specifically the term paper guides, research materials, and AI detection tools—are essential for developing an academic voice. For a student, the ability to conduct independent research and present findings clearly is a hallmark of higher education. These resources provide a roadmap for navigating the complexities of academic integrity and professional presentation design. By engaging with these materials, students will learn how to construct complex arguments, synthesize information from multiple sources, and present their work with confidence and clarity, ensuring they are well-prepared for both academic success and the professional demands of the global workplace.",
       "materials": [
         {
           "type": "pdf",
@@ -519,6 +542,7 @@
       "courseCode": "FIN101",
       "subject": "Finance",
       "title": "Principles of Finance",
+      "longDescription": "Even in technical fields, understanding the principles of finance is essential for decision-making and project management. FIN101 introduces students to the core concepts of financial management, covering topics such as the time value of money, risk and return, capital budgeting, and financial statement analysis. For an engineer or IT professional, the ability to evaluate the financial viability of a project or understand a company's financial health is a critical skill. The materials provided—specifically the focused slides and lecture guides—are essential for gaining a basic financial literacy. These resources provide a practical introduction to how capital is allocated and how value is created in a business environment. By utilizing these materials, students will learn how to analyze costs, assess investment opportunities, and understand the financial implications of their technical decisions, making them more effective managers and leaders in their future professional careers.",
       "materials": [
         {
           "type": "pdf",

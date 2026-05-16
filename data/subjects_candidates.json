@@ -4,6 +4,7 @@
       "courseCode": "PHY101",
       "subject": "Physics",
       "title": "Admission Physics",
+      "longDescription": "This course is meticulously designed for students preparing for highly competitive university admission tests in Bangladesh. It covers fundamental and advanced topics in classical and modern physics, specifically focusing on core areas like Mechanics, Electromagnetism, Optics, and Modern Physics. Understanding these concepts is not just about memorizing formulas but about developing deep analytical skills to solve complex numerical problems under time pressure. The materials provided here, including key formula sheets and crash course videos, are essential because they bridge the gap between textbook theory and practical examination techniques. Mechanics forms the backbone of physics, teaching students about motion, forces, and energy conservation, which are frequently tested. Electromagnetism and Modern Physics are often the differentiators in high-level exams. By mastering these resources, candidates can ensure they are well-versed in the high-yield topics that appear year after year. These materials are curated to provide clarity on difficult concepts and to offer strategic insights into problem-solving, making them indispensable for any serious admission aspirant looking to secure a seat in top-tier engineering or science faculties.",
       "materials": [
         {
           "type": "text",
@@ -25,6 +26,7 @@
       "courseCode": "CHEM101",
       "subject": "Chemistry",
       "title": "Admission Chemistry",
+      "longDescription": "Chemistry is often the subject that decides a student's rank in university admission tests, and this course focuses on the most critical pillars of the subject: General, Inorganic, Organic, and Physical Chemistry. Specifically, we emphasize mastering the Periodic Table, Chemical Bonding, and the intricate world of Organic Chemistry reaction mechanisms. These topics are known for their complexity and are high-yield areas in examinations. The provided materials, such as reaction cheat sheets and summary notes, are designed to help students memorize essential facts while understanding the underlying chemical principles. Inorganic chemistry requires precision and memory, while Organic chemistry demands logical deduction of reaction pathways. Physical chemistry, on the other hand, involves quantitative analysis. Our resources provide a structured approach to learning these diverse areas. For admission candidates, having access to concentrated study guides is vital because it allows for efficient revision and helps in identifying patterns in chemical reactions. By engaging with these materials, students will build the confidence needed to tackle both conceptual questions and numerical problems, ensuring a holistic preparation that covers every possible angle of the chemistry syllabus.",
       "materials": [
         {
           "type": "text",
@@ -41,6 +43,7 @@
       "courseCode": "MATH100",
       "subject": "Mathematics",
       "title": "General Math for Admission",
+      "longDescription": "Success in standardized admission tests heavily relies on a student's proficiency in Mathematics. This course, General Math for Admission, provides a comprehensive review of essential topics in Algebra, Geometry, and Trigonometry that form the foundation of almost every competitive exam. Algebra teaches students the logic of variables and equations, which is applicable across all scientific disciplines. Geometry and Trigonometry are vital for spatial reasoning and understanding complex relationships in physics and engineering. The materials included here, such as the \"Essence of Calculus\" videos, are particularly important because they introduce advanced concepts in an intuitive way, making them accessible even to those who find mathematics challenging. For candidates, mastering these fundamental areas is crucial because they often carry the highest weightage in entrance exams. Our resources focus on simplifying complex theorems and providing step-by-step problem-solving techniques. By practicing with these materials, students will improve their speed and accuracy, which are the two most critical factors in performing well under the strict time constraints of a university admission test.",
       "materials": [
         {
           "type": "text",
@@ -57,6 +60,7 @@
       "courseCode": "MATH102",
       "subject": "Mathematics",
       "title": "Engineering Calculus",
+      "longDescription": "For students aiming for engineering and science-related faculties, a deep understanding of Calculus is non-negotiable. This Engineering Calculus course is tailored to provide a rigorous dive into Differentiation, Integration, and Analytical Geometry. These topics are the language of modern engineering and are essential for modeling physical systems, analyzing rates of change, and calculating areas and volumes of complex shapes. The materials provided, including focused video tutorials and practice content, are designed to transition students from basic mathematics to the level of rigor expected in university-level engineering programs. Calculus is often considered the most difficult part of the admission syllabus, yet it is also the most rewarding for those who master it. Our resources emphasize the conceptual beauty of calculus alongside its practical applications. By studying these materials, candidates will not only prepare for their entrance exams but also build a solid foundation that will serve them throughout their undergraduate studies. These resources are indispensable for developing the mathematical maturity required to solve high-level problems that require multi-step integration and differentiation techniques.",
       "materials": [
         {
           "type": "text",
@@ -73,6 +77,7 @@
       "courseCode": "ENG101",
       "subject": "English",
       "title": "Grammar & Vocabulary",
+      "longDescription": "Proficiency in the English language is a requirement for admission into almost all premium universities and departments. This course, Grammar & Vocabulary, is designed to help students master the nuances of English grammar, expand their academic vocabulary, and improve their reading comprehension skills. Admission tests often include tricky grammar questions and reading passages that test a student's ability to extract information quickly and accurately. The materials provided here, including must-know vocabulary lists and grammar basics videos, are essential tools for building a strong linguistic foundation. A wide vocabulary allows students to express complex ideas clearly, while a firm grasp of grammar ensures precision in communication. For admission candidates, practicing with these resources is key to scoring high in the English section, which is often used as a tie-breaker in competitive rankings. Our materials focus on the most commonly tested grammatical rules and high-frequency vocabulary words. By consistently engaging with these resources, students will improve their linguistic intuition and gain the confidence to navigate the English section of any admission test with ease.",
       "materials": [
         {
           "type": "text",
@@ -94,6 +99,7 @@
       "courseCode": "ENG102",
       "subject": "English",
       "title": "Advanced Composition",
+      "longDescription": "Advanced Composition goes beyond basic grammar to focus on the higher-level skills of literary analysis, critical thinking, and structured writing. This course is particularly important for students aiming for departments in the Humanities, Social Sciences, or Law, where the ability to analyze complex texts and construct persuasive arguments is paramount. The materials provided, such as literature analysis techniques and advanced grammar guides, are designed to help students transition from simple sentence construction to sophisticated academic writing. Critical thinking is at the heart of this course, encouraging students to question assumptions and analyze the underlying themes of literary works. These skills are not only vital for passing admission tests but are also fundamental to success in university-level academic research. By utilizing these resources, candidates will learn how to organize their thoughts logically and present them in a compelling manner. Our materials offer strategic insights into the types of essay questions and analytical tasks that are common in advanced English examinations, making them a vital part of a comprehensive admission preparation strategy.",
       "materials": [
         {
           "type": "text",
@@ -115,6 +121,7 @@
       "courseCode": "BNG101",
       "subject": "Bengali",
       "title": "Bangla Grammar & Literature",
+      "longDescription": "For many university admission tests in Bangladesh, particularly in the General and Humanities units, proficiency in the Bengali language and literature is essential. This course, BNG101, provides a focused study of Bengali literature (সাহিত্য) and advanced grammar (ব্যাকরণ) as per the national curriculum and admission standards. Understanding the rich heritage of Bengali literature, from the classical era to modern works, is not only a requirement for the exam but also a way to connect with the cultural identity of the nation. The grammar section focuses on the complexities of Bengali syntax, word formation, and linguistic rules that are frequently tested in admission papers. The materials provided here are designed to simplify these often-daunting topics, making them easier for students to grasp and remember. For candidates, mastering Bengali is crucial because it often carries significant weightage in the total score. Our resources provide a structured path to learning both the creative and technical aspects of the language. By studying these materials, students will be better prepared to answer both factual questions about literature and analytical questions about grammar, ensuring a well-rounded performance in the Bengali section.",
       "materials": [
         {
           "type": "text",
@@ -126,6 +133,7 @@
       "courseCode": "BGS101",
       "subject": "General Knowledge",
       "title": "Bangladesh Affairs",
+      "longDescription": "General Knowledge is a vast and dynamic subject, and this course, BGS101, focuses on the most critical area for admission candidates: Bangladesh Affairs and International Current Affairs. Understanding the history, geography, politics, and economy of Bangladesh is vital for any citizen and is a mandatory part of most university entrance exams. This course covers everything from the ancient history of Bengal to the glorious Language Movement and the 1971 Liberation War, as well as the modern developmental milestones of the country. The materials provided, including historical timelines and summary PDFs, are essential because they condense a vast amount of information into manageable study guides. For admission candidates, staying updated on current affairs and having a firm grasp of national history is key to scoring high in the General Knowledge section, which can often be unpredictable. Our resources focus on high-yield facts and recurring themes in admission tests. By utilizing these materials, students will build a solid knowledge base that will not only help them pass their exams but also make them more informed and engaged citizens.",
       "materials": [
         {
           "type": "text",

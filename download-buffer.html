@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preparing Your Secure Link - Smart Classroom</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Google AdSense Verification -->
+    <meta name="google-adsense-account" content="ca-pub-9471530696566173">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9471530696566173" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        body {
+            background-color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .buffer-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Top Banner Ad Placeholder */
+        .ad-banner-top {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .ad-banner-top::before {
+            content: 'ADVERTISEMENT';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        .main-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 850px) {
+            .main-card {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                text-align: center;
+            }
+        }
+
+        .status-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timer-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid #e2e8f0;
+            border-top: 6px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            position: relative;
+            animation: pulse-border 1s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: #e2e8f0; border-top-color: #3b82f6; }
+            50% { border-color: #cbd5e1; border-top-color: #2563eb; }
+            100% { border-color: #e2e8f0; border-top-color: #3b82f6; }
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            width: 0%;
+            transition: width 1s linear;
+        }
+
+        .message-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-sub {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Large Rectangular Ad */
+        .ad-rect-side {
+            width: 300px;
+            height: 250px;
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .ad-rect-side::before {
+            content: 'SPONSORED';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        .action-btn {
+            display: none;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s;
+            margin-top: 2rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .error-msg {
+            color: #ef4444;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header" style="background: white;">
+        <div class="container">
+            <a href="index.html" class="logo" style="color: #0f172a;">
+                <img src="assets/icon/iconi.png" alt="SCL">
+                <span>Smart Classroom</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="buffer-wrapper">
+        <!-- Layer 1: Top Ad -->
+        <div class="ad-banner-top">
+            <p style="color: #94a3b8; font-size: 0.8rem;">[AdSense Top Leaderboard Ad 728x90]</p>
+        </div>
+
+        <div class="main-card">
+            <!-- Left: Status Content -->
+            <div class="status-content">
+                <div class="timer-circle" id="timer-val">7</div>
+                <div class="message-title" id="main-title">Preparing your materials...</div>
+                <div class="message-sub" id="sub-title">Securing your direct link to Google Drive.</div>
+                
+                <div class="progress-bar-container">
+                    <div class="progress-fill" id="progress-bar"></div>
+                </div>
+                
+                <a href="#" id="access-btn" class="action-btn">
+                    Access My Materials <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
+                </a>
+                <p id="error-box" class="error-msg">Error: Missing file source. Please go back and try again.</p>
+            </div>
+
+            <!-- Right: Side Ad -->
+            <div class="ad-rect-side">
+                <p style="color: #94a3b8; font-size: 0.8rem; text-align: center;">[AdSense Rectangle Ad<br>300x250]</p>
+            </div>
+        </div>
+
+    <footer style="background: white; padding: 2rem 0; border-top: 1px solid #e2e8f0; width: 100%;">
+        <div class="container">
+            <div class="footer-bottom" style="text-align: center;">
+                <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
+                <div class="footer-links" style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
+                    <a href="index.html">Home</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetUrl = urlParams.get('url');
+            
+            const timerEl = document.getElementById('timer-val');
+            const progressEl = document.getElementById('progress-bar');
+            const accessBtn = document.getElementById('access-btn');
+            const errorBox = document.getElementById('error-box');
+            const mainTitle = document.getElementById('main-title');
+            const subTitle = document.getElementById('sub-title');
+
+            if (!targetUrl) {
+                document.querySelector('.timer-circle').style.display = 'none';
+                mainTitle.style.display = 'none';
+                subTitle.style.display = 'none';
+                document.querySelector('.progress-bar-container').style.display = 'none';
+                errorBox.style.display = 'block';
+                return;
+            }
+
+            const totalTime = 7;
+            let timeLeft = totalTime;
+
+            const updateTimer = () => {
+                timerEl.textContent = timeLeft;
+                const progress = ((totalTime - timeLeft) / totalTime) * 100;
+                progressEl.style.width = progress + '%';
+
+                if (timeLeft <= 0) {
+                    clearInterval(countInterval);
+                    timerEl.innerHTML = '<i class="fas fa-check" style="color: #10b981;"></i>';
+                    mainTitle.textContent = "Link Ready!";
+                    subTitle.textContent = "You can now access your materials safely.";
+                    accessBtn.style.display = 'inline-block';
+                    accessBtn.href = decodeURIComponent(targetUrl);
+                    
+                    // Auto-redirect
+                    setTimeout(() => {
+                        window.location.href = decodeURIComponent(targetUrl);
+                    }, 1500);
+                }
+                timeLeft--;
+            };
+
+            // Start first tick immediately
+            updateTimer();
+            const countInterval = setInterval(updateTimer, 1000);
+        });
+    </script>
+</body>
+
+</html>

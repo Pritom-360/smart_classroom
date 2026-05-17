@@ -44,7 +44,7 @@ Browse and discover digital services with rich details, category badges, and att
 Experience Digital Hub Store in action!  
 Explore the full product catalog, try out features, and see the elegant design live:
 
-[🔗 https://codewithpritom.github.io/digital-hub/](https://codewithpritom.github.io/digital-hub/)
+[🔗 Live Demo Placeholder](#)
 
 ---
 

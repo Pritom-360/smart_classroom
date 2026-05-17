@@ -883,11 +883,54 @@ footer {
     margin-bottom: 2rem;
 }
 
+.slider-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+.slider-content nav {
+    display: flex;
+    flex-direction: column;
+}
+
 .slider-content nav a {
     display: block;
-    padding: 0.75rem 0;
+    padding: 0.85rem 0;
     font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-main);
     border-bottom: 1px solid var(--border-color);
+    transition: color var(--transition);
+}
+
+.slider-content nav a:hover,
+.slider-content nav a.active {
+    color: var(--primary-color);
+}
+
+.slider-content .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-left: 0;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.slider-content .role-switch {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+.slider-content #theme-toggle {
+    width: 44px;
+    height: 44px;
 }
 
 /* Animations - Simple Fade */

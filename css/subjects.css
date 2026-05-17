@@ -439,3 +439,100 @@ body.dark-theme .info-text {
 body.dark-theme .error-text {
     color: #fca5a5;
 }
+
+/* ================================================
+   MOBILE RESPONSIVENESS AND LAYOUT FIXES FOR ADSENSE
+   ================================================ */
+
+/* Responsive Grid for Layer 1 Subject Cards on Desktop */
+#subjects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* Responsive Grid for Layer 2 Course Cards on Desktop */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr)) !important;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Mobile Adjustments (under 768px) */
+@media (max-width: 768px) {
+    #subjects-container {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem;
+    }
+
+    .subject-section {
+        padding: 1.25rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .subject-picker-card:hover {
+        transform: none; /* Disable horizontal translate on hover for better touch performance */
+    }
+
+    .subject-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem 1rem;
+    }
+
+    .subject-link i.fa-chevron-right {
+        align-self: flex-end;
+        margin-top: -1.5rem;
+    }
+
+    .course-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .course-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .course-link .course-title-text {
+        margin-left: 0;
+        font-size: 1.05rem;
+        line-height: 1.3;
+    }
+
+    .course-link i.fa-arrow-right {
+        display: none; /* Hide arrow on mobile to save precious screen space */
+    }
+
+    /* Keep side paddings clean on mobile so content never touches edge */
+    .container {
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #subjects-container, .course-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .subject-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .subject-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}

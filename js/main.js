@@ -41,22 +41,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- NEW: Off-Canvas Navigation Slider Logic ---
     const initializeNavSlider = () => {
-        const slider = document.getElementById('nav-slider');
-        const overlay = document.getElementById('nav-overlay');
+        let slider = document.getElementById('nav-slider');
+        let overlay = document.getElementById('nav-overlay');
         const openBtn = document.getElementById('menu-toggle');
-        const closeBtn = document.getElementById('close-nav-button');
 
-        if (!slider || !overlay || !openBtn || !closeBtn) return;
+        // If there's no menu button on this page, exit early
+        if (!openBtn) return;
+
+        // If overlay or slider is missing from the page DOM, dynamically create them
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'nav-overlay';
+            overlay.className = 'nav-overlay';
+            document.body.appendChild(overlay);
+        }
+
+        if (!slider) {
+            slider = document.createElement('div');
+            slider.id = 'nav-slider';
+            slider.className = 'nav-slider';
+            slider.innerHTML = `
+                <div class="slider-header">
+                    <h3>Menu</h3>
+                    <button id="close-nav-button" aria-label="Close Menu">&times;</button>
+                </div>
+                <div class="slider-content"></div>
+            `;
+            document.body.appendChild(slider);
+        }
+
+        const closeBtn = document.getElementById('close-nav-button');
+        if (!closeBtn) return;
 
         // Clone desktop nav and controls into the slider for mobile
         const desktopNav = document.querySelector('.desktop-nav nav');
         const desktopControls = document.querySelector('.desktop-nav .controls');
-        const sliderContent = document.querySelector('.slider-content');
+        const sliderContent = slider.querySelector('.slider-content');
 
-        if (desktopNav && desktopControls && sliderContent) {
+        if (sliderContent) {
             sliderContent.innerHTML = ''; // Clear any existing content
-            sliderContent.appendChild(desktopNav.cloneNode(true));
-            sliderContent.appendChild(desktopControls.cloneNode(true));
+            if (desktopNav) {
+                sliderContent.appendChild(desktopNav.cloneNode(true));
+            }
+            if (desktopControls) {
+                sliderContent.appendChild(desktopControls.cloneNode(true));
+            }
         }
 
         const openNav = () => {

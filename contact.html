@@ -11,6 +11,8 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9471530696566173" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="canonical" href="https://www.catalyst-smart-classroom.me/contact.html">
+    <meta name="description" content="Get in touch with the Smart Classroom team for technical support, academic partnerships, or editorial feedback. Review our strict editorial policy and reach out via our professional contact form or WhatsApp for immediate assistance.">
 </head>
 
 <body>
@@ -31,8 +33,7 @@
                         <a href="simulators.html">Simulators</a>
                         <a href="https://ewu-studentsdesk.vercel.app/" target="_blank">EWU Desk</a>
                         <a href="products.html">Products</a>
-                        <a href="https://codewithpritom.blogspot.com/" target="_blank" class="nav-blog-highlight"><i
-                                class="fas fa-blog"></i> Blog</a>
+                        <a href="resources.html" class="nav-resources-highlight"><i class="fas fa-book-open"></i> Resources</a>
                         <a href="#" target="_blank">Store</a>
                         <a href="donation.html">Support Us</a>
                         <a href="about.html">About</a>
@@ -53,7 +54,7 @@
                     </div>
                 </div>
 
-                <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
+                <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-ellipsis-v"></i></button>
             </div>
         </header>
 
@@ -75,21 +76,60 @@
                 <p>Have questions? Reach out to us through the following channels.</p>
             </div>
 
-            <div class="grid-2 reveal" style="animation-delay: 0.2s; max-width: 800px; margin: 0 auto;">
-                <a href="https://wa.me/15551234567" target="_blank" class="card"
-                    style="text-align: center; border-bottom: 4px solid #25D366;">
-                    <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25D366; margin-bottom: 1rem;"></i>
-                    <h3>Chat on WhatsApp</h3>
-                    <p>For quick inquiries and support.</p>
-                </a>
-                <a href="mailto:support@smartclassroom.edu" class="card"
-                    style="text-align: center; border-bottom: 4px solid var(--primary-color);">
-                    <i class="fas fa-envelope"
-                        style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
-                    <h3>Send us an Email</h3>
-                    <p>For detailed questions and official communication.</p>
-                </a>
+            
+            <div class="contact-wrapper reveal" style="animation-delay: 0.2s; max-width: 900px; margin: 0 auto 4rem auto;">
+                <div class="grid-2" style="margin-bottom: 3rem;">
+                    <a href="https://wa.me/15551234567" target="_blank" class="card"
+                        style="text-align: center; border-bottom: 4px solid #25D366;">
+                        <i class="fab fa-whatsapp" style="font-size: 3rem; color: #25D366; margin-bottom: 1rem;"></i>
+                        <h3>Chat on WhatsApp</h3>
+                        <p>For quick inquiries and support.</p>
+                    </a>
+                    <a href="mailto:support@smartclassroom.edu" class="card"
+                        style="text-align: center; border-bottom: 4px solid var(--primary-color);">
+                        <i class="fas fa-envelope"
+                            style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <h3>Send us an Email</h3>
+                        <p>For detailed questions and official communication.</p>
+                    </a>
+                </div>
+
+                <div class="glass-panel" style="padding: 3rem; border-radius: var(--radius-lg);">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem; color: var(--text-main);"><i class="fas fa-paper-plane"></i> Professional Contact Form</h3>
+                    <form action="#" method="POST" class="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 250px;">
+                                <label for="name" style="display: block; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 500;">Full Name</label>
+                                <input type="text" id="name" name="name" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-main); color: var(--text-main);">
+                            </div>
+                            <div style="flex: 1; min-width: 250px;">
+                                <label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 500;">Email Address</label>
+                                <input type="email" id="email" name="email" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-main); color: var(--text-main);">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" style="display: block; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 500;">Subject / Inquiry Type</label>
+                            <select id="subject" name="subject" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-main); color: var(--text-main);">
+                                <option value="general">General Inquiry</option>
+                                <option value="partnership">Partnership & Collaboration</option>
+                                <option value="support">Technical Support</option>
+                                <option value="editorial">Editorial Feedback</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" style="display: block; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 500;">Your Message</label>
+                            <textarea id="message" name="message" rows="6" required style="width: 100%; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: var(--radius-sm); background: var(--bg-main); color: var(--text-main); resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="align-self: flex-start; padding: 0.8rem 2rem; font-size: 1.1rem;"><i class="fas fa-paper-plane"></i> Send Message</button>
+                    </form>
+                </div>
+
+                <div class="editorial-policy glass-panel" style="margin-top: 3rem; padding: 2.5rem; border-left: 5px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;"><i class="fas fa-gavel"></i> Editorial Policy</h3>
+                    <p style="line-height: 1.7; color: var(--text-light); text-align: justify;">Smart Classroom is committed to providing high-quality, accurate, and rigorously reviewed educational content. As a non-profit academic initiative, our editorial team adheres to the highest standards of academic integrity and objectivity. All course descriptions, study guides, and articles are authored by qualified subject matter experts and are periodically reviewed for accuracy and relevance. We strictly prohibit plagiarism, bias, and the dissemination of unverified information. If you identify any content that requires correction or updates, please use the contact form above to reach our editorial review board. We welcome constructive feedback from the academic community to continually enhance the quality of our open educational resources.</p>
+                </div>
             </div>
+
         </main>
 
     <!-- Footer -->

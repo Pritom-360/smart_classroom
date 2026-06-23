@@ -3,7 +3,7 @@
   <url>
     <loc>https://www.catalyst-smart-classroom.me/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/about.html</loc>
@@ -13,62 +13,47 @@
   <url>
     <loc>https://www.catalyst-smart-classroom.me/appreciation.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.catalyst-smart-classroom.me/community.html</loc>
+    <loc>https://www.catalyst-smart-classroom.me/competition.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/contact.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/contributions.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/course.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/cp.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/donation.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/download-buffer.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/jobs.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/privacy.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/products.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/resources.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/simulators.html</loc>
@@ -78,20 +63,10 @@
   <url>
     <loc>https://www.catalyst-smart-classroom.me/subject-view.html</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.catalyst-smart-classroom.me/subjects.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/subject-view.html?subject=candidates&amp;role=candidate</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.catalyst-smart-classroom.me/subject-view.html?subject=students&amp;role=student</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

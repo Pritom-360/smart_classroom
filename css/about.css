@@ -7,6 +7,7 @@
 /* Profile Section */
 .profile-section {
     display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
     align-items: center;
     padding: 2.5rem;
@@ -37,9 +38,13 @@
     color: white;
 }
 
+.profile-info {
+    flex: 1 1 300px;
+}
+
 .profile-info h3 {
     font-size: 2.2rem;
-    color: #333;
+    color: var(--text-main);
     margin-bottom: 8px;
 }
 
@@ -52,7 +57,7 @@
 
 .profile-info .bio {
     font-size: 1rem;
-    color: #666;
+    color: var(--text-muted);
     line-height: 1.8;
     margin-bottom: 20px;
 }
@@ -116,7 +121,7 @@
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
     gap: 20px;
 }
 
@@ -193,13 +198,13 @@
 
 .timeline-content h4 {
     font-size: 1.2rem;
-    color: #333;
+    color: var(--text-main);
     margin-bottom: 5px;
 }
 
 .timeline-content .degree {
     font-size: 1rem;
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 5px;
 }
 
@@ -216,7 +221,7 @@
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 25px;
 }
 
@@ -255,7 +260,7 @@
 }
 
 .contact-section p {
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 25px;
 }
 
@@ -314,6 +319,30 @@
     }
 }
 
+/* Story Section added via JS/HTML */
+.story-section {
+    margin-bottom: 4rem;
+    padding: 3rem;
+    text-align: justify;
+    line-height: 1.8;
+}
+
+.story-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .story-section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .story-title {
+        font-size: 1.8rem;
+    }
+}
+
 /* Contact Info in Profile */
 .contact-info {
     display: flex;
@@ -321,7 +350,7 @@
     gap: 20px;
     margin-bottom: 20px;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .contact-info span {
@@ -359,7 +388,7 @@
 .responsibilities {
     margin-top: 10px;
     padding-left: 20px;
-    color: #666;
+    color: var(--text-muted);
 }
 
 .responsibilities li {
@@ -406,7 +435,7 @@
 }
 
 .language-item {
-    background: white;
+    background: var(--bg-surface);
     padding: 15px 25px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -418,7 +447,7 @@
 
 .language-name {
     font-weight: 600;
-    color: #333;
+    color: var(--text-main);
 }
 
 .language-level {

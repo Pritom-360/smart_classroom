@@ -44,7 +44,7 @@ const AdminRoute = ({ children }) => {
 export default function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename="/competition">
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col transition-colors duration-300">
           <Header />
           <main className="flex-grow">

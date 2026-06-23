@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/competition/(.*)", "destination": "/competition/index.html" }
+    {
+      "source": "/competition/((?!assets/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|js|css|json)$).*)" ,
+      "destination": "/competition/index.html"
+    }
   ]
 }

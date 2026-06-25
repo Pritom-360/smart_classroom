@@ -25,12 +25,6 @@ export default function Login() {
   const [forgotError, setForgotError] = useState('');
   const [forgotLoading, setForgotLoading] = useState(false);
 
-  const [isMagicLink, setIsMagicLink] = useState(false);
-  const [magicLinkEmail, setMagicLinkEmail] = useState('');
-  const [magicLinkSuccess, setMagicLinkSuccess] = useState('');
-  const [magicLinkError, setMagicLinkError] = useState('');
-  const [magicLinkLoading, setMagicLinkLoading] = useState(false);
-
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     setForgotError('');
@@ -50,31 +44,6 @@ export default function Login() {
       setForgotError(err.message || 'Failed to send reset link.');
     } finally {
       setForgotLoading(false);
-    }
-  };
-
-  const handleMagicLink = async (e) => {
-    e.preventDefault();
-    setMagicLinkError('');
-    setMagicLinkSuccess('');
-    setMagicLinkLoading(true);
-
-    try {
-      const { error: otpErr } = await supabase.auth.signInWithOtp({
-        email: magicLinkEmail,
-        options: {
-          emailRedirectTo: window.location.origin + '/dashboard'
-        }
-      });
-
-      if (otpErr) throw otpErr;
-
-      setMagicLinkSuccess('A secure magic login link has been sent to your email address!');
-      setMagicLinkEmail('');
-    } catch (err) {
-      setMagicLinkError(err.message || 'Failed to send magic link.');
-    } finally {
-      setMagicLinkLoading(false);
     }
   };
 
@@ -161,71 +130,6 @@ export default function Login() {
               <ArrowLeft className="w-4 h-4" /> Back to Sign In
             </button>
           </div>
-        ) : isMagicLink ? (
-          // Magic Link Authentication View
-          <div className="space-y-6">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex items-center justify-center text-indigo-600 dark:text-indigo-400 mx-auto mb-4">
-                <Mail className="w-6 h-6 animate-pulse" />
-              </div>
-              <h2 className="text-2xl font-bold tracking-tight">Magic Login Link</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Get a secure sign-in link sent to your inbox</p>
-            </div>
-
-            {magicLinkError && (
-              <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-lg p-4 flex items-start gap-3 text-red-700 dark:text-red-400 text-sm">
-                <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
-                <span>{magicLinkError}</span>
-              </div>
-            )}
-
-            {magicLinkSuccess && (
-              <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/50 rounded-lg p-4 flex items-start gap-3 text-emerald-700 dark:text-emerald-400 text-sm">
-                <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" />
-                <span>{magicLinkSuccess}</span>
-              </div>
-            )}
-
-            <form onSubmit={handleMagicLink} className="space-y-6">
-              <div className="space-y-2">
-                <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                  <Mail className="w-4 h-4" /> Email Address
-                </label>
-                <input
-                  required
-                  type="email"
-                  value={magicLinkEmail}
-                  onChange={(e) => setMagicLinkEmail(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={magicLinkLoading}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-indigo-500/30 transition-all flex justify-center items-center gap-2 disabled:opacity-75 cursor-pointer"
-              >
-                {magicLinkLoading ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                ) : (
-                  'Send Magic Link'
-                )}
-              </button>
-            </form>
-
-            <button
-              type="button"
-              onClick={() => {
-                setIsMagicLink(false);
-                setMagicLinkError('');
-                setMagicLinkSuccess('');
-              }}
-              className="w-full flex items-center justify-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline pt-2 cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4" /> Back to Sign In
-            </button>
-          </div>
         ) : (
           // Regular Sign In View
           <div>
@@ -300,18 +204,6 @@ export default function Login() {
                 <Link to="/register" className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
                   Register here
                 </Link>
-              </div>
-              <div className="border-t border-slate-100 dark:border-slate-800 pt-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMagicLink(true);
-                    setError('');
-                  }}
-                  className="text-indigo-600 dark:text-indigo-400 font-extrabold text-xs tracking-wider uppercase hover:underline cursor-pointer"
-                >
-                  🚀 Sign In with Magic Link
-                </button>
               </div>
             </div>
           </div>

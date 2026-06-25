@@ -136,8 +136,10 @@ export default function GlobalLeaderboard() {
           }
         });
 
-        // Convert object to array and sort by points
-        const sorted = Object.values(userScores).sort((a, b) => b.points - a.points);
+        // Convert object to array, exclude email field for public privacy, and sort by points
+        const sorted = Object.values(userScores)
+          .map(({ email, ...rest }) => rest)
+          .sort((a, b) => b.points - a.points);
         setLeaderboard(sorted);
 
       } catch (err) {

@@ -62,6 +62,9 @@ export default function UserDashboard() {
   // Re-submission state tracking per registration ID
   const [reSubmitting, setReSubmitting] = useState({});
 
+  const [segmentRegistrations, setSegmentRegistrations] = useState([]);
+  const [loadingLeaderboard, setLoadingLeaderboard] = useState(false);
+
   // Start live clock for timeline countdowns
   useEffect(() => {
     const timer = setInterval(() => {
@@ -75,6 +78,67 @@ export default function UserDashboard() {
     setCertificateApplied(false);
     setCertificateName('');
   }, [activeTab]);
+
+  // Fetch segment leaderboard for active competition
+  useEffect(() => {
+    const active = registrations.find(r => r.id === activeTab);
+    if (!active?.competition_id) {
+      setSegmentRegistrations([]);
+      return;
+    }
+
+    async function fetchSegmentLeaderboard() {
+      try {
+        setLoadingLeaderboard(true);
+        const { data: regsData, error: regsErr } = await supabase
+          .from('registrations')
+          .select(`
+            id,
+            status,
+            placement,
+            team_name,
+            profiles (
+              id,
+              full_name,
+              avatar_url,
+              email
+            ),
+            team_members (
+              member_name,
+              member_email
+            )
+          `)
+          .eq('competition_id', active.competition_id);
+
+        if (regsErr) throw regsErr;
+
+        // Sort registrations:
+        // 1. Placed (placement !== null) sorted ascending (1, 2, 3...)
+        // 2. Unplaced (placement === null)
+        // 3. Within unplaced/placed, sort by status: 'submitted' first, then 'registered'
+        const sortedRegs = (regsData || []).sort((a, b) => {
+          if (a.placement !== null && b.placement === null) return -1;
+          if (a.placement === null && b.placement !== null) return 1;
+          if (a.placement !== null && b.placement !== null) {
+            return a.placement - b.placement;
+          }
+          // If both are unplaced, sort by status ('submitted' before 'registered')
+          const statusOrder = { 'submitted': 1, 'registered': 2 };
+          const aOrder = statusOrder[a.status] || 99;
+          const bOrder = statusOrder[b.status] || 99;
+          return aOrder - bOrder;
+        });
+
+        setSegmentRegistrations(sortedRegs);
+      } catch (err) {
+        console.error('Error fetching segment leaderboard:', err);
+      } finally {
+        setLoadingLeaderboard(false);
+      }
+    }
+
+    fetchSegmentLeaderboard();
+  }, [activeTab, registrations]);
 
   useEffect(() => {
     if (!user) return;
@@ -1327,6 +1391,111 @@ export default function UserDashboard() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Segment Leaderboard & Participants */}
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 uppercase tracking-wider">
+                  <Award className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Segment Leaderboard & Participants
+                </h3>
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest bg-slate-50 dark:bg-slate-950 px-2.5 py-1 rounded-full border border-slate-200/50 dark:border-slate-800">
+                  {segmentRegistrations.length} registered
+                </span>
+              </div>
+
+              {loadingLeaderboard ? (
+                <div className="flex justify-center items-center py-12">
+                  <div className="w-6 h-6 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              ) : segmentRegistrations.length === 0 ? (
+                <p className="text-xs text-slate-500 dark:text-slate-400 italic text-center py-6">No participants registered in this segment yet.</p>
+              ) : (
+                <div className="max-h-80 overflow-y-auto pr-1 space-y-3 custom-scrollbar">
+                  {segmentRegistrations.map((reg) => {
+                    const isWinner = reg.status === 'winner' || reg.status === 'runner_up';
+                    
+                    const getRankTitle = (placement) => {
+                      const comp = activeReg.competitions;
+                      if (comp && comp.ranking_structure && Array.isArray(comp.ranking_structure)) {
+                        const match = comp.ranking_structure.find(r => r.placement === placement);
+                        if (match) return match.title;
+                      }
+                      if (placement === 1) return 'Champion';
+                      if (placement === 2) return '1st Runner Up';
+                      if (placement === 3) return '2nd Runner Up';
+                      return `${placement}th Place`;
+                    };
+
+                    return (
+                      <div
+                        key={reg.id}
+                        className={`p-4 rounded-2xl border transition-all ${
+                          reg.id === activeReg.id
+                            ? 'bg-indigo-50/20 border-indigo-200 dark:bg-indigo-950/10 dark:border-indigo-900/60'
+                            : reg.placement === 1
+                            ? 'bg-amber-500/5 border-amber-300 dark:border-amber-900/60'
+                            : reg.placement === 2
+                            ? 'bg-slate-100/50 border-slate-300 dark:border-slate-800'
+                            : reg.placement === 3
+                            ? 'bg-amber-600/5 border-amber-500/30 dark:border-amber-900/40'
+                            : 'bg-slate-50/30 dark:bg-slate-950/20 border-slate-100 dark:border-slate-900/60'
+                        } flex flex-col sm:flex-row sm:items-center justify-between gap-4`}
+                      >
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            {reg.placement && (
+                              <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full ${
+                                reg.placement === 1 ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400' :
+                                reg.placement === 2 ? 'bg-slate-200 text-slate-800 dark:bg-slate-850 dark:text-slate-300' :
+                                'bg-amber-50 text-amber-800 dark:bg-amber-950/40 dark:text-amber-400'
+                              }`}>
+                                {reg.placement === 1 ? '🏆' : reg.placement === 2 ? '🥈' : reg.placement === 3 ? '🥉' : '🎖️'} {getRankTitle(reg.placement)}
+                              </span>
+                            )}
+                            <h4 className="font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
+                              {activeReg.competitions?.type === 'team' ? reg.team_name : reg.profiles?.full_name}
+                              {reg.id === activeReg.id && (
+                                <span className="bg-indigo-600 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full">
+                                  You
+                                </span>
+                              )}
+                            </h4>
+                          </div>
+
+                          {activeReg.competitions?.type === 'team' && (
+                            <div className="space-y-1 mt-1.5 pl-2 border-l-2 border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 font-semibold">
+                              <p>
+                                Leader: <span className="text-slate-900 dark:text-slate-200 font-bold">{reg.profiles?.full_name}</span>
+                              </p>
+                              {reg.team_members && reg.team_members.length > 0 && (
+                                <p className="flex items-center gap-1 flex-wrap mt-0.5">
+                                  <span className="text-slate-400 font-medium">Members:</span>
+                                  {reg.team_members.map((m, i) => (
+                                    <span key={i} className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-350 px-1.5 py-0.5 rounded text-[10px]">
+                                      {m.member_name}
+                                    </span>
+                                  ))}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="shrink-0 flex items-center gap-2">
+                          <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider ${
+                            reg.status === 'submitted' ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-400' :
+                            isWinner ? 'bg-indigo-50 text-indigo-700 dark:bg-indigo-950/20 dark:text-indigo-400' :
+                            'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400'
+                          }`}>
+                            {reg.status}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         ) : (

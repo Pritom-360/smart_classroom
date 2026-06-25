@@ -113,12 +113,25 @@ export default function CompetitionDetails() {
               member_email
             )
           `)
-          .eq('competition_id', id)
-          .order('placement', { ascending: true })
-          .order('status', { ascending: false });
+          .eq('competition_id', id);
 
         if (!regsErr) {
-          setSegmentRegistrations(regsData || []);
+          // Sort registrations:
+          // 1. Placed (placement !== null) sorted ascending (1, 2, 3...)
+          // 2. Unplaced (placement === null)
+          // 3. Within unplaced/placed, sort by status: 'submitted' first, then 'registered'
+          const sortedRegs = (regsData || []).sort((a, b) => {
+            if (a.placement !== null && b.placement === null) return -1;
+            if (a.placement === null && b.placement !== null) return 1;
+            if (a.placement !== null && b.placement !== null) {
+              return a.placement - b.placement;
+            }
+            const statusOrder = { 'submitted': 1, 'registered': 2 };
+            const aOrder = statusOrder[a.status] || 99;
+            const bOrder = statusOrder[b.status] || 99;
+            return aOrder - bOrder;
+          });
+          setSegmentRegistrations(sortedRegs);
         }
 
         // Check if current user is registered
@@ -524,9 +537,21 @@ export default function CompetitionDetails() {
             {segmentRegistrations.length === 0 ? (
               <p className="text-sm text-slate-500 dark:text-slate-405 italic">No registrations for this competition yet.</p>
             ) : (
-              <div className="space-y-3">
+              <div className="max-h-80 overflow-y-auto pr-1 space-y-3 custom-scrollbar">
                 {segmentRegistrations.map((reg) => {
                   const isWinner = reg.status === 'winner' || reg.status === 'runner_up';
+                  
+                  const getRankTitle = (placement) => {
+                    if (comp && comp.ranking_structure && Array.isArray(comp.ranking_structure)) {
+                      const match = comp.ranking_structure.find(r => r.placement === placement);
+                      if (match) return match.title;
+                    }
+                    if (placement === 1) return 'Champion';
+                    if (placement === 2) return '1st Runner Up';
+                    if (placement === 3) return '2nd Runner Up';
+                    return `${placement}th Place`;
+                  };
+
                   return (
                     <div key={reg.id} className={`p-4 rounded-xl border ${
                       reg.placement === 1 ? 'bg-amber-500/5 border-amber-300 dark:border-amber-900/60' :
@@ -542,7 +567,7 @@ export default function CompetitionDetails() {
                               reg.placement === 2 ? 'bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-300' :
                               'bg-amber-50 text-amber-805'
                             }`}>
-                              {reg.placement === 1 ? '🏆 Champion' : reg.placement === 2 ? '🥈 1st Runner Up' : '🥉 2nd Runner Up'}
+                              {reg.placement === 1 ? '🏆' : reg.placement === 2 ? '🥈' : reg.placement === 3 ? '🥉' : '🎖️'} {getRankTitle(reg.placement)}
                             </span>
                           )}
                           <h4 className="font-extrabold text-sm text-slate-900 dark:text-white">

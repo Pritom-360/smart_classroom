@@ -1381,7 +1381,7 @@ export default function UserDashboard() {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 10 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <img src="/iconi.png" alt="Catalyst Logo" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
+                <img src={`${import.meta.env.BASE_URL}iconi.png`} alt="Catalyst Logo" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
                 <span style={{ fontSize: '14px', fontWeight: 900, letterSpacing: '2px', color: '#1e3a8a' }}>CATALYST SMART CLASSROOM</span>
               </div>
               <div style={{ fontSize: '10px', fontWeight: 800, color: '#64748b', letterSpacing: '1px', textTransform: 'uppercase' }}>

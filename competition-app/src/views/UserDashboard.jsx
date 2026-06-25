@@ -609,7 +609,7 @@ export default function UserDashboard() {
             {registrations.length === 0 ? (
               <p className="text-xs text-slate-400 dark:text-slate-500 italic px-1 mb-4">No active enrollments</p>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-2 max-h-72 overflow-y-auto pr-1 custom-scrollbar">
                 {registrations.map(reg => (
                   <button
                     key={reg.id}

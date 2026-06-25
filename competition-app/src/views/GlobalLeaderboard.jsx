@@ -13,6 +13,8 @@ export default function GlobalLeaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
     async function calculateScores() {
@@ -156,6 +158,17 @@ export default function GlobalLeaderboard() {
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Reset page to 1 when search term changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
+  const totalPages = Math.ceil(filteredLeaderboard.length / ITEMS_PER_PAGE);
+  const paginatedLeaderboard = filteredLeaderboard.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
@@ -210,15 +223,15 @@ export default function GlobalLeaderboard() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-slate-850 text-sm font-semibold">
-              {filteredLeaderboard.length === 0 ? (
+              {paginatedLeaderboard.length === 0 ? (
                 <tr>
                   <td colSpan="5" className="px-6 py-12 text-center text-slate-400 italic">
                     No competitors found matching your search.
                   </td>
                 </tr>
               ) : (
-                filteredLeaderboard.map((user, idx) => {
-                  const rank = idx + 1;
+                paginatedLeaderboard.map((user, idx) => {
+                  const rank = (currentPage - 1) * ITEMS_PER_PAGE + idx + 1;
                   return (
                     <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-950/10 transition-colors">
                       <td className="px-6 py-4 text-center font-bold">
@@ -231,7 +244,7 @@ export default function GlobalLeaderboard() {
                             🥈
                           </span>
                         ) : rank === 3 ? (
-                          <span className="inline-flex w-7 h-7 rounded-full bg-amber-100 text-amber-700 items-center justify-center font-black shadow-sm">
+                          <span className="inline-flex w-7 h-7 rounded-full bg-amber-100 text-amber-705 items-center justify-center font-black shadow-sm">
                             🥉
                           </span>
                         ) : (
@@ -268,6 +281,29 @@ export default function GlobalLeaderboard() {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 px-6 py-4 bg-slate-50/50 dark:bg-slate-950/20">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold rounded-lg shadow-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-850 disabled:opacity-50 transition-all"
+            >
+              &larr; Previous
+            </button>
+            <span className="text-xs font-bold text-slate-550 dark:text-slate-400">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold rounded-lg shadow-sm text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-850 disabled:opacity-50 transition-all"
+            >
+              Next &rarr;
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

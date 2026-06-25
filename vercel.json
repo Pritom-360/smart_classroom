@@ -1,5 +1,12 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/reset-password",
+      "destination": "/competition/reset-password",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/competition/((?!assets/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|js|css|json)$).*)" ,

@@ -676,7 +676,8 @@ export default function UserDashboard() {
               </form>
             </div>
           ) : activeReg ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
               {/* Badge Panel */}
               <div className="space-y-4">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white">Your Participant Badge</h3>
@@ -1220,7 +1221,56 @@ export default function UserDashboard() {
                 )}
               </div>
             </div>
-          ) : (
+
+            {/* Rulebook & Guidelines and Prizes & Recognition Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Rulebook & Guidelines */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Rulebook & Guidelines
+                </h3>
+                <div className="space-y-4 pt-2">
+                  <a
+                    href="https://drive.google.com/file/d/1vJQep5_L7nwJN5Y3sy9r0qe8ncBqUqtL/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs sm:text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline break-all block flex items-center gap-1.5"
+                  >
+                    <span>https://drive.google.com/file/d/1vJQep5_L7nwJN5Y3sy9r0qe8ncBqUqtL/view?usp=sharing</span>
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                  </a>
+                  
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                      Please join this Community for Get Update :
+                    </p>
+                    <a
+                      href="https://discord.gg/Y9aAT5ER8E"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs sm:text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline break-all block flex items-center gap-1.5"
+                    >
+                      <span>https://discord.gg/Y9aAT5ER8E</span>
+                      <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Prizes & Recognition */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Trophy className="w-5 h-5 text-indigo-650 dark:text-indigo-400" /> Prizes & Recognition
+                </h3>
+                <div className="space-y-4 pt-2">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-bold">
+                    Check Rule Book
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-12 text-center shadow-sm">
               <FileText className="w-12 h-12 text-slate-400 mx-auto mb-4" />
               <h3 className="text-xl font-bold">No active enrollments</h3>

@@ -483,6 +483,24 @@ export default function UserDashboard() {
     }
   };
 
+  const handleRequestPasswordReset = async () => {
+    setSettingsLoading(true);
+    setSettingsError('');
+    setSettingsSuccess('');
+    try {
+      const resetUrl = `${window.location.origin}${import.meta.env.DEV ? '' : '/competition'}/reset-password`;
+      const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
+        redirectTo: resetUrl
+      });
+      if (error) throw error;
+      setSettingsSuccess('A password reset email has been sent. Please check your inbox (and spam folder) to set a new password.');
+    } catch (err) {
+      setSettingsError(err.message || 'Failed to send reset email.');
+    } finally {
+      setSettingsLoading(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
@@ -627,7 +645,16 @@ export default function UserDashboard() {
                 
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-semibold text-slate-500 dark:text-slate-400">Current Password</label>
+                    <div className="flex justify-between items-center max-w-md">
+                      <label className="text-xs font-semibold text-slate-500 dark:text-slate-400">Current Password</label>
+                      <button
+                        type="button"
+                        onClick={handleRequestPasswordReset}
+                        className="text-[11px] text-indigo-600 dark:text-indigo-400 hover:underline font-semibold focus:outline-none"
+                      >
+                        Forgot? Reset via email
+                      </button>
+                    </div>
                     <input
                       required
                       type="password"

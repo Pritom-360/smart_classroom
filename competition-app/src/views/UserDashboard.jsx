@@ -1514,7 +1514,7 @@ export default function UserDashboard() {
 
               <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', width: '220px' }}>
                 <img
-                  src={activeReg.competitions?.signature_url || `${import.meta.env.BASE_URL}sign.png`}
+                  src={`${import.meta.env.BASE_URL}sign.png`}
                   alt="Organizer Signature"
                   style={{ height: '36px', objectFit: 'contain' }}
                 />

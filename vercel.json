@@ -9,7 +9,7 @@
   ],
   "rewrites": [
     {
-      "source": "/competition/:path((?!assets/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|js|css|json)$).*)",
+      "source": "/competition/(.*)",
       "destination": "/competition/index.html"
     },
     {

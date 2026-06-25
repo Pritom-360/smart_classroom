@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabase';
 import { Link } from 'react-router-dom';
-import { Trophy, Calendar, Users, Award, ShieldAlert, ChevronRight } from 'lucide-react';
+import { Trophy, Calendar, Users, Award, ShieldAlert, ChevronRight, Mail } from 'lucide-react';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
 
 export default function Hub() {
@@ -14,6 +14,7 @@ export default function Hub() {
 
   const [competitions, setCompetitions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showArrangeModal, setShowArrangeModal] = useState(false);
 
   useEffect(() => {
     async function fetchCompetitions() {
@@ -78,6 +79,14 @@ export default function Hub() {
               ⚡ Supported by {uniqueSponsors.length} leading academic & industry sponsors
             </p>
           )}
+          <div className="pt-4 flex justify-center">
+            <button
+              onClick={() => setShowArrangeModal(true)}
+              className="px-5 py-2.5 bg-white text-indigo-650 hover:bg-slate-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 border border-slate-200 dark:border-slate-700"
+            >
+              🤝 Want to arrange competition? Please contact with Founder
+            </button>
+          </div>
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent pointer-events-none"></div>
       </section>
@@ -314,6 +323,50 @@ export default function Hub() {
           )}
         </section>
       </div>
+
+      {/* Arrange Competition Modal */}
+      {showArrangeModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <button
+              onClick={() => setShowArrangeModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 font-bold"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+            <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center mx-auto">
+              <Trophy className="w-6 h-6" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-xl font-bold text-slate-950 dark:text-white">Arrange Competition</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                To arrange a competition, please get in touch with our founder directly.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <a
+                href="https://wa.me/8801737697736"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold rounded-xl text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-sm transition-all"
+              >
+                <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.859-4.407 9.862-9.83.001-2.628-1.02-5.1-2.875-6.958C16.604 1.97 14.148 1.95 11.53 1.95c-5.438 0-9.863 4.41-9.866 9.833-.001 2.028.528 4.017 1.53 5.781l-.992 3.624 3.73-.978L6.647 19.15z"/>
+                </svg>
+                Chat on WhatsApp
+              </a>
+              <a
+                href="mailto:pritombhowmik360@gmail.com?subject=Arrange%20Competition%20Inquiry"
+                className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-sm transition-all"
+              >
+                <Mail className="w-4.5 h-4.5" />
+                Send Email
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -262,6 +262,7 @@ export default function UserDashboard() {
       showToast('Certificate layout node not found', true);
       return;
     }
+    const nameToUse = activeReg.certificate_issued ? activeReg.certificate_name : certificateName;
     setGeneratingCert(true);
     try {
       const dataUrl = await toPng(node, {
@@ -273,34 +274,36 @@ export default function UserDashboard() {
 
       if (format === 'png') {
         const link = document.createElement('a');
-        link.download = `Certificate_${activeReg.competitions?.title.replace(/\s+/g, '_')}_${certificateName.replace(/\s+/g, '_')}.png`;
+        link.download = `Certificate_${activeReg.competitions?.title.replace(/\s+/g, '_')}_${nameToUse.replace(/\s+/g, '_')}.png`;
         link.href = dataUrl;
         link.click();
         showToast('Certificate downloaded as Image!');
       } else if (format === 'pdf') {
         const pdf = new jsPDF('landscape', 'pt', 'a4');
         pdf.addImage(dataUrl, 'PNG', 0, 0, 842, 595);
-        pdf.save(`Certificate_${activeReg.competitions?.title.replace(/\s+/g, '_')}_${certificateName.replace(/\s+/g, '_')}.pdf`);
+        pdf.save(`Certificate_${activeReg.competitions?.title.replace(/\s+/g, '_')}_${nameToUse.replace(/\s+/g, '_')}.pdf`);
         showToast('Certificate downloaded as PDF!');
       }
 
-      // Update database row to permanently issue the certificate
-      const { error: updateErr } = await supabase
-        .from('registrations')
-        .update({
-          certificate_issued: true,
-          certificate_name: certificateName
-        })
-        .eq('id', activeReg.id);
+      // Update database row to permanently issue the certificate (only if not already issued)
+      if (!activeReg.certificate_issued) {
+        const { error: updateErr } = await supabase
+          .from('registrations')
+          .update({
+            certificate_issued: true,
+            certificate_name: certificateName
+          })
+          .eq('id', activeReg.id);
 
-      if (updateErr) throw updateErr;
+        if (updateErr) throw updateErr;
 
-      // Update local state registrations to disable re-download
-      setRegistrations(prev =>
-        prev.map(r => r.id === activeReg.id ? { ...r, certificate_issued: true, certificate_name: certificateName } : r)
-      );
+        // Update local state registrations
+        setRegistrations(prev =>
+          prev.map(r => r.id === activeReg.id ? { ...r, certificate_issued: true, certificate_name: certificateName } : r)
+        );
 
-      setCertificateApplied(false);
+        setCertificateApplied(false);
+      }
     } catch (err) {
       console.error('Certificate generation failed:', err);
       showToast('Failed to generate certificate', true);
@@ -1003,9 +1006,38 @@ export default function UserDashboard() {
                         <div className="space-y-1">
                           <p className="font-bold text-amber-900 dark:text-amber-300">Certificate Issued</p>
                           <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                            The certificate has already been issued under the name <strong className="text-indigo-600 dark:text-indigo-400">"{activeReg.certificate_name}"</strong>. To ensure security and credential integrity, certificates can only be generated and downloaded once.
+                            The certificate has already been issued under the name <strong className="text-indigo-600 dark:text-indigo-400">"{activeReg.certificate_name}"</strong>. The name cannot be changed, but you can download it as many times as you like.
                           </p>
                         </div>
+                      </div>
+                      
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleDownloadCertificate('png')}
+                          disabled={generatingCert}
+                          className="flex-1 bg-slate-900 hover:bg-black text-white font-bold py-2.5 rounded-xl shadow-sm text-xs transition-all flex justify-center items-center gap-1.5"
+                        >
+                          {generatingCert ? (
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          ) : (
+                            <>
+                              <FileImage className="w-4 h-4" /> Download JPG
+                            </>
+                          )}
+                        </button>
+                        <button
+                          onClick={() => handleDownloadCertificate('pdf')}
+                          disabled={generatingCert}
+                          className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl shadow-md text-xs transition-all flex justify-center items-center gap-1.5"
+                        >
+                          {generatingCert ? (
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          ) : (
+                            <>
+                              <FileText className="w-4 h-4" /> Download PDF
+                            </>
+                          )}
+                        </button>
                       </div>
                     </div>
                   ) : !certificateApplied ? (
@@ -1481,15 +1513,11 @@ export default function UserDashboard() {
               </div>
 
               <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', width: '220px' }}>
-                {activeReg.competitions?.signature_url ? (
-                  <img
-                    src={activeReg.competitions.signature_url}
-                    alt="Organizer Signature"
-                    style={{ height: '36px', objectFit: 'contain' }}
-                  />
-                ) : (
-                  <div style={{ height: '36px', borderBottom: '1px solid #94a3b8', width: '120px' }}></div>
-                )}
+                <img
+                  src={activeReg.competitions?.signature_url || `${import.meta.env.BASE_URL}sign.png`}
+                  alt="Organizer Signature"
+                  style={{ height: '36px', objectFit: 'contain' }}
+                />
                 <span style={{ fontSize: '9px', fontWeight: 800, color: '#1e293b' }}>
                   Lead Organizer
                 </span>

@@ -235,7 +235,7 @@ export default function AdminResults() {
                             key={rIdx}
                             disabled={updating}
                             onClick={() => declareWinner(reg.id, rank.placement)}
-                            className="px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-150 dark:bg-indigo-950/20 dark:hover:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-xs font-bold rounded-lg border border-indigo-500/15 cursor-pointer transition-all"
+                            className="px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/20 dark:hover:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 text-xs font-bold rounded-lg border border-indigo-500/15 cursor-pointer transition-all"
                             title={`Declare as ${rank.title}`}
                           >
                             {rank.title}

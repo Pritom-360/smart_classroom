@@ -82,7 +82,7 @@ export default function Hub() {
           <div className="pt-4 flex justify-center">
             <button
               onClick={() => setShowArrangeModal(true)}
-              className="px-5 py-2.5 bg-white text-indigo-650 hover:bg-slate-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 border border-slate-200 dark:border-slate-700"
+              className="px-5 py-2.5 bg-white text-indigo-600 hover:bg-slate-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 font-extrabold rounded-xl text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 border border-slate-200 dark:border-slate-700"
             >
               🤝 Want to arrange competition? Please contact with Founder
             </button>

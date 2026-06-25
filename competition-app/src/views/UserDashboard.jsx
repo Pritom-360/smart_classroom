@@ -1319,7 +1319,7 @@ export default function UserDashboard() {
               {/* Prizes & Recognition */}
               <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Trophy className="w-5 h-5 text-indigo-650 dark:text-indigo-400" /> Prizes & Recognition
+                  <Trophy className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> Prizes & Recognition
                 </h3>
                 <div className="space-y-4 pt-2">
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-bold">

@@ -9,7 +9,11 @@
   ],
   "rewrites": [
     {
-      "source": "/competition/((?!assets/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|js|css|json)$).*)" ,
+      "source": "/competition/:path((?!assets/|.*\\.(?:png|jpg|jpeg|gif|svg|ico|js|css|json)$).*)",
+      "destination": "/competition/index.html"
+    },
+    {
+      "source": "/competition",
       "destination": "/competition/index.html"
     }
   ]

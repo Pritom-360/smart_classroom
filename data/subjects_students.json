@@ -419,8 +419,8 @@
       "materials": [
         {
           "type": "youtube",
-          "title": "Full CSE 209 Lecture Series",
-          "youtubePlaylistId": ""
+          "title": "Full MATH102 Lecture Series",
+          "youtubePlaylistId": "PLPwbpfnR90ksnzhA4vErgA9HYKLt_x_cp"
         },
         {
           "type": "pdf",
@@ -436,6 +436,11 @@
           "type": "pdf",
           "title": "Class Lectures",
           "url": "https://drive.google.com/drive/folders/1FWyQk8ul7rYxe8g20beK7umBKs_ulmiz?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Class Notes",
+          "url": "https://drive.google.com/file/d/17qpW-U-zmefswew-fOkgKvOvyhN2lnaV/view?usp=sharing"
         },
         {
           "type": "pdf",

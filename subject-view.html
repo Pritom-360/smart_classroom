@@ -15,13 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Smart Classroom</title>
-    <meta name="description" id="meta-description" content="Explore comprehensive study materials and courses for university students.">
-    
-    <!-- Google AdSense Verification -->
-    <meta name="google-adsense-account" content="ca-pub-9471530696566173">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9471530696566173" crossorigin="anonymous"></script>
-    
-    <!-- Google Fonts -->
+    <meta name="description" id="meta-description" content="Explore comprehensive study materials and courses for university students."><!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -52,15 +46,108 @@
         }
         .course-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
             gap: 2rem;
         }
         .ad-row {
             grid-column: 1 / -1;
             margin: 2rem 0;
         }
+
+        /* Free Support Card */
+        .free-support-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 50%, #fce7f3 100%);
+            border: 1.5px solid #fed7aa;
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .free-support-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(251, 146, 60, 0.15);
+        }
+
+        .free-support-card .support-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.75rem;
+            line-height: 1;
+        }
+
+        .free-support-card .support-headline {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #78350f;
+            margin-bottom: 0.5rem;
+        }
+
+        .free-support-card .support-subtext {
+            font-size: 0.85rem;
+            color: #92400e;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .free-support-card .support-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+            min-height: 48px;
+        }
+
+        .free-support-card .support-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+
+        .free-support-card .support-fine-print {
+            font-size: 0.72rem;
+            color: #a16207;
+            margin-top: 0.75rem;
+            opacity: 0.8;
+        }
     </style>
     <link rel="canonical" href="https://www.catalyst-smart-classroom.me/subject-view.html">
+
+    <!-- Monetag In-Page Push -->
+    <script>
+        (function(s){
+            s.dataset.zone='11261742';
+            s.src='https://nap5k.com/tag.min.js';
+            s.onload = function() { console.log('Monetag In-Page Push Loaded'); };
+            s.onerror = function() { 
+                console.error('Monetag In-Page Push Blocked by Adblocker');
+                window.monetagBlocked = true;
+            };
+        })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+    </script>
+    <!-- Monetag Vignette Banner -->
+    <script>
+        (function(s){
+            s.dataset.zone='11261746';
+            s.src='https://n6wxm.com/vignette.min.js';
+            s.onload = function() { console.log('Monetag Vignette Loaded'); };
+            s.onerror = function() { 
+                console.error('Monetag Vignette Blocked by Adblocker');
+                window.monetagBlocked = true;
+            };
+        })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+    </script>
 </head>
 
 <body>
@@ -71,15 +158,36 @@
                 <img src="assets/icon/iconi.png" alt="SCL">
                 <span>Smart Classroom</span>
             </a>
+
             <div class="desktop-nav">
                 <nav>
                     <a href="index.html">Home</a>
-                    <a href="subjects.html">Subjects</a>
+                    <a href="subjects.html" class="active">Subjects</a>
                     <a href="simulators.html">Simulators</a>
-                    <a href="about.html">About</a>
+                    
+                    <a href="https://ewu-studentsdesk.vercel.app/" target="_blank">EWU Desk</a>
+                    <a href="products.html">Products</a>
+                    <a href="competition.html"><i class="fas fa-trophy"></i> Competition</a>
+                    <a href="donation.html">Support Us</a>
+                    <a href="about.html">About Me</a>
                 </nav>
+                <div class="controls">
+                    <button id="theme-toggle" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <div class="role-switch">
+                        <span>Candidate</span>
+                        <label class="switch">
+                            <input type="checkbox" id="role-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span>Student</span>
+                    </div>
+                </div>
             </div>
-            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-ellipsis-v"></i></button>
+
+            <button id="menu-toggle" aria-label="Open Menu"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
@@ -110,11 +218,11 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Smart Classroom by Arup Bhowmik Pritom. All Rights Reserved.</p>
+                <p>&copy; 2024 Smart Classroom by <a href="about.html" style="color: inherit; text-decoration: underline; font-weight: 600;">Arup Bhowmik Pritom</a>. All Rights Reserved.</p>
                 <div class="footer-links" style="margin-top: 1rem; display: flex; gap: 1.5rem; justify-content: center;">
                     <a href="index.html">Home</a>
                     <a href="privacy.html">Privacy Policy</a>
-                    <a href="about.html">About Us</a>
+                    <a href="about.html">About Me</a>
                     <a href="contact.html">Contact Us</a>
                 </div>
             </div>

@@ -25,12 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Google AdSense Verification -->
-    <meta name="google-adsense-account" content="ca-pub-9471530696566173">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9471530696566173" crossorigin="anonymous"></script>
-    <style>
+    <link rel="stylesheet" href="css/style.css"><style>
         :root {
             --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         }
@@ -50,35 +45,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            max-width: 1200px;
+            padding: 2rem 2rem 6rem 2rem;
+            max-width: 700px;
             margin: 0 auto;
             width: 100%;
-        }
-
-        /* Top Banner Ad Placeholder */
-        .ad-banner-top {
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            background: #ffffff;
-            border: 2px dashed #cbd5e1;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .ad-banner-top::before {
-            content: 'ADVERTISEMENT';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: #94a3b8;
         }
 
         .main-card {
@@ -87,19 +57,7 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             width: 100%;
-            max-width: 900px;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        @media (max-width: 850px) {
-            .main-card {
-                grid-template-columns: 1fr;
-                padding: 2rem;
-                text-align: center;
-            }
+            text-align: center;
         }
 
         .status-content {
@@ -159,30 +117,6 @@
             font-size: 0.95rem;
         }
 
-        /* Large Rectangular Ad */
-        .ad-rect-side {
-            width: 300px;
-            height: 250px;
-            background: #f8fafc;
-            border: 2px dashed #cbd5e1;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .ad-rect-side::before {
-            content: 'SPONSORED';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            font-size: 0.65rem;
-            font-weight: 700;
-            color: #94a3b8;
-        }
-
         .action-btn {
             display: none;
             background: var(--primary-gradient);
@@ -209,9 +143,46 @@
             display: none;
             text-align: center;
         }
+
+        .transparency-note {
+            margin-top: 2rem;
+            padding: 1rem 1.5rem;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            line-height: 1.6;
+            text-align: center;
+        }
     </style>
     <link rel="canonical" href="https://www.catalyst-smart-classroom.me/download-buffer.html">
     <meta name="description" content="Securely download your requested university course materials, lecture notes, and academic PDFs from Smart Classroom. Our platform ensures fast, reliable access to the educational resources you need to succeed in your studies.">
+
+    <!-- Monetag In-Page Push -->
+    <script>
+        (function(s){
+            s.dataset.zone='11261742';
+            s.src='https://nap5k.com/tag.min.js';
+            s.onload = function() { console.log('Monetag In-Page Push Loaded'); };
+            s.onerror = function() { 
+                console.error('Monetag In-Page Push Blocked by Adblocker');
+                window.monetagBlocked = true;
+            };
+        })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+    </script>
+    <!-- Monetag Vignette Banner -->
+    <script>
+        (function(s){
+            s.dataset.zone='11261746';
+            s.src='https://n6wxm.com/vignette.min.js';
+            s.onload = function() { console.log('Monetag Vignette Loaded'); };
+            s.onerror = function() { 
+                console.error('Monetag Vignette Blocked by Adblocker');
+                window.monetagBlocked = true;
+            };
+        })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+    </script>
 </head>
 
 <body>
@@ -225,15 +196,9 @@
     </header>
 
     <div class="buffer-wrapper">
-        <!-- Layer 1: Top Ad -->
-        <div class="ad-banner-top">
-            <p style="color: #94a3b8; font-size: 0.8rem;">[AdSense Top Leaderboard Ad 728x90]</p>
-        </div>
-
         <div class="main-card">
-            <!-- Left: Status Content -->
             <div class="status-content">
-                <div class="timer-circle" id="timer-val">7</div>
+                <div class="timer-circle" id="timer-val">10</div>
                 <div class="message-title" id="main-title">Preparing your materials...</div>
                 <div class="message-sub" id="sub-title">Securing your direct link to Google Drive.</div>
                 
@@ -241,17 +206,17 @@
                     <div class="progress-fill" id="progress-bar"></div>
                 </div>
                 
-                <a href="#" id="access-btn" class="action-btn">
-                    Access My Materials <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
+                <a href="#" id="access-btn" class="action-btn" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-unlock" style="margin-right: 0.5rem;"></i> Unlock & Download
                 </a>
                 <p id="error-box" class="error-msg">Error: Missing file source. Please go back and try again.</p>
             </div>
 
-            <!-- Right: Side Ad -->
-            <div class="ad-rect-side">
-                <p style="color: #94a3b8; font-size: 0.8rem; text-align: center;">[AdSense Rectangle Ad<br>300x250]</p>
+            <div class="transparency-note">
+                💡 <strong>Note:</strong> We display these ads to cover our server maintenance and keep all educational resources 100% free for students. Thank you for your patience!
             </div>
         </div>
+    </div>
 
     <footer style="background: white; padding: 2rem 0; border-top: 1px solid #e2e8f0; width: 100%;">
         <div class="container">
@@ -288,7 +253,7 @@
                 return;
             }
 
-            const totalTime = 7;
+            const totalTime = 10;
             let timeLeft = totalTime;
 
             const updateTimer = () => {
@@ -300,14 +265,9 @@
                     clearInterval(countInterval);
                     timerEl.innerHTML = '<i class="fas fa-check" style="color: #10b981;"></i>';
                     mainTitle.textContent = "Link Ready!";
-                    subTitle.textContent = "You can now access your materials safely.";
+                    subTitle.textContent = "Click the button below to download your materials.";
                     accessBtn.style.display = 'inline-block';
                     accessBtn.href = decodeURIComponent(targetUrl);
-                    
-                    // Auto-redirect
-                    setTimeout(() => {
-                        window.location.href = decodeURIComponent(targetUrl);
-                    }, 1500);
                 }
                 timeLeft--;
             };

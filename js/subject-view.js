@@ -53,21 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = '';
         
         courses.forEach((course, index) => {
-            // Inject an ad spot every 4 courses for high visibility
-            if (index > 0 && index % 4 === 0) {
-                const adRow = document.createElement('div');
-                adRow.className = 'ad-row';
-                adRow.innerHTML = `
-                    <div style="background: var(--bg-surface); border: 1px dashed var(--border-color); padding: 1rem; text-align: center; border-radius: var(--radius-md);">
-                        <span style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Advertisement</span>
-                        <div style="min-height: 90px; display: flex; align-items: center; justify-content: center;">
-                            <p style="color: var(--text-muted);">AdSense In-Feed Ad</p>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(adRow);
-            }
-
             const card = document.createElement('div');
             card.className = 'course-card';
             card.innerHTML = `
@@ -84,5 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             container.appendChild(card);
         });
+
+        // Append the Free Support Card at the bottom of the course list
+        const supportCard = document.createElement('div');
+        supportCard.className = 'free-support-card';
+        supportCard.innerHTML = `
+            <span class="support-emoji">🥺</span>
+            <div class="support-headline">Help us keep Smart Classroom alive! 🥺</div>
+            <p class="support-subtext">We provide all study materials <strong>100% free</strong>. A single click from you helps us cover server costs — and it costs you nothing!</p>
+            <a href="https://omg10.com/4/11262296" target="_blank" rel="noopener noreferrer" class="support-btn">
+                💖 Click to Donate (Free Support)
+            </a>
+            <p class="support-fine-print">Opens a sponsored page in a new tab · No payment required</p>
+        `;
+        container.appendChild(supportCard);
     }
 });

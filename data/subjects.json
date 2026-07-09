@@ -1,18 +1,29 @@
-﻿{
+{
   "subjects": [
     {
       "name": "Mathematics",
       "courses": [
-        { "code": "MATH101", "title": "Differential and Integral Calculus" },
-        { "code": "MATH102", "title": "Higher Math" }
+        {
+          "code": "MATH101",
+          "title": "Differential and Integral Calculus"
+        },
+        {
+          "code": "MATH102",
+          "title": "Higher Math"
+        }
       ]
     },
     {
       "name": "English",
       "courses": [
-        { "code": "ENG101", "title": "English" },
-        { "code": "ENG102", "title": "Advanced English" }
-
+        {
+          "code": "ENG101",
+          "title": "English"
+        },
+        {
+          "code": "ENG102",
+          "title": "Advanced English"
+        }
       ]
     }
   ]

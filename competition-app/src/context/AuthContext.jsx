@@ -18,6 +18,10 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const fetchProfile = async (userId, userEmail) => {
+    const safeEmail = userEmail || 'user@example.com';
+    const nameFromEmail = safeEmail.split('@')[0];
+    const fallbackName = nameFromEmail.charAt(0).toUpperCase() + nameFromEmail.slice(1);
+
     try {
       let { data, error } = await supabase
         .from('profiles')
@@ -29,10 +33,9 @@ export const AuthProvider = ({ children }) => {
 
       if (!data) {
         // Fallback: Create profile if it doesn't exist (trigger alternative)
-        const nameFromEmail = userEmail.split('@')[0];
         const newProfile = {
           id: userId,
-          full_name: nameFromEmail.charAt(0).toUpperCase() + nameFromEmail.slice(1),
+          full_name: fallbackName,
           role: 'user',
         };
 
@@ -48,42 +51,37 @@ export const AuthProvider = ({ children }) => {
 
       setProfile(data);
     } catch (err) {
-      console.error('Error fetching profile:', err.message);
+      console.error('Error fetching profile:', err?.message || err);
       // Set a mock local profile so the app remains usable even if tables are empty/missing
       setProfile({
         id: userId,
-        full_name: userEmail.split('@')[0],
+        full_name: fallbackName,
         role: 'user',
       });
     }
   };
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        fetchProfile(session.user.id, session.user.email);
-      } else {
-        setProfile(null);
-        setLoading(false);
-      }
-    });
+    let active = true;
 
-    // Listen for auth changes
+    // Listen for auth changes (onAuthStateChange automatically runs once immediately on mount with initial session)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (!active) return;
+      
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
         await fetchProfile(session.user.id, session.user.email);
       } else {
         setProfile(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {

@@ -198,7 +198,7 @@ export default function UserDashboard() {
                 member_email
               )
             `)
-            .ilike('team_members.member_email', user.email.trim())
+            .ilike('team_members.member_email', (user.email || '').trim())
         ]);
 
         if (leaderRegsRes.error) throw leaderRegsRes.error;

@@ -154,7 +154,7 @@ export default function CompetitionDetails() {
                 registration_id,
                 registrations!inner(*)
               `)
-              .ilike('member_email', user.email.trim())
+              .ilike('member_email', (user.email || '').trim())
               .eq('registrations.competition_id', id);
 
             if (memberRegs && memberRegs.length > 0) {
@@ -211,7 +211,7 @@ export default function CompetitionDetails() {
       const { data: memberReg } = await supabase
         .from('team_members')
         .select('registration_id')
-        .ilike('member_email', user.email.trim())
+        .ilike('member_email', (user.email || '').trim())
         .maybeSingle();
 
       if (memberReg) {

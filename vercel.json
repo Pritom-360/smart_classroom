@@ -9,11 +9,7 @@
   ],
   "rewrites": [
     {
-      "source": "/competition/(.*)",
-      "destination": "/competition/index.html"
-    },
-    {
-      "source": "/competition",
+      "source": "/competition/:path*",
       "destination": "/competition/index.html"
     }
   ]

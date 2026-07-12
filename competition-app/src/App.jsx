@@ -42,7 +42,7 @@ const AdminRoute = ({ children }) => {
 };
 
 export default function App() {
-  const basename = import.meta.env.DEV ? "" : "/competition";
+  const basename = "/competition";
   return (
     <AuthProvider>
       <Router basename={basename}>

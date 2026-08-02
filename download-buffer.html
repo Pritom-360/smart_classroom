@@ -155,6 +155,177 @@
             line-height: 1.6;
             text-align: center;
         }
+
+        /* --- Beautiful Native-looking Ad Banners --- */
+        .ad-banner-container {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bottom-banner {
+            margin-top: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .native-ad-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.25rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            overflow: hidden;
+        }
+
+        .native-ad-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+        }
+
+        .ad-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-bottom-left-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ad-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+        }
+
+        .ad-icon {
+            font-size: 2.2rem;
+            color: #3b82f6;
+            flex-shrink: 0;
+        }
+
+        .ad-text-group {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .ad-headline {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.15rem;
+        }
+
+        .ad-subline {
+            font-size: 0.78rem;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        .ad-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .native-ad-box:hover .ad-btn {
+            background: #2563eb;
+        }
+
+        /* Mid-card inline ad */
+        .mid-card-ad {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border: 1px solid #c7d2fe;
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .mid-card-ad:hover { transform: scale(1.02); box-shadow: 0 4px 15px rgba(99,102,241,0.15); }
+        .mid-card-ad .mca-icon { font-size: 1.8rem; color: #6366f1; flex-shrink: 0; }
+        .mid-card-ad .mca-text { text-align: left; flex-grow: 1; }
+        .mid-card-ad .mca-title { font-size: 0.85rem; font-weight: 600; color: #312e81; }
+        .mid-card-ad .mca-sub { font-size: 0.72rem; color: #4338ca; opacity: 0.8; }
+        .mid-card-ad .mca-go { background: #6366f1; color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+
+        /* While you wait section */
+        .wait-section { width: 100%; margin-top: 1.5rem; }
+        .wait-section h3 { font-size: 0.95rem; color: #475569; margin-bottom: 1rem; text-align: center; font-weight: 500; }
+        .wait-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .wait-card {
+            background: white; border: 1px solid #e2e8f0; border-radius: 14px;
+            padding: 1.25rem 1rem; text-align: center; text-decoration: none;
+            transition: all 0.3s; position: relative;
+        }
+        .wait-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .wait-card .wc-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+        .wait-card .wc-title { font-size: 0.82rem; font-weight: 600; color: #1e293b; margin-bottom: 0.25rem; }
+        .wait-card .wc-sub { font-size: 0.68rem; color: #64748b; line-height: 1.3; }
+        .wait-card .wc-cta { display: inline-block; margin-top: 0.6rem; font-size: 0.72rem; font-weight: 600; color: white; padding: 0.3rem 0.8rem; border-radius: 50px; }
+
+        /* Second wave ads (hidden initially, revealed by JS) */
+        .reveal-ads { display: none; width: 100%; margin-top: 1rem; animation: fadeSlideUp 0.5s ease; }
+        .reveal-ads.show { display: block; }
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Sticky mobile bottom bar */
+        .sticky-mobile-ad {
+            display: none; position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; border-top: 1px solid #e2e8f0;
+            padding: 0.6rem 1rem; z-index: 9999;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+        }
+        .sticky-mobile-ad a {
+            display: flex; align-items: center; gap: 0.75rem;
+            text-decoration: none; color: inherit;
+        }
+        .sticky-mobile-ad .sma-icon { font-size: 1.5rem; color: #f59e0b; flex-shrink: 0; }
+        .sticky-mobile-ad .sma-text { flex-grow: 1; }
+        .sticky-mobile-ad .sma-title { font-size: 0.78rem; font-weight: 600; color: #1e293b; }
+        .sticky-mobile-ad .sma-sub { font-size: 0.65rem; color: #64748b; }
+        .sticky-mobile-ad .sma-btn { background: #f59e0b; color: white; padding: 0.4rem 0.9rem; border-radius: 50px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+
+        /* Mobile Responsive adjustments */
+        @media (max-width: 576px) {
+            .buffer-wrapper { padding: 1rem 1rem 5rem 1rem; }
+            .main-card { padding: 1.5rem 1rem; }
+            .native-ad-box { padding: 1rem; }
+            .ad-content { flex-direction: column; text-align: center; gap: 0.75rem; }
+            .ad-text-group { text-align: center; }
+            .ad-icon { font-size: 2rem; }
+            .ad-btn { width: 100%; text-align: center; padding: 0.6rem; }
+            .ad-badge { border-bottom-left-radius: 0; border-top-right-radius: 12px; left: 0; right: auto; border-bottom-right-radius: 8px; }
+            .mid-card-ad { flex-direction: column; text-align: center; }
+            .mid-card-ad .mca-text { text-align: center; }
+            .mid-card-ad .mca-go { width: 100%; text-align: center; display: block; }
+            .wait-grid { grid-template-columns: 1fr; }
+            .sticky-mobile-ad { display: flex; }
+            .timer-circle { width: 90px; height: 90px; font-size: 2rem; }
+            .message-title { font-size: 1.2rem; }
+        }
     </style>
     <link rel="canonical" href="https://www.catalyst-smart-classroom.me/download-buffer.html">
     <meta name="description" content="Securely download your requested university course materials, lecture notes, and academic PDFs from Smart Classroom. Our platform ensures fast, reliable access to the educational resources you need to succeed in your studies.">
@@ -196,15 +367,41 @@
     </header>
 
     <div class="buffer-wrapper">
+        <!-- Top Ad Banner -->
+        <div class="ad-banner-container top-banner">
+            <a href="https://omg10.com/4/11262296" target="_blank" class="native-ad-box">
+                <span class="ad-badge">Sponsored</span>
+                <div class="ad-content">
+                    <i class="fas fa-arrow-alt-circle-down ad-icon"></i>
+                    <div class="ad-text-group">
+                        <div class="ad-headline">Fast Secure Download Manager</div>
+                        <div class="ad-subline">Download files 10x faster with our free extension.</div>
+                    </div>
+                    <span class="ad-btn">Install Now</span>
+                </div>
+            </a>
+        </div>
+
         <div class="main-card">
             <div class="status-content">
-                <div class="timer-circle" id="timer-val">10</div>
+                <div class="timer-circle" id="timer-val">15</div>
                 <div class="message-title" id="main-title">Preparing your materials...</div>
                 <div class="message-sub" id="sub-title">Securing your direct link to Google Drive.</div>
                 
                 <div class="progress-bar-container">
                     <div class="progress-fill" id="progress-bar"></div>
                 </div>
+
+                <!-- Mid-card inline ad -->
+                <a href="https://omg10.com/4/11262296" target="_blank" class="mid-card-ad">
+                    <span class="ad-badge" style="background:#eef2ff;color:#6366f1;">Ad</span>
+                    <i class="fas fa-bolt mca-icon"></i>
+                    <div class="mca-text">
+                        <div class="mca-title">Boost Your Study Performance</div>
+                        <div class="mca-sub">AI-powered study tools used by 1M+ students</div>
+                    </div>
+                    <span class="mca-go">Try Free</span>
+                </a>
                 
                 <a href="#" id="access-btn" class="action-btn" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-unlock" style="margin-right: 0.5rem;"></i> Unlock & Download
@@ -216,6 +413,81 @@
                 💡 <strong>Note:</strong> We display these ads to cover our server maintenance and keep all educational resources 100% free for students. Thank you for your patience!
             </div>
         </div>
+
+        <!-- While You Wait Section -->
+        <div class="wait-section">
+            <h3>📚 While you wait, check these out</h3>
+            <div class="wait-grid">
+                <a href="https://omg10.com/4/11262296" target="_blank" class="wait-card">
+                    <span class="wc-icon">🎓</span>
+                    <div class="wc-title">Free Online Courses</div>
+                    <div class="wc-sub">Get certified in 100+ topics</div>
+                    <span class="wc-cta" style="background:#3b82f6;">Explore</span>
+                </a>
+                <a href="https://omg10.com/4/11262296" target="_blank" class="wait-card">
+                    <span class="wc-icon">📱</span>
+                    <div class="wc-title">Study App</div>
+                    <div class="wc-sub">Flashcards & quizzes on the go</div>
+                    <span class="wc-cta" style="background:#8b5cf6;">Download</span>
+                </a>
+                <a href="https://omg10.com/4/11262296" target="_blank" class="wait-card">
+                    <span class="wc-icon">💻</span>
+                    <div class="wc-title">Coding Bootcamp</div>
+                    <div class="wc-sub">Learn to code in 30 days</div>
+                    <span class="wc-cta" style="background:#10b981;">Start Free</span>
+                </a>
+                <a href="https://omg10.com/4/11262296" target="_blank" class="wait-card">
+                    <span class="wc-icon">🛡️</span>
+                    <div class="wc-title">VPN Protection</div>
+                    <div class="wc-sub">Secure browsing for students</div>
+                    <span class="wc-cta" style="background:#f59e0b;">Get Free</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Second-Wave Ad (revealed at 5 seconds by JS) -->
+        <div class="reveal-ads" id="second-wave-ads">
+            <div class="ad-banner-container" style="margin-bottom:0.75rem;">
+                <a href="https://omg10.com/4/11262296" target="_blank" class="native-ad-box">
+                    <span class="ad-badge">Sponsored</span>
+                    <div class="ad-content">
+                        <i class="fas fa-gift ad-icon" style="color:#ec4899;"></i>
+                        <div class="ad-text-group">
+                            <div class="ad-headline">Win Free Premium Subscriptions</div>
+                            <div class="ad-subline">Complete a short survey to enter the giveaway.</div>
+                        </div>
+                        <span class="ad-btn" style="background:#ec4899;">Enter Now</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Ad Banner -->
+        <div class="ad-banner-container bottom-banner">
+            <a href="https://omg10.com/4/11262296" target="_blank" class="native-ad-box">
+                <span class="ad-badge">Sponsored</span>
+                <div class="ad-content">
+                    <i class="fas fa-shield-alt ad-icon" style="color: #10b981;"></i>
+                    <div class="ad-text-group">
+                        <div class="ad-headline">Clean Your Browser Cache</div>
+                        <div class="ad-subline">Remove unwanted malware and secure your browser privacy.</div>
+                    </div>
+                    <span class="ad-btn" style="background: #10b981;">Clean Now</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Sticky Mobile Bottom Ad Bar -->
+    <div class="sticky-mobile-ad" id="sticky-ad">
+        <a href="https://omg10.com/4/11262296" target="_blank">
+            <i class="fas fa-star sma-icon"></i>
+            <div class="sma-text">
+                <div class="sma-title">⚡ Limited Offer: Free Premium Tools</div>
+                <div class="sma-sub">Claim before timer runs out</div>
+            </div>
+            <span class="sma-btn">Claim</span>
+        </a>
     </div>
 
     <footer style="background: white; padding: 2rem 0; border-top: 1px solid #e2e8f0; width: 100%;">
@@ -253,13 +525,21 @@
                 return;
             }
 
-            const totalTime = 10;
+            const totalTime = 15;
             let timeLeft = totalTime;
 
             const updateTimer = () => {
                 timerEl.textContent = timeLeft;
                 const progress = ((totalTime - timeLeft) / totalTime) * 100;
                 progressEl.style.width = progress + '%';
+
+                // Reveal second-wave ads at 10 seconds remaining (i.e. 5 seconds elapsed)
+                if (timeLeft <= 10) {
+                    const secondWave = document.getElementById('second-wave-ads');
+                    if (secondWave && !secondWave.classList.contains('show')) {
+                        secondWave.classList.add('show');
+                    }
+                }
 
                 if (timeLeft <= 0) {
                     clearInterval(countInterval);
@@ -275,6 +555,34 @@
             // Start first tick immediately
             updateTimer();
             const countInterval = setInterval(updateTimer, 1000);
+
+            // Popunder trigger on background page clicks (up to 2 times)
+            let pageClicks = 0;
+            const directLinkUrl = 'https://omg10.com/4/11262296';
+            
+            document.body.addEventListener('click', (e) => {
+                // Ignore clicks on any ad elements, buttons, or links that navigate themselves
+                if (e.target.closest('#access-btn') || e.target.closest('.native-ad-box') || 
+                    e.target.closest('.logo') || e.target.closest('.mid-card-ad') || 
+                    e.target.closest('.wait-card') || e.target.closest('.sticky-mobile-ad') ||
+                    e.target.closest('footer') || e.target.closest('a')) {
+                    return;
+                }
+                
+                pageClicks++;
+                if (pageClicks <= 2) {
+                    window.open(directLinkUrl, '_blank');
+                }
+            });
+
+            // Double monetize download click
+            accessBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 1. Open Google Drive download link in a new tab
+                window.open(decodeURIComponent(targetUrl), '_blank');
+                // 2. Redirect the current buffer page tab to the direct link ad
+                window.location.href = directLinkUrl;
+            });
         });
     </script>
 </body>

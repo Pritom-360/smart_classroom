@@ -280,6 +280,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const anchor = e.target.closest('a');
             if (!anchor) return;
             
+            // Do not trigger ads for navbar/header links or mobile slider navigation links
+            if (anchor.closest('header') || anchor.closest('#nav-slider') || anchor.closest('.nav-slider')) {
+                return;
+            }
+            
             const href = anchor.getAttribute('href');
             if (!href) return;
             

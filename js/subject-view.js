@@ -69,19 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             container.appendChild(card);
         });
-
-        // Append the Free Support Card at the bottom of the course list
-        const supportCard = document.createElement('div');
-        supportCard.className = 'free-support-card';
-        supportCard.innerHTML = `
-            <span class="support-emoji">🥺</span>
-            <div class="support-headline">Help us keep Smart Classroom alive! 🥺</div>
-            <p class="support-subtext">We provide all study materials <strong>100% free</strong>. A single click from you helps us cover server costs — and it costs you nothing!</p>
-            <a href="https://omg10.com/4/11262296" target="_blank" rel="noopener noreferrer" class="support-btn">
-                💖 Click to Donate (Free Support)
-            </a>
-            <p class="support-fine-print">Opens a sponsored page in a new tab · No payment required</p>
-        `;
-        container.appendChild(supportCard);
     }
 });
+

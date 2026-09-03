@@ -272,48 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
         handleStickyHeader(); // Add this
     };
 
-    // --- Monetag Adblocker Fallback & Smart Interstitial Navigation ---
-    const handleSmartInterstitials = () => {
-        const DIRECT_LINK = 'https://omg10.com/4/11262296';
-        
-        document.body.addEventListener('click', (e) => {
-            const anchor = e.target.closest('a');
-            if (!anchor) return;
-            
-            // Do not trigger ads for navbar/header links or mobile slider navigation links
-            if (anchor.closest('header') || anchor.closest('#nav-slider') || anchor.closest('.nav-slider')) {
-                return;
-            }
-            
-            const href = anchor.getAttribute('href');
-            if (!href) return;
-            
-            // Check if it's an internal page transition link (e.g. index.html, subjects.html, simulators.html, about.html, etc.)
-            // and NOT a link to download-buffer, target="_blank", mailto, tel, or anchor link (#)
-            if (href.endsWith('.html') && 
-                !href.includes('download-buffer') && 
-                anchor.getAttribute('target') !== '_blank' && 
-                !href.startsWith('mailto:') && 
-                !href.startsWith('tel:') && 
-                !href.startsWith('#')) {
-                
-                const hasShownThisSession = sessionStorage.getItem('vignette_shown_session');
-                const isBlocked = window.monetagBlocked || (typeof window.wtSdk === 'undefined' && typeof window.wtSdkZone === 'undefined');
-                
-                // If adblocker is active and they haven't seen an ad this session, OR 20% random chance
-                if (isBlocked || !hasShownThisSession || Math.random() < 0.20) {
-                    sessionStorage.setItem('vignette_shown_session', 'true');
-                    window.open(DIRECT_LINK, '_blank');
-                    console.log('Smart Interstitial Triggered (Direct Link Fallback)');
-                }
-            }
-        });
-    };
-
     // --- Initialize Non-Header Scripts ---
     initializeInstructionModal();
     handleScrollAnimations();
-    handleSmartInterstitials();
 
     // Ensure header-dependent controls are initialized on pages that include the
     // header inline (instead of using a placeholder). This guarantees the
@@ -321,4 +282,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // load so the student view doesn't disappear after a refresh.
     initializeHeaderControls();
 });
+
 

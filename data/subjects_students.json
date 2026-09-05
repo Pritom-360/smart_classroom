@@ -215,17 +215,28 @@
         {
           "type": "youtube",
           "title": "Full CSE 209 Lecture Series",
-          "youtubePlaylistId": ""
+          "youtubePlaylistId": "PLPwbpfnR90kupyCfB9T1Kpf-B2tPOwFAD"
         },
+        {
+          "type": "pdf",
+          "title": "Lectures",
+          "url": "https://drive.google.com/drive/folders/19x4g5FIOBUtgAUqXRjo2ZbmuIeDwkC3x?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Projects",
+          "url": "https://drive.google.com/drive/folders/15IRy8qXIeoy3tItUSHcEf--r6g2IN480?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Lab Materials",
+          "url": "https://drive.google.com/drive/folders/1SgyzRzQw2QY6eBhpqdC3ssOAcjOJuVCn?usp=drive_link"
+        },
+        
         {
           "type": "pdf",
           "title": "CSE 209 Handnote by MD. Shakib Hossan",
           "url": "https://drive.google.com/drive/folders/1lyu4PXt9d1-GgE7acHGnBd7Rj4WCehnM?usp=sharing"
-        },
-        {
-          "type": "drive",
-          "title": "CSE 209 Everything",
-          "url": "https://drive.google.com/drive/folders/1rQVOIZ-v_CQgcxVt6Bi6pvBgRltq0ZR9?usp=sharing"
         }
 
       ]
@@ -236,8 +247,44 @@
       "title": "Data Structure",
       "materials": [
         {
+          "type": "youtube",
+          "title": "Full CSE 207 Lecture Series",
+          "youtubePlaylistId": "PLRUuZwH9RxRs"
+        },
+        {
+          "type": "youtube",
+          "title": "Full CSE 207 Lecture Series 2",
+          "youtubePlaylistId": "PLgrAmbRAezugf1uH-OmJF43TEHdi5dg8w"
+        },
+        {
+          "type": "pdf",
+          "title": "Lectures",
+          "url": "https://drive.google.com/drive/folders/1g-nFuwQXe4jcYY3SQoWwH2En-aQEh1BL?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Projects",
+          "url": "https://drive.google.com/drive/folders/1rbv1j0KCBXOdV3JMyk0jvPmhfN0UXAiW?usp=sharing"
+        },
+        {
+          "type": "pdf",
+          "title": "Lab Materials",
+          "url": "https://drive.google.com/drive/folders/1LIJIUBoF7YDTRATC--MtlU05oRVw58cP?usp=drive_link"
+        },
+                {
+          "type": "pdf",
+          "title": "Lab Materials 2",
+          "url": "https://drive.google.com/drive/folders/10tBYRZ4ChfZSnL1gHRLnZz7vtPFdEqGG?usp=sharing"
+        },
+        
+        {
+          "type": "pdf",
+          "title": "Assignments",
+          "url": "https://drive.google.com/drive/folders/1KLoMPW6YiqXjJIk6OqOVifoZLVRMWKxX?usp=sharing"
+        },
+        {
           "type": "link",
-          "title": "Slides",
+          "title": "Other Faculty Slides",
           "url": "https://drive.google.com/drive/folders/1yHHBBJ4TCzthm2bXoVgb0k9cuEdSlNt7?usp=sharing"
         }
       ]
@@ -523,6 +570,65 @@
           "type": "link",
           "title": "AI & Plagiarism Detector",
           "url": "https://drive.google.com/file/d/1LswplAiSjW0rhS2SrV5sa07dtbukx_ur/view?usp=drive_link"
+        }
+      ]
+    },
+        {
+      "courseCode": "ECO7101",
+      "subject": "Economics",
+      "title": "Principles of Microeconomics",
+      "materials": [
+{
+          "type": "youtube",
+          "title": "ECO7101 Lecture Series",
+          "youtubePlaylistId": "PLONey8jJJ154"
+        },
+        {
+          "type": "pdf",
+          "title": "Lectures",
+          "url": "https://drive.google.com/drive/folders/1OmnDwuicPaR3SGGNAEdyoVTgmnr9r6Dy?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Home Works",
+          "url": "https://drive.google.com/drive/folders/1yGDiGw9lxJe0YPVw6KvK5DotzUzrAQ2e?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Practice Questions",
+          "url": "https://drive.google.com/drive/folders/1d-zMF3xSdgE30OTMjtP7lDe4Ni3KKdQX?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Books",
+          "url": "https://drive.google.com/drive/folders/1YTXWzpTaTGh6kQXuBjd22wlxC-gUcDPZ?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Assignments",
+          "url": "https://drive.google.com/drive/folders/13mBmZy3qx7yJ7JDSVduk35_RS5ne3Ogw?usp=drive_link"
+        },
+        {
+          "type": "link",
+          "title": "Other Faculty Slides",
+          "url": "https://drive.google.com/drive/folders/1lSgqNN1VZxfr3om0s8R5v3j1TZrHZ3gO?usp=sharing"
+        }
+      ]
+    },
+        {
+      "courseCode": "STA102",
+      "subject": "Statistics",
+      "title": "Statistics & Probability",
+      "materials": [
+        {
+          "type": "pdf",
+          "title": "Slides",
+          "url": "https://drive.google.com/drive/folders/1GFQzG_bqNdsvSYXxvc1Nvo1CTXpj5EYM?usp=drive_link"
+        },
+        {
+          "type": "pdf",
+          "title": "Assignments",
+          "url": "https://drive.google.com/drive/folders/1d0xt3l5JNoa_zYp3kKsUuf20GGfCiU_s?usp=drive_link"
         }
       ]
     },

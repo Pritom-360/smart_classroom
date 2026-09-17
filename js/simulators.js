@@ -1614,10 +1614,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const simMap = new Map();
         sims.forEach(s => simMap.set(s.id, s));
 
+        const containers = Array.from(document.querySelectorAll('.sim-container'));
+        
+        // Eagerly load the first 6 cards immediately for instantaneous user experience
+        containers.slice(0, 6).forEach(container => {
+            const simId = container.getAttribute('data-sim-id');
+            const sim = simMap.get(simId);
+            if (sim && !container.dataset.loaded) {
+                container.dataset.loaded = 'true';
+                loadSimulationContent(container, sim);
+            }
+        });
+
+        // Use IntersectionObserver with generous rootMargin for remaining containers
         const observerOptions = {
             root: null,
-            rootMargin: '200px',
-            threshold: 0.05
+            rootMargin: '400px 0px',
+            threshold: 0.01
         };
 
         const observer = new IntersectionObserver((entries, obs) => {
@@ -1636,7 +1649,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.sim-container').forEach(container => {
+        containers.slice(6).forEach(container => {
             observer.observe(container);
         });
     };
@@ -1645,8 +1658,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sim.type === 'iframe') {
             const iframe = document.createElement('iframe');
             iframe.src = sim.src;
-            iframe.setAttribute('allowfullscreen', 'true');
-            iframe.setAttribute('allow', 'fullscreen; clipboard-read; clipboard-write; autoplay');
+            iframe.allow = "fullscreen; clipboard-read; clipboard-write; autoplay";
             iframe.setAttribute('scrolling', 'no');
             iframe.setAttribute('loading', 'lazy');
             iframe.title = sim.title;
@@ -1657,12 +1669,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (loader) loader.style.display = 'none';
             };
 
-            // Fallback timeout in case onload is silent
+            // Fallback timeout
             setTimeout(() => {
                 container.classList.remove('loading');
                 const loader = container.querySelector('.loading-indicator');
                 if (loader) loader.style.display = 'none';
-            }, 3000);
+            }, 2500);
 
             container.appendChild(iframe);
         } else if (sim.type === 'p5' && typeof p5 !== 'undefined') {

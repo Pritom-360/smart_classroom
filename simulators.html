@@ -62,19 +62,19 @@
     {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Smart Classroom Interactive Simulators",
-        "description": "Free interactive physics and math simulators for students. Includes ball physics, gravity simulations, and educational demonstrations.",
+        "name": "Smart Classroom Interactive Virtual Simulators Laboratory",
+        "description": "Comprehensive collection of free research-grade physics, chemistry, biology, earth science, and mathematics interactive digital simulations.",
         "url": "https://www.catalyst-smart-classroom.me/simulators.html",
-        "numberOfItems": 5,
+        "numberOfItems": 100,
         "itemListElement": [
             {
                 "@type": "ListItem",
                 "position": 1,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "Ball Physics Simulator",
+                    "name": "Blackbody Spectrum Simulator",
                     "applicationCategory": "EducationalApplication",
-                    "description": "Interactive ball physics simulation for learning mechanics and motion",
+                    "description": "Interactive blackbody radiation spectrum simulation",
                     "operatingSystem": "Web Browser",
                     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
                 }
@@ -84,9 +84,9 @@
                 "position": 2,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "Gravity Simulation",
+                    "name": "Energy Skate Park Simulator",
                     "applicationCategory": "EducationalApplication",
-                    "description": "Virtual gravity experiments for understanding gravitational forces",
+                    "description": "Conservation of mechanical energy, kinetic and potential energy lab",
                     "operatingSystem": "Web Browser",
                     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
                 }
@@ -96,9 +96,33 @@
                 "position": 3,
                 "item": {
                     "@type": "SoftwareApplication",
-                    "name": "Math Visualizations",
+                    "name": "Circuit Construction Kit",
                     "applicationCategory": "EducationalApplication",
-                    "description": "Interactive math demonstrations and visualizations",
+                    "description": "Interactive DC and AC circuit construction and multimeter analysis",
+                    "operatingSystem": "Web Browser",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "Build an Atom & Molecule Laboratory",
+                    "applicationCategory": "EducationalApplication",
+                    "description": "Interactive atomic structure and molecular geometry VSEPR lab",
+                    "operatingSystem": "Web Browser",
+                    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 5,
+                "item": {
+                    "@type": "SoftwareApplication",
+                    "name": "GeoGebra 3D & Calculus Grapher",
+                    "applicationCategory": "EducationalApplication",
+                    "description": "Dynamic 3D function plotting, derivative and integral visualizations",
                     "operatingSystem": "Web Browser",
                     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
                 }
@@ -190,22 +214,85 @@
         </div>
     </div>
 
-    <main class="container">
-        <div class="page-header reveal">
-            <h2 class="gradient-text">Interactive Simulators</h2>
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="simulator-search" placeholder="Search (e.g., ball, gravity, physics)...">
+    <main class="container simulators-main">
+        <div class="simulators-hero reveal">
+            <div class="hero-badge"><i class="fas fa-atom"></i> Virtual STEM Laboratory</div>
+            <h1 class="gradient-text">Interactive Digital Simulators</h1>
+            <p class="hero-subtext">Explore over 100+ research-grade interactive simulations in Physics, Chemistry, Biology, Earth Science, and Mathematics powered by PhET, GeoGebra, Concord Consortium, and custom interactive demos.</p>
+            
+            <!-- Unified Search and Filter Bar -->
+            <div class="search-filter-wrapper">
+                <div class="search-box-elevated">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="simulator-search" placeholder="Search simulations by name, keyword (e.g., blackbody, gravity, circuit, atom, slope)..." autocomplete="off">
+                    <button id="search-clear-btn" class="search-clear" title="Clear search" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="filter-controls-container">
+                <!-- Subject Category Filters -->
+                <div class="filter-group">
+                    <span class="filter-label"><i class="fas fa-layer-group"></i> Category:</span>
+                    <div class="filter-pills" id="category-pills">
+                        <button class="filter-pill active" data-category="all">
+                            <i class="fas fa-globe"></i> All <span class="pill-count" id="count-all">0</span>
+                        </button>
+                        <button class="filter-pill" data-category="Physics">
+                            <i class="fas fa-bolt"></i> Physics <span class="pill-count" id="count-physics">0</span>
+                        </button>
+                        <button class="filter-pill" data-category="Chemistry">
+                            <i class="fas fa-flask"></i> Chemistry <span class="pill-count" id="count-chemistry">0</span>
+                        </button>
+                        <button class="filter-pill" data-category="Mathematics">
+                            <i class="fas fa-square-root-alt"></i> Math <span class="pill-count" id="count-math">0</span>
+                        </button>
+                        <button class="filter-pill" data-category="Biology">
+                            <i class="fas fa-dna"></i> Biology <span class="pill-count" id="count-biology">0</span>
+                        </button>
+                        <button class="filter-pill" data-category="Earth Science">
+                            <i class="fas fa-mountain"></i> Earth Science <span class="pill-count" id="count-earth">0</span>
+                        </button>
+                        <button class="filter-pill" data-category="Interactive Demos">
+                            <i class="fas fa-code"></i> Demos <span class="pill-count" id="count-demos">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Source/Provider Filters -->
+                <div class="filter-group source-group">
+                    <span class="filter-label"><i class="fas fa-filter"></i> Source:</span>
+                    <div class="filter-pills" id="source-pills">
+                        <button class="filter-pill-sm active" data-source="all">All Sources</button>
+                        <button class="filter-pill-sm" data-source="PhET">PhET Colorado</button>
+                        <button class="filter-pill-sm" data-source="GeoGebra">GeoGebra</button>
+                        <button class="filter-pill-sm" data-source="Concord">Concord Lab</button>
+                        <button class="filter-pill-sm" data-source="Custom">Custom Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Summary Bar -->
+            <div class="results-meta-bar">
+                <div class="results-count-text">
+                    <span id="showing-count">Showing 0</span> of <span id="total-count">0</span> simulations
+                </div>
+                <div class="results-actions">
+                    <button id="reset-filters-btn" class="reset-btn" title="Reset all filters" style="display: none;">
+                        <i class="fas fa-redo-alt"></i> Reset Filters
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="reveal" style="animation-delay: 0.1s;">
-            <p>Experiment with concepts in physics and mathematics. Click and drag within the simulators to interact.
-            </p>
-        </div>
 
-        <!-- This grid is the container for our dynamic simulators. -->
-        <div id="simulators-grid" class="grid-3 reveal" style="animation-delay: 0.2s;">
-            <p class="loading-text">Loading interactive simulators...</p>
+        <!-- Dynamic Flex/Grid Container for Simulators -->
+        <div id="simulators-grid" class="simulators-flex-container reveal" style="animation-delay: 0.15s;">
+            <div class="sim-loading-state">
+                <div class="spinner-ring"></div>
+                <p>Loading interactive virtual laboratories...</p>
+            </div>
         </div>
     </main>
 

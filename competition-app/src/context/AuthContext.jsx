@@ -23,11 +23,17 @@ export const AuthProvider = ({ children }) => {
     const fallbackName = nameFromEmail.charAt(0).toUpperCase() + nameFromEmail.slice(1);
 
     try {
-      let { data, error } = await supabase
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Profile fetch timeout')), 3500)
+      );
+
+      const fetchPromise = supabase
         .from('profiles')
         .select('*')
         .eq('id', userId)
         .maybeSingle();
+
+      let { data, error } = await Promise.race([fetchPromise, timeoutPromise]);
 
       if (error) throw error;
 
@@ -51,13 +57,15 @@ export const AuthProvider = ({ children }) => {
 
       setProfile(data);
     } catch (err) {
-      console.error('Error fetching profile:', err?.message || err);
+      console.warn('Profile fetch notice:', err?.message || err);
       // Set a mock local profile so the app remains usable even if tables are empty/missing
       setProfile({
         id: userId,
         full_name: fallbackName,
         role: 'user',
       });
+    } finally {
+      setLoading(false);
     }
   };
 

@@ -12,28 +12,62 @@ export default function Hub() {
     ogImage: 'https://www.catalyst-smart-classroom.me/assets/icon/iconi.png'
   });
 
-  const [competitions, setCompetitions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [competitions, setCompetitions] = useState(() => {
+    try {
+      const cached = localStorage.getItem('catalyst_cached_competitions');
+      return cached ? JSON.parse(cached) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [loading, setLoading] = useState(() => {
+    try {
+      const cached = localStorage.getItem('catalyst_cached_competitions');
+      return !(cached && JSON.parse(cached).length > 0);
+    } catch {
+      return true;
+    }
+  });
   const [showArrangeModal, setShowArrangeModal] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function fetchCompetitions() {
+      // 4.5s timeout guard so page is never stuck in infinite loading spinner
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Fetch timeout')), 4500)
+      );
+
       try {
-        const { data, error } = await supabase
+        const fetchPromise = supabase
           .from('competitions')
           .select('*')
           .order('created_at', { ascending: false });
 
+        const { data, error } = await Promise.race([fetchPromise, timeoutPromise]);
+
         if (error) throw error;
-        setCompetitions(data || []);
+        if (isMounted && data) {
+          setCompetitions(data);
+          try {
+            localStorage.setItem('catalyst_cached_competitions', JSON.stringify(data));
+          } catch {}
+        }
       } catch (err) {
-        console.error('Error fetching competitions:', err.message);
-        setCompetitions([]);
+        console.warn('Competitions fetch fallback:', err.message);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
+
     fetchCompetitions();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const activeComps = competitions.filter(c => c.status === 'active');

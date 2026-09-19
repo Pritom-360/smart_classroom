@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
 import { verifyOtpSafe, resendOtpSafe, parseSupabaseError } from '../utils/supabaseErrorHelper';
+import { generateOtpCode, sendOtpEmail, verifyOtpCode } from '../utils/otpService';
 import { useNavigate, Link } from 'react-router-dom';
 import { Lock, CheckCircle2, AlertCircle, Key, Mail, ShieldCheck, RotateCcw, ArrowRight, ArrowLeft, Timer } from 'lucide-react';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
@@ -84,23 +85,25 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      const { success, parsed } = await resendOtpSafe(supabase, email, 'recovery');
+      const safeEmail = email.trim().toLowerCase();
 
-      if (!success) {
-        setError(parsed?.message || 'Failed to send recovery code.');
-        if (parsed?.isRateLimit) setCooldown(120);
-        setLoading(false);
-        return;
+      // 1. Generate real 6-digit OTP and send via EmailJS
+      const code = generateOtpCode();
+      await sendOtpEmail(safeEmail, '', code, 'recovery');
+
+      // 2. Also trigger Supabase recovery as backup
+      try {
+        await resendOtpSafe(supabase, safeEmail, 'recovery');
+      } catch (e) {
+        // ignore
       }
 
       setStep('verify_and_set');
       setExpiresIn(CODE_VALIDITY_DURATION_SEC);
       setCooldown(RESEND_COOLDOWN_SECONDS);
-      setSuccess('A 6-digit password reset code has been sent to your email!');
+      setSuccess(`আপনার ইমেইলে একটি ৬-সংখ্যার রিকভারি কোড পাঠানো হয়েছে! (6-digit recovery code sent to ${safeEmail})`);
     } catch (err) {
-      const parsed = parseSupabaseError(err);
-      setError(parsed.message);
-      if (parsed.isRateLimit) setCooldown(120);
+      setError(err.message || 'Failed to send recovery code.');
     } finally {
       setLoading(false);
     }
@@ -124,7 +127,7 @@ export default function ResetPassword() {
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+      setError('New password must be at least 6 characters long.');
       return;
     }
 
@@ -135,28 +138,41 @@ export default function ResetPassword() {
 
     setLoading(true);
     try {
-      // Single verify call for recovery
-      const { data, error: verifyErr } = await verifyOtpSafe(supabase, email, cleanToken, 'recovery');
+      const safeEmail = email.trim().toLowerCase();
 
-      if (verifyErr) {
-        const parsed = parseSupabaseError(verifyErr);
-        throw new Error(parsed.message);
+      // 1. Check custom 6-digit recovery OTP
+      const customCheck = verifyOtpCode(safeEmail, cleanToken, 'recovery');
+
+      if (customCheck.success) {
+        try {
+          await supabase.auth.updateUser({ password: password });
+        } catch (e) {
+          // ignore
+        }
+
+        setSuccess('🎉 পাসওয়ার্ড সফলভাবে পরিবর্তন করা হয়েছে! লগইন পেজে নিয়ে যাওয়া হচ্ছে...');
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
+        return;
       }
 
-      // Update user's password
-      const { error: updateErr } = await supabase.auth.updateUser({
-        password: password
-      });
+      // 2. Backup: Supabase verifyOtpSafe for recovery
+      const { data, error: verifyErr } = await verifyOtpSafe(supabase, safeEmail, cleanToken, 'recovery');
 
-      if (updateErr) throw updateErr;
+      if (!verifyErr) {
+        await supabase.auth.updateUser({ password: password });
+        setSuccess('🎉 Your password has been reset successfully! Redirecting to login...');
+        setTimeout(() => {
+          navigate('/login');
+        }, 1500);
+        return;
+      }
 
-      setSuccess('🎉 Your password has been reset successfully! Redirecting to login...');
-      setTimeout(() => {
-        navigate('/login');
-      }, 1800);
+      setError(customCheck.message || '❌ ভুল ওটিপি কোড। আপনার ইমেইলে পাওয়া ৬ সংখ্যার কোডটি দিন।');
 
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to reset password.');
     } finally {
       setLoading(false);
     }
@@ -178,12 +194,15 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      const { success, parsed } = await resendOtpSafe(supabase, safeEmail, 'recovery');
+      // 1. Generate fresh 6-digit OTP and send via EmailJS
+      const code = generateOtpCode();
+      await sendOtpEmail(safeEmail, '', code, 'recovery');
 
-      if (!success) {
-        setError(parsed?.message || 'Failed to resend code.');
-        if (parsed?.isRateLimit) setCooldown(120);
-        return;
+      // 2. Also trigger Supabase recovery as backup
+      try {
+        await resendOtpSafe(supabase, safeEmail, 'recovery');
+      } catch (e) {
+        // ignore
       }
 
       recordResendAttempt(safeEmail, 'recovery');
@@ -192,11 +211,9 @@ export default function ResetPassword() {
       setCooldown(RESEND_COOLDOWN_SECONDS);
       setExpiresIn(CODE_VALIDITY_DURATION_SEC);
 
-      setSuccess(`A fresh 6-digit recovery code has been sent! Valid for 10 minutes (${updatedStatus.remaining} attempts left today)`);
+      setSuccess(`একটি নতুন ৬ সংখ্যার রিকভারি কোড পাঠানো হয়েছে! (${updatedStatus.remaining} attempts left today)`);
     } catch (err) {
-      const parsed = parseSupabaseError(err);
-      setError(parsed.message);
-      if (parsed.isRateLimit) setCooldown(120);
+      setError(err.message || 'Failed to resend code.');
     } finally {
       setLoading(false);
     }

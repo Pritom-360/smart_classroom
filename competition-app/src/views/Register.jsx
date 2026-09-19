@@ -16,6 +16,7 @@ import {
   Timer
 } from 'lucide-react';
 import { supabase } from '../utils/supabase';
+import { verifyOtpSafe, resendOtpSafe, parseSupabaseError } from '../utils/supabaseErrorHelper';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
 import {
   getResendStatus,
@@ -158,43 +159,15 @@ export default function Register() {
       return;
     }
 
-    const safeEmail = email.toLowerCase().trim();
     setOtpLoading(true);
 
     try {
-      // 1. Try 'signup' verification type
-      let { data, error: verifyErr } = await supabase.auth.verifyOtp({
-        email: safeEmail,
-        token: cleanToken,
-        type: 'signup'
-      });
+      // Single verify call — no triple-fallback (prevents multiple 403 errors)
+      const { data, error: verifyErr } = await verifyOtpSafe(supabase, email, cleanToken, 'signup');
 
-      // 2. Fallback to 'email' type if signup type returned error
       if (verifyErr) {
-        const { data: retryData, error: retryErr } = await supabase.auth.verifyOtp({
-          email: safeEmail,
-          token: cleanToken,
-          type: 'email'
-        });
-
-        // 3. Fallback to 'magiclink' if email type also failed
-        if (retryErr) {
-          const { data: magicData, error: magicErr } = await supabase.auth.verifyOtp({
-            email: safeEmail,
-            token: cleanToken,
-            type: 'magiclink'
-          });
-
-          if (magicErr) {
-            throw new Error(
-              verifyErr.message ||
-              'Token has expired or is invalid. If you received multiple emails, please enter the code from the latest email or click Resend.'
-            );
-          }
-          data = magicData;
-        } else {
-          data = retryData;
-        }
+        const parsed = parseSupabaseError(verifyErr);
+        throw new Error(parsed.message);
       }
 
       setOtpSuccess('🎉 Account confirmed and verified successfully! Redirecting...');
@@ -208,7 +181,7 @@ export default function Register() {
 
     } catch (err) {
       console.warn('OTP Verification Notice:', err.message);
-      setOtpError(err.message || 'Token has expired or is invalid. Please check your latest email.');
+      setOtpError(err.message);
     } finally {
       setOtpLoading(false);
     }
@@ -229,12 +202,13 @@ export default function Register() {
     setOtpLoading(true);
 
     try {
-      const { error: resendErr } = await supabase.auth.resend({
-        type: 'signup',
-        email: safeEmail
-      });
+      const { success, parsed } = await resendOtpSafe(supabase, safeEmail, 'signup');
 
-      if (resendErr) throw resendErr;
+      if (!success) {
+        setOtpError(parsed?.message || 'Failed to resend confirmation code.');
+        if (parsed?.isRateLimit) setCooldown(120); // Force 2-min cooldown on Supabase rate limit
+        return;
+      }
 
       recordResendAttempt(safeEmail, 'signup');
       const updatedStatus = getResendStatus(safeEmail, 'signup');
@@ -247,7 +221,9 @@ export default function Register() {
 
       setOtpSuccess(`A fresh 6-digit code has been sent! Valid for 10 minutes (${updatedStatus.remaining} attempts left today)`);
     } catch (err) {
-      setOtpError(err.message || 'Failed to resend confirmation code.');
+      const parsed = parseSupabaseError(err);
+      setOtpError(parsed.message);
+      if (parsed.isRateLimit) setCooldown(120);
     } finally {
       setOtpLoading(false);
     }

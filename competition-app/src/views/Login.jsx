@@ -15,6 +15,7 @@ import {
   Timer
 } from 'lucide-react';
 import { supabase } from '../utils/supabase';
+import { verifyOtpSafe, resendOtpSafe, parseSupabaseError } from '../utils/supabaseErrorHelper';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
 import { getResendStatus, recordResendAttempt, RESEND_COOLDOWN_SECONDS, MAX_DAILY_RESENDS } from '../utils/otpRateLimiter';
 
@@ -150,36 +151,14 @@ export default function Login() {
       return;
     }
 
-    const safeEmail = otpEmail.trim().toLowerCase();
     setOtpLoading(true);
     try {
-      let { data, error: verifyErr } = await supabase.auth.verifyOtp({
-        email: safeEmail,
-        token: cleanToken,
-        type: 'signup'
-      });
+      // Single verify call — no triple-fallback (prevents multiple 403 errors)
+      const { data, error: verifyErr } = await verifyOtpSafe(supabase, otpEmail, cleanToken, 'signup');
 
       if (verifyErr) {
-        const { data: retryData, error: retryErr } = await supabase.auth.verifyOtp({
-          email: safeEmail,
-          token: cleanToken,
-          type: 'email'
-        });
-
-        if (retryErr) {
-          const { error: magicErr } = await supabase.auth.verifyOtp({
-            email: safeEmail,
-            token: cleanToken,
-            type: 'magiclink'
-          });
-
-          if (magicErr) {
-            throw new Error(
-              verifyErr.message ||
-              'Token has expired or is invalid. If you received multiple emails, please enter the code from your newest email or click Resend.'
-            );
-          }
-        }
+        const parsed = parseSupabaseError(verifyErr);
+        throw new Error(parsed.message);
       }
 
       setOtpSuccess('🎉 Email verified successfully! Redirecting to your dashboard...');
@@ -188,7 +167,7 @@ export default function Login() {
       }, 1200);
 
     } catch (err) {
-      setOtpError(err.message || 'Token has expired or is invalid. Please check your latest email.');
+      setOtpError(err.message);
     } finally {
       setOtpLoading(false);
     }
@@ -203,17 +182,24 @@ export default function Login() {
     setOtpSuccess('');
     setOtpLoading(true);
 
-    const targetEmail = otpEmail.trim().toLowerCase();
     try {
-      const { error: resetErr } = await supabase.auth.resetPasswordForEmail(targetEmail);
-      if (resetErr) throw resetErr;
+      const { success, parsed } = await resendOtpSafe(supabase, otpEmail, 'recovery');
+
+      if (!success) {
+        setOtpError(parsed?.message || 'Failed to send reset code.');
+        if (parsed?.isRateLimit) setCooldown(120);
+        setOtpLoading(false);
+        return;
+      }
 
       setViewMode('forgot_verify');
       setExpiresIn(CODE_VALIDITY_DURATION_SEC);
       setCooldown(RESEND_COOLDOWN_SECONDS);
       setOtpSuccess('A 6-digit password reset code has been sent to your email!');
     } catch (err) {
-      setOtpError(err.message || 'Failed to send reset code.');
+      const parsed = parseSupabaseError(err);
+      setOtpError(parsed.message);
+      if (parsed.isRateLimit) setCooldown(120);
     } finally {
       setOtpLoading(false);
     }
@@ -248,17 +234,15 @@ export default function Login() {
       return;
     }
 
-    const safeEmail = otpEmail.trim().toLowerCase();
     setOtpLoading(true);
     try {
-      // Verify Recovery OTP
-      const { error: verifyErr } = await supabase.auth.verifyOtp({
-        email: safeEmail,
-        token: cleanToken,
-        type: 'recovery'
-      });
+      // Single verify call for recovery
+      const { data, error: verifyErr } = await verifyOtpSafe(supabase, otpEmail, cleanToken, 'recovery');
 
-      if (verifyErr) throw verifyErr;
+      if (verifyErr) {
+        const parsed = parseSupabaseError(verifyErr);
+        throw new Error(parsed.message);
+      }
 
       // Update to new password
       const { error: updateErr } = await supabase.auth.updateUser({
@@ -273,7 +257,7 @@ export default function Login() {
       }, 1500);
 
     } catch (err) {
-      setOtpError(err.message || 'Token has expired or is invalid. If you requested multiple codes, please enter the code from your latest email.');
+      setOtpError(err.message);
     } finally {
       setOtpLoading(false);
     }
@@ -297,15 +281,13 @@ export default function Login() {
     setOtpLoading(true);
 
     try {
-      if (type === 'recovery') {
-        const { error: resErr } = await supabase.auth.resetPasswordForEmail(targetEmail);
-        if (resErr) throw resErr;
-      } else {
-        const { error: resErr } = await supabase.auth.resend({
-          type: 'signup',
-          email: targetEmail
-        });
-        if (resErr) throw resErr;
+      const purpose = type === 'recovery' ? 'recovery' : 'signup';
+      const { success, parsed } = await resendOtpSafe(supabase, targetEmail, purpose);
+
+      if (!success) {
+        setOtpError(parsed?.message || 'Failed to resend code.');
+        if (parsed?.isRateLimit) setCooldown(120); // Force 2-min cooldown on Supabase rate limit
+        return;
       }
 
       recordResendAttempt(targetEmail, type);
@@ -316,7 +298,9 @@ export default function Login() {
 
       setOtpSuccess(`A fresh 6-digit code has been sent! Valid for 10 minutes (${updatedStatus.remaining} attempts remaining today)`);
     } catch (err) {
-      setOtpError(err.message || 'Failed to resend code.');
+      const parsed = parseSupabaseError(err);
+      setOtpError(parsed.message);
+      if (parsed.isRateLimit) setCooldown(120);
     } finally {
       setOtpLoading(false);
     }

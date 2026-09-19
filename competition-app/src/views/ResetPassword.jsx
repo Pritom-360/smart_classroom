@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
+import { verifyOtpSafe, resendOtpSafe, parseSupabaseError } from '../utils/supabaseErrorHelper';
 import { useNavigate, Link } from 'react-router-dom';
 import { Lock, CheckCircle2, AlertCircle, Key, Mail, ShieldCheck, RotateCcw, ArrowRight, ArrowLeft, Timer } from 'lucide-react';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
@@ -82,17 +83,24 @@ export default function ResetPassword() {
     setSuccess('');
     setLoading(true);
 
-    const safeEmail = email.trim().toLowerCase();
     try {
-      const { error: resetErr } = await supabase.auth.resetPasswordForEmail(safeEmail);
-      if (resetErr) throw resetErr;
+      const { success, parsed } = await resendOtpSafe(supabase, email, 'recovery');
+
+      if (!success) {
+        setError(parsed?.message || 'Failed to send recovery code.');
+        if (parsed?.isRateLimit) setCooldown(120);
+        setLoading(false);
+        return;
+      }
 
       setStep('verify_and_set');
       setExpiresIn(CODE_VALIDITY_DURATION_SEC);
       setCooldown(RESEND_COOLDOWN_SECONDS);
       setSuccess('A 6-digit password reset code has been sent to your email!');
     } catch (err) {
-      setError(err.message || 'Failed to send recovery code.');
+      const parsed = parseSupabaseError(err);
+      setError(parsed.message);
+      if (parsed.isRateLimit) setCooldown(120);
     } finally {
       setLoading(false);
     }
@@ -125,19 +133,17 @@ export default function ResetPassword() {
       return;
     }
 
-    const safeEmail = email.trim().toLowerCase();
     setLoading(true);
     try {
-      // 1. Verify OTP token for recovery
-      const { error: verifyErr } = await supabase.auth.verifyOtp({
-        email: safeEmail,
-        token: cleanToken,
-        type: 'recovery'
-      });
+      // Single verify call for recovery
+      const { data, error: verifyErr } = await verifyOtpSafe(supabase, email, cleanToken, 'recovery');
 
-      if (verifyErr) throw verifyErr;
+      if (verifyErr) {
+        const parsed = parseSupabaseError(verifyErr);
+        throw new Error(parsed.message);
+      }
 
-      // 2. Update user's password
+      // Update user's password
       const { error: updateErr } = await supabase.auth.updateUser({
         password: password
       });
@@ -150,7 +156,7 @@ export default function ResetPassword() {
       }, 1800);
 
     } catch (err) {
-      setError(err.message || 'Token has expired or is invalid. If you requested multiple codes, please enter the code from your latest email.');
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -172,8 +178,13 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      const { error: resErr } = await supabase.auth.resetPasswordForEmail(safeEmail);
-      if (resErr) throw resErr;
+      const { success, parsed } = await resendOtpSafe(supabase, safeEmail, 'recovery');
+
+      if (!success) {
+        setError(parsed?.message || 'Failed to resend code.');
+        if (parsed?.isRateLimit) setCooldown(120);
+        return;
+      }
 
       recordResendAttempt(safeEmail, 'recovery');
       const updatedStatus = getResendStatus(safeEmail, 'recovery');
@@ -183,7 +194,9 @@ export default function ResetPassword() {
 
       setSuccess(`A fresh 6-digit recovery code has been sent! Valid for 10 minutes (${updatedStatus.remaining} attempts left today)`);
     } catch (err) {
-      setError(err.message || 'Failed to resend code.');
+      const parsed = parseSupabaseError(err);
+      setError(parsed.message);
+      if (parsed.isRateLimit) setCooldown(120);
     } finally {
       setLoading(false);
     }

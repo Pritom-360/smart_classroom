@@ -53,7 +53,9 @@ export default function App() {
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Hub />} />
+              <Route path="/:id" element={<CompetitionDetails />} />
               <Route path="/competition/:id" element={<CompetitionDetails />} />
+              <Route path="/challenge/:id" element={<CompetitionDetails />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/leaderboard" element={<GlobalLeaderboard />} />

@@ -142,7 +142,7 @@ export default function Hub() {
               {activeComps.map(comp => (
                 <Link
                   key={comp.id}
-                  to={`/competition/${comp.id}`}
+                  to={`/${comp.id}`}
                   className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:border-indigo-500 hover:ring-1 hover:ring-indigo-500 shadow-md hover:shadow-indigo-500/5 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div className="space-y-4">
@@ -193,7 +193,7 @@ export default function Hub() {
               {completedComps.map(comp => (
                 <Link
                   key={comp.id}
-                  to={`/competition/${comp.id}`}
+                  to={`/${comp.id}`}
                   className="group bg-slate-50/50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-amber-500 hover:ring-1 hover:ring-amber-500 opacity-80 hover:opacity-100 shadow-sm transition-all duration-300 flex flex-col justify-between"
                 >
                   <div className="space-y-3">

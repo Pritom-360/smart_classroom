@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
 import { useNavigate, Link } from 'react-router-dom';
-import { Lock, CheckCircle2, AlertCircle, Key, Mail, ShieldCheck, RotateCcw, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Lock, CheckCircle2, AlertCircle, Key, Mail, ShieldCheck, RotateCcw, ArrowRight, ArrowLeft, Timer } from 'lucide-react';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
 import { getResendStatus, recordResendAttempt, RESEND_COOLDOWN_SECONDS, MAX_DAILY_RESENDS } from '../utils/otpRateLimiter';
+
+const CODE_VALIDITY_DURATION_SEC = 600; // 10 minutes code validity
 
 export default function ResetPassword() {
   useDocumentMetadata({
@@ -26,13 +28,16 @@ export default function ResetPassword() {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Live Code Expiration Timer (10 Minutes)
+  const [expiresIn, setExpiresIn] = useState(CODE_VALIDITY_DURATION_SEC);
+
   // Rate Limiting Cooldown State
   const [cooldown, setCooldown] = useState(0);
   const [resendStatus, setResendStatus] = useState(() => getResendStatus(email, 'recovery'));
 
   useEffect(() => {
     if (email) {
-      setResendStatus(getResendStatus(email, 'recovery'));
+      setResendStatus(getResendStatus(email.trim().toLowerCase(), 'recovery'));
     }
   }, [email]);
 
@@ -46,6 +51,30 @@ export default function ResetPassword() {
     return () => clearInterval(timer);
   }, [cooldown]);
 
+  // Code Expiration countdown timer (10 mins)
+  useEffect(() => {
+    let timer;
+    if (step === 'verify_and_set' && expiresIn > 0) {
+      timer = setInterval(() => {
+        setExpiresIn(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [step, expiresIn]);
+
+  // Format seconds to MM:SS string
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   // Step 1: Send 6-Digit Code
   const handleRequestCode = async (e) => {
     e.preventDefault();
@@ -53,11 +82,13 @@ export default function ResetPassword() {
     setSuccess('');
     setLoading(true);
 
+    const safeEmail = email.trim().toLowerCase();
     try {
-      const { error: resetErr } = await supabase.auth.resetPasswordForEmail(email.trim());
+      const { error: resetErr } = await supabase.auth.resetPasswordForEmail(safeEmail);
       if (resetErr) throw resetErr;
 
       setStep('verify_and_set');
+      setExpiresIn(CODE_VALIDITY_DURATION_SEC);
       setCooldown(RESEND_COOLDOWN_SECONDS);
       setSuccess('A 6-digit password reset code has been sent to your email!');
     } catch (err) {
@@ -73,8 +104,14 @@ export default function ResetPassword() {
     setError('');
     setSuccess('');
 
-    if (otpCode.trim().length < 6) {
+    const cleanToken = otpCode.replace(/\s+/g, '').trim();
+    if (!cleanToken || cleanToken.length < 6) {
       setError('Please enter the full 6-digit reset code.');
+      return;
+    }
+
+    if (expiresIn === 0) {
+      setError('⚠️ This 6-digit code has expired (10 minutes limit). Please click "Resend Code" below to receive a fresh code.');
       return;
     }
 
@@ -88,12 +125,13 @@ export default function ResetPassword() {
       return;
     }
 
+    const safeEmail = email.trim().toLowerCase();
     setLoading(true);
     try {
       // 1. Verify OTP token for recovery
       const { error: verifyErr } = await supabase.auth.verifyOtp({
-        email: email.trim(),
-        token: otpCode.trim(),
+        email: safeEmail,
+        token: cleanToken,
         type: 'recovery'
       });
 
@@ -112,7 +150,7 @@ export default function ResetPassword() {
       }, 1800);
 
     } catch (err) {
-      setError(err.message || 'Failed to verify code or reset password.');
+      setError(err.message || 'Token has expired or is invalid. If you requested multiple codes, please enter the code from your latest email.');
     } finally {
       setLoading(false);
     }
@@ -121,7 +159,8 @@ export default function ResetPassword() {
   // Resend Helper
   const handleResend = async () => {
     if (cooldown > 0) return;
-    const status = getResendStatus(email, 'recovery');
+    const safeEmail = email.trim().toLowerCase();
+    const status = getResendStatus(safeEmail, 'recovery');
 
     if (status.isMaxed) {
       setError('⚠️ You have reached the maximum limit of 3 resends for today. Please check your Spam folder or try again tomorrow.');
@@ -133,21 +172,25 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      const { error: resErr } = await supabase.auth.resetPasswordForEmail(email.trim());
+      const { error: resErr } = await supabase.auth.resetPasswordForEmail(safeEmail);
       if (resErr) throw resErr;
 
-      recordResendAttempt(email, 'recovery');
-      const updatedStatus = getResendStatus(email, 'recovery');
+      recordResendAttempt(safeEmail, 'recovery');
+      const updatedStatus = getResendStatus(safeEmail, 'recovery');
       setResendStatus(updatedStatus);
       setCooldown(RESEND_COOLDOWN_SECONDS);
+      setExpiresIn(CODE_VALIDITY_DURATION_SEC);
 
-      setSuccess(`A new recovery code has been sent! (${updatedStatus.remaining} attempts left today)`);
+      setSuccess(`A fresh 6-digit recovery code has been sent! Valid for 10 minutes (${updatedStatus.remaining} attempts left today)`);
     } catch (err) {
       setError(err.message || 'Failed to resend code.');
     } finally {
       setLoading(false);
     }
   };
+
+  const isExpired = expiresIn === 0;
+  const isLowTime = expiresIn > 0 && expiresIn < 120;
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
@@ -167,10 +210,35 @@ export default function ResetPassword() {
           </p>
         </div>
 
+        {/* Live Expiration Countdown Badge in Step 2 */}
+        {step === 'verify_and_set' && (
+          <div className="flex items-center justify-center">
+            <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-black border transition-all ${
+              isExpired
+                ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border-red-200 dark:border-red-900'
+                : isLowTime
+                ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800 animate-pulse'
+                : 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-800'
+            }`}>
+              <Timer className="w-4 h-4" />
+              <span>
+                {isExpired ? 'Code Expired (00:00)' : `Code Valid for: ${formatTime(expiresIn)} min`}
+              </span>
+            </div>
+          </div>
+        )}
+
         {error && (
           <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-2xl p-4 flex items-start gap-3 text-red-700 dark:text-red-400 text-xs font-bold animate-in fade-in">
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-            <span>{error}</span>
+            <div className="space-y-1">
+              <p>{error}</p>
+              {(error.includes('expired') || error.includes('invalid')) && (
+                <p className="text-[11px] font-medium text-red-600/90 dark:text-red-400/90">
+                  💡 If you requested multiple codes, only the <strong>latest code</strong> from your newest email is valid.
+                </p>
+              )}
+            </div>
           </div>
         )}
 
@@ -224,7 +292,7 @@ export default function ResetPassword() {
                 maxLength={6}
                 value={otpCode}
                 onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))}
-                placeholder="1 2 3 4 5 6"
+                placeholder="0 2 0 4 5 3"
                 className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-indigo-200 dark:border-indigo-900/60 focus:border-indigo-600 rounded-xl px-4 py-2.5 text-center text-xl font-black tracking-[0.3em] outline-none dark:text-white"
                 autoFocus
               />
@@ -260,7 +328,7 @@ export default function ResetPassword() {
 
             <button
               type="submit"
-              disabled={loading || otpCode.length < 6}
+              disabled={loading || otpCode.length < 6 || isExpired}
               className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold rounded-2xl shadow-lg shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-60 cursor-pointer mt-2"
             >
               {loading ? (
@@ -281,13 +349,19 @@ export default function ResetPassword() {
                 type="button"
                 disabled={cooldown > 0 || resendStatus.isMaxed || loading}
                 onClick={handleResend}
-                className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/60 text-xs font-bold text-slate-700 dark:text-slate-300 disabled:opacity-50 cursor-pointer transition-all flex items-center justify-center gap-2"
+                className={`w-full py-2.5 px-4 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                  isExpired
+                    ? 'bg-indigo-600 hover:bg-indigo-700 text-white border-indigo-700 shadow-md shadow-indigo-600/20'
+                    : 'border-slate-200 dark:border-slate-800 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300'
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 {resendStatus.isMaxed ? (
                   'Daily Limit Reached (3/3)'
                 ) : cooldown > 0 ? (
                   `Resend Code in ${cooldown}s...`
+                ) : isExpired ? (
+                  '🔄 Request Fresh 6-Digit Code'
                 ) : (
                   `Resend Code (${resendStatus.remaining} left today)`
                 )}

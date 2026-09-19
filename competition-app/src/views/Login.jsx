@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import { supabase } from '../utils/supabase';
 import { verifyOtpSafe, resendOtpSafe, parseSupabaseError } from '../utils/supabaseErrorHelper';
-import { generateOtpCode, sendOtpEmail, verifyOtpCode } from '../utils/otpService';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
 import { getResendStatus, recordResendAttempt, RESEND_COOLDOWN_SECONDS, MAX_DAILY_RESENDS } from '../utils/otpRateLimiter';
 
@@ -143,21 +142,16 @@ export default function Login() {
       navigate('/dashboard');
     } catch (err) {
       const msg = err.message || '';
-      // If the email is unconfirmed, automatically route to the OTP confirmation view & send fresh 6-digit OTP
+      // If the email is unconfirmed, automatically route to the OTP confirmation view
       if (msg.toLowerCase().includes('confirm') || msg.toLowerCase().includes('verified') || msg.toLowerCase().includes('not confirmed')) {
         const safeEmail = email.trim().toLowerCase();
         setOtpEmail(safeEmail);
         setOtpCode('');
         setOtpError('');
-        
-        // Auto-generate and send custom 6-digit OTP directly to user inbox
-        const code = generateOtpCode();
-        sendOtpEmail(safeEmail, '', code, 'signup');
-
-        setOtpSuccess(`আপনার ইমেইলে একটি ৬-সংখ্যার ওটিপি কোড পাঠানো হয়েছে! (6-digit confirmation code sent to ${safeEmail})`);
+        setOtpSuccess(`আপনার ইমেইলে পাঠানো ৬-সংখ্যার ওটিপি কোডটি লিখুন: ${safeEmail}`);
         setViewMode('unconfirmed_verify');
         setExpiresIn(CODE_VALIDITY_DURATION_SEC);
-        setCooldown(RESEND_COOLDOWN_SECONDS);
+        setCooldown(0);
       } else {
         setError(msg || 'Invalid login credentials.');
       }
@@ -189,28 +183,7 @@ export default function Login() {
     try {
       const targetEmail = (otpEmail || email).toLowerCase().trim();
 
-      // 1. Check Custom 6-digit OTP first (100% guaranteed)
-      const customCheck = verifyOtpCode(targetEmail, cleanToken, 'signup');
-
-      if (customCheck.success) {
-        setOtpSuccess('🎉 ওটিপি কোড সঠিক হয়েছে! ড্যাশবোর্ডে নিয়ে যাওয়া হচ্ছে...');
-        if (password) {
-          try {
-            await supabase.auth.signInWithPassword({
-              email: targetEmail,
-              password: password,
-            });
-          } catch (e) {
-            // ignore
-          }
-        }
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 1000);
-        return;
-      }
-
-      // 2. Backup: Supabase verifyOtpSafe
+      // Verify 6-digit OTP code directly with Supabase
       const { data, error: verifyErr } = await verifyOtpSafe(supabase, targetEmail, cleanToken, 'signup');
 
       if (!verifyErr) {
@@ -221,8 +194,27 @@ export default function Login() {
         return;
       }
 
-      // If both fail
-      setOtpError(customCheck.message || '❌ ভুল ওটিপি কোড। আপনার ইমেইলে পাওয়া ৬ সংখ্যার কোডটি দিন।');
+      // If user already clicked the email link, sign in automatically
+      if (password) {
+        try {
+          const { data: signInData, error: signInErr } = await supabase.auth.signInWithPassword({
+            email: targetEmail,
+            password: password,
+          });
+          if (!signInErr && signInData?.session) {
+            setOtpSuccess('🎉 অ্যাকাউন্টটি ইতিমধ্যেই ভেরিফাইড হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+            setTimeout(() => {
+              navigate('/dashboard');
+            }, 1000);
+            return;
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      const parsed = parseSupabaseError(verifyErr);
+      setOtpError(parsed.message || '❌ ভুল ওটিপি কোড। আপনার ইমেইলে পাওয়া ৬ সংখ্যার কোডটি দিন।');
 
     } catch (err) {
       setOtpError(err.message || 'Failed to verify code.');
@@ -276,16 +268,13 @@ export default function Login() {
 
     try {
       const targetEmail = otpEmail.toLowerCase().trim();
-      
-      // 1. Generate real 6-digit recovery OTP and send via EmailJS
-      const code = generateOtpCode();
-      await sendOtpEmail(targetEmail, '', code, 'recovery');
+      const { success, parsed } = await resendOtpSafe(supabase, targetEmail, 'recovery');
 
-      // 2. Also trigger Supabase recovery as backup
-      try {
-        await resendOtpSafe(supabase, targetEmail, 'recovery');
-      } catch (e) {
-        // ignore
+      if (!success) {
+        setOtpError(parsed?.message || 'Failed to send recovery code.');
+        if (parsed?.isRateLimit) setCooldown(120);
+        setOtpLoading(false);
+        return;
       }
 
       setViewMode('forgot_verify');
@@ -332,37 +321,22 @@ export default function Login() {
     try {
       const targetEmail = otpEmail.toLowerCase().trim();
 
-      // 1. Check custom recovery OTP
-      const customCheck = verifyOtpCode(targetEmail, cleanToken, 'recovery');
-
-      if (customCheck.success) {
-        // Update user password in Supabase
-        try {
-          await supabase.auth.updateUser({ password: newPassword });
-        } catch (e) {
-          // ignore
-        }
-
-        setOtpSuccess('🎉 পাসওয়ার্ড সফলভাবে পরিবর্তন করা হয়েছে! ড্যাশবোর্ডে নিয়ে যাওয়া হচ্ছে...');
-        setTimeout(() => {
-          navigate('/login');
-        }, 1200);
-        return;
-      }
-
-      // 2. Backup: Supabase verifyOtpSafe for recovery
+      // Verify recovery OTP directly with Supabase
       const { data, error: verifyErr } = await verifyOtpSafe(supabase, targetEmail, cleanToken, 'recovery');
 
-      if (!verifyErr) {
-        await supabase.auth.updateUser({ password: newPassword });
-        setOtpSuccess('🎉 Password reset successfully! Redirecting to dashboard...');
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 1200);
-        return;
+      if (verifyErr) {
+        const parsed = parseSupabaseError(verifyErr);
+        throw new Error(parsed.message);
       }
 
-      setOtpError(customCheck.message || '❌ ভুল ওটিপি কোড। আপনার ইমেইলে পাওয়া ৬ সংখ্যার কোডটি দিন।');
+      // Update password
+      const { error: updateErr } = await supabase.auth.updateUser({ password: newPassword });
+      if (updateErr) throw updateErr;
+
+      setOtpSuccess('🎉 Password reset successfully! Redirecting to dashboard...');
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1200);
 
     } catch (err) {
       setOtpError(err.message || 'Failed to reset password.');
@@ -390,16 +364,12 @@ export default function Login() {
 
     try {
       const purpose = type === 'recovery' ? 'recovery' : 'signup';
+      const { success, parsed } = await resendOtpSafe(supabase, targetEmail, purpose);
 
-      // 1. Generate and send fresh 6-digit OTP via EmailJS
-      const code = generateOtpCode();
-      await sendOtpEmail(targetEmail, '', code, purpose);
-
-      // 2. Also call Supabase resend as backup
-      try {
-        await resendOtpSafe(supabase, targetEmail, purpose);
-      } catch (e) {
-        // ignore
+      if (!success) {
+        setOtpError(parsed?.message || 'Failed to resend code.');
+        if (parsed?.isRateLimit) setCooldown(120);
+        return;
       }
 
       recordResendAttempt(targetEmail, type);

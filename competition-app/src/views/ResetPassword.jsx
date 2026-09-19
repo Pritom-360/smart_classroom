@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
 import { verifyOtpSafe, resendOtpSafe, parseSupabaseError } from '../utils/supabaseErrorHelper';
-import { generateOtpCode, sendOtpEmail, verifyOtpCode } from '../utils/otpService';
 import { useNavigate, Link } from 'react-router-dom';
 import { Lock, CheckCircle2, AlertCircle, Key, Mail, ShieldCheck, RotateCcw, ArrowRight, ArrowLeft, Timer } from 'lucide-react';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';

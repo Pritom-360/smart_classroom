@@ -311,18 +311,17 @@ export default function ResetPassword() {
           <form onSubmit={handleVerifyAndSet} className="space-y-4">
             <div className="space-y-1.5">
               <label className="text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                6-Digit Recovery Code
+                Recovery Code (OTP)
               </label>
               <input
                 required
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]*"
-                maxLength={6}
+                maxLength={10}
                 value={otpCode}
-                onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))}
-                placeholder="0 2 0 4 5 3"
-                className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-indigo-200 dark:border-indigo-900/60 focus:border-indigo-600 rounded-xl px-4 py-2.5 text-center text-xl font-black tracking-[0.3em] outline-none dark:text-white"
+                onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9a-zA-Z]/g, '').trim())}
+                placeholder="e.g. 62524107"
+                className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-indigo-200 dark:border-indigo-900/60 focus:border-indigo-600 rounded-xl px-4 py-2.5 text-center text-lg font-black tracking-[0.2em] outline-none dark:text-white"
                 autoFocus
               />
             </div>
@@ -338,6 +337,7 @@ export default function ResetPassword() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
                 placeholder="•••••••• (min 6 characters)"
+                minLength={6}
               />
             </div>
 

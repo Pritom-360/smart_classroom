@@ -408,7 +408,7 @@ export default function Register() {
           <form onSubmit={handleVerifyOtp} className="space-y-5">
             <div className="space-y-2">
               <label className="text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                <span>6-Digit Confirmation Code</span>
+                <span>Confirmation Code (OTP)</span>
                 <span className="text-[10px] text-indigo-600 font-bold lowercase">from email</span>
               </label>
               
@@ -416,19 +416,18 @@ export default function Register() {
                 required
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]*"
-                maxLength={6}
+                maxLength={10}
                 value={otpCode}
-                onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))}
-                placeholder="0 2 0 4 5 3"
-                className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-indigo-200 dark:border-indigo-900/60 focus:border-indigo-600 rounded-2xl px-4 py-3.5 text-center text-2xl sm:text-3xl font-black tracking-[0.4em] outline-none transition-all dark:text-white"
+                onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9a-zA-Z]/g, '').trim())}
+                placeholder="e.g. 62524107"
+                className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-indigo-200 dark:border-indigo-900/60 focus:border-indigo-600 rounded-2xl px-4 py-3.5 text-center text-xl sm:text-2xl font-black tracking-[0.25em] outline-none transition-all dark:text-white"
                 autoFocus
               />
             </div>
 
             <button
               type="submit"
-              disabled={otpLoading || otpCode.length < 6 || isExpired}
+              disabled={otpLoading || otpCode.trim().length < 6 || isExpired}
               className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold rounded-2xl shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
             >
               {otpLoading ? (

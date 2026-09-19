@@ -1,97 +1,326 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, Lock, UserPlus, AlertCircle } from 'lucide-react';
+import { Mail, Lock, UserPlus, AlertCircle, CheckCircle2, ShieldCheck, ArrowRight, RotateCcw, Clock, ArrowLeft } from 'lucide-react';
+import { supabase } from '../utils/supabase';
 import useDocumentMetadata from '../hooks/useDocumentMetadata';
+import { getResendStatus, recordResendAttempt, RESEND_COOLDOWN_SECONDS, MAX_DAILY_RESENDS } from '../utils/otpRateLimiter';
 
 export default function Register() {
   useDocumentMetadata({
-    title: 'Sign Up - Catalyst Competitions',
-    description: 'Create your Smart Classroom competition account to join research and robotics challenges, build badges, and upload project files.',
+    title: 'Sign Up & Email Confirmation - Catalyst Competitions',
+    description: 'Create and verify your Smart Classroom competition account to join research and robotics challenges, build badges, and upload project files.',
     canonicalUrl: 'https://www.catalyst-smart-classroom.me/competition.html#/register'
   });
 
   const { signUp } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  // Registration Form State
   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState(() => {
+    return sessionStorage.getItem('catalyst_pending_verify_email') || '';
+  });
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (e) => {
+  // OTP Verification State (persisted so hard refresh won't lose the screen)
+  const [isVerifying, setIsVerifying] = useState(() => {
+    return Boolean(sessionStorage.getItem('catalyst_pending_verify_email'));
+  });
+  const [otpCode, setOtpCode] = useState('');
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpError, setOtpError] = useState('');
+  const [otpSuccess, setOtpSuccess] = useState('');
+
+  // Resend Cooldown & Limit State
+  const [cooldown, setCooldown] = useState(0);
+  const [resendStatus, setResendStatus] = useState(() => getResendStatus(email, 'signup'));
+
+  useEffect(() => {
+    if (email) {
+      setResendStatus(getResendStatus(email, 'signup'));
+    }
+  }, [email]);
+
+  // Cooldown countdown timer
+  useEffect(() => {
+    let timer;
+    if (cooldown > 0) {
+      timer = setInterval(() => {
+        setCooldown(prev => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [cooldown]);
+
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      setLoading(false);
+      return;
+    }
+
     try {
-      await signUp(email, password, fullName);
-      setSuccess(true);
+      const data = await signUp(email, password, fullName);
+      // Store in session storage so hard refresh preserves verification view
+      sessionStorage.setItem('catalyst_pending_verify_email', email);
+      sessionStorage.setItem('catalyst_pending_verify_name', fullName);
+
+      setIsVerifying(true);
+      setCooldown(RESEND_COOLDOWN_SECONDS);
+      setOtpSuccess('A 6-digit confirmation code has been sent to your email!');
     } catch (err) {
-      setError(err.message || 'Failed to register.');
+      setError(err.message || 'Failed to register account.');
     } finally {
       setLoading(false);
     }
   };
 
-  if (success) {
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    setOtpError('');
+    setOtpSuccess('');
+
+    const cleanToken = otpCode.trim();
+    if (!cleanToken || cleanToken.length < 6) {
+      setOtpError('Please enter the complete 6-digit confirmation code.');
+      return;
+    }
+
+    setOtpLoading(true);
+    try {
+      // First attempt with type: 'signup'
+      let { data, error: verifyErr } = await supabase.auth.verifyOtp({
+        email: email.trim(),
+        token: cleanToken,
+        type: 'signup'
+      });
+
+      // If signup type fails, try email type
+      if (verifyErr) {
+        const { data: retryData, error: retryErr } = await supabase.auth.verifyOtp({
+          email: email.trim(),
+          token: cleanToken,
+          type: 'email'
+        });
+        if (retryErr) throw retryErr;
+        data = retryData;
+      }
+
+      setOtpSuccess('🎉 Account confirmed and verified successfully! Redirecting...');
+      sessionStorage.removeItem('catalyst_pending_verify_email');
+      sessionStorage.removeItem('catalyst_pending_verify_name');
+
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1200);
+
+    } catch (err) {
+      setOtpError(err.message || 'Invalid or expired confirmation code. Please check and try again.');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleResendCode = async () => {
+    if (cooldown > 0) return;
+    const status = getResendStatus(email, 'signup');
+    if (status.isMaxed) {
+      setOtpError('⚠️ You have reached the maximum limit of 3 resends for today. Please check your Spam folder or try again tomorrow.');
+      return;
+    }
+
+    setOtpError('');
+    setOtpSuccess('');
+    setOtpLoading(true);
+
+    try {
+      const { error: resendErr } = await supabase.auth.resend({
+        type: 'signup',
+        email: email.trim()
+      });
+
+      if (resendErr) throw resendErr;
+
+      recordResendAttempt(email, 'signup');
+      const updatedStatus = getResendStatus(email, 'signup');
+      setResendStatus(updatedStatus);
+      setCooldown(RESEND_COOLDOWN_SECONDS);
+
+      setOtpSuccess(`A new confirmation code has been sent! (${updatedStatus.remaining} attempts left today)`);
+    } catch (err) {
+      setOtpError(err.message || 'Failed to resend confirmation code.');
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleSwitchAccount = () => {
+    sessionStorage.removeItem('catalyst_pending_verify_email');
+    sessionStorage.removeItem('catalyst_pending_verify_name');
+    setIsVerifying(false);
+    setOtpCode('');
+    setOtpError('');
+    setOtpSuccess('');
+  };
+
+  // -------------------------------------------------------------
+  // VIEW: 6-Digit OTP Verification Screen
+  // -------------------------------------------------------------
+  if (isVerifying) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-        <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl rounded-2xl p-8 text-center space-y-6 transition-colors duration-300">
-          <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mx-auto animate-bounce">
-            <Mail className="w-8 h-8" />
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Verify Your Email</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
-              A verification link has been sent to <span className="font-extrabold text-slate-850 dark:text-slate-205">{email}</span>.
-            </p>
-          </div>
+        <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl rounded-3xl p-6 sm:p-8 space-y-6 transition-colors duration-300">
           
-          <div className="bg-amber-55/60 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 rounded-xl p-4 text-xs text-amber-850 dark:text-amber-400 space-y-2.5 leading-relaxed text-left">
-            <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-900 dark:text-amber-300">
-              <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" /> Important Instructions:
+          <div className="text-center space-y-2">
+            <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto shadow-sm">
+              <ShieldCheck className="w-7 h-7" />
             </div>
-            <p>
-              1. 📧 **Check your email inbox** and click the confirmation link to activate your account.
-            </p>
-            <p>
-              2. 🔍 **Spam / Promotion Folders**: If you don't receive the email within a couple of minutes, please check your **Spam**, **Junk**, or **Promotions** folder, as authentication emails sometimes get routed there.
+            <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+              Enter Confirmation Code
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
+              We sent a 6-digit confirmation code to <br />
+              <strong className="text-slate-800 dark:text-slate-200">{email}</strong>
             </p>
           </div>
 
-          <Link
-            to="/login"
-            className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-indigo-500/30 transition-all text-sm text-center"
-          >
-            Go to Login
-          </Link>
+          {/* Feedback Alerts */}
+          {otpError && (
+            <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-2xl p-3.5 flex items-start gap-2.5 text-red-700 dark:text-red-400 text-xs font-bold animate-in fade-in">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+              <span>{otpError}</span>
+            </div>
+          )}
+
+          {otpSuccess && (
+            <div className="bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 rounded-2xl p-3.5 flex items-start gap-2.5 text-emerald-700 dark:text-emerald-400 text-xs font-bold animate-in fade-in">
+              <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
+              <span>{otpSuccess}</span>
+            </div>
+          )}
+
+          {/* OTP Verification Form */}
+          <form onSubmit={handleVerifyOtp} className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-xs font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                <span>6-Digit Confirmation Code</span>
+                <span className="text-[10px] text-indigo-600 font-bold lowercase">from email</span>
+              </label>
+              
+              <input
+                required
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={6}
+                value={otpCode}
+                onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ''))}
+                placeholder="1 2 3 4 5 6"
+                className="w-full bg-slate-50 dark:bg-slate-950 border-2 border-indigo-200 dark:border-indigo-900/60 focus:border-indigo-600 rounded-2xl px-4 py-3.5 text-center text-2xl sm:text-3xl font-black tracking-[0.4em] outline-none transition-all dark:text-white"
+                autoFocus
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={otpLoading || otpCode.length < 6}
+              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold rounded-2xl shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+            >
+              {otpLoading ? (
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <>Confirm & Activate Account <ArrowRight className="w-4 h-4" /></>
+              )}
+            </button>
+          </form>
+
+          {/* Resend Code Section with Daily Rate Limit */}
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800 text-center space-y-3">
+            <div className="flex items-center justify-between text-xs font-bold text-slate-500 dark:text-slate-400 px-1">
+              <span>Resends today: <strong className="text-slate-800 dark:text-slate-200">{resendStatus.count}/{MAX_DAILY_RESENDS}</strong></span>
+              <span>{resendStatus.remaining} remaining</span>
+            </div>
+
+            <button
+              type="button"
+              disabled={cooldown > 0 || resendStatus.isMaxed || otpLoading}
+              onClick={handleResendCode}
+              className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              {resendStatus.isMaxed ? (
+                'Daily Resend Limit Reached (3/3)'
+              ) : cooldown > 0 ? (
+                `Resend Code in ${cooldown}s...`
+              ) : (
+                `Resend Confirmation Code (${resendStatus.remaining} left today)`
+              )}
+            </button>
+          </div>
+
+          {/* Prominent Spam / Promotions Folder Notice */}
+          <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl p-4 text-xs text-amber-900 dark:text-amber-300 space-y-2 leading-relaxed">
+            <div className="flex items-center gap-1.5 font-black uppercase tracking-wider text-amber-800 dark:text-amber-400">
+              <AlertCircle className="w-4 h-4 shrink-0" /> Important Email Notice:
+            </div>
+            <p>
+              🔍 <strong>Check Your Spam / Junk Folder:</strong> If you don't find the code in your main inbox within a minute, please check your <strong>Spam</strong>, <strong>Junk</strong>, or <strong>Promotions</strong> folder.
+            </p>
+            <p className="text-[11px] text-amber-800/80 dark:text-amber-400/80">
+              ⏰ Daily safety rule: Maximum 3 resend attempts allowed per day to prevent automated spam abuse.
+            </p>
+          </div>
+
+          <div className="text-center pt-1">
+            <button
+              type="button"
+              onClick={handleSwitchAccount}
+              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1 cursor-pointer"
+            >
+              <ArrowLeft className="w-3 h-3" /> Change email address or register again
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
+  // -------------------------------------------------------------
+  // VIEW: Registration Input Form
+  // -------------------------------------------------------------
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl rounded-2xl p-8 transition-colors duration-300">
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex items-center justify-center text-indigo-600 dark:text-indigo-400 mx-auto mb-4">
-            <UserPlus className="w-6 h-6" />
+      <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl rounded-3xl p-6 sm:p-8 space-y-6 transition-colors duration-300">
+        
+        <div className="text-center space-y-2">
+          <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto shadow-sm">
+            <UserPlus className="w-7 h-7" />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight">Create Account</h2>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Get started with Catalyst Competitions</p>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            Create Account
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">
+            Join Catalyst research & robotics competitions
+          </p>
         </div>
 
         {error && (
-          <div className="bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 rounded-lg p-4 mb-6 flex items-start gap-3 text-red-700 dark:text-red-400 text-sm">
-            <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+          <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-2xl p-4 flex items-start gap-3 text-red-700 dark:text-red-400 text-xs font-bold">
+            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
+        <form onSubmit={handleRegisterSubmit} className="space-y-4">
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
               Full Name
             </label>
             <input
@@ -99,52 +328,56 @@ export default function Register() {
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
-              placeholder="Arup Bhowmik"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white font-medium"
+              placeholder="e.g. Arup Bhowmik Pritom"
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
-              <Mail className="w-4 h-4" /> Email Address
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+              <Mail className="w-3.5 h-3.5" /> Email Address
             </label>
             <input
               required
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white font-medium"
               placeholder="you@example.com"
             />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-2">
-              <Lock className="w-4 h-4" /> Password
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+              <Lock className="w-3.5 h-3.5" /> Password
             </label>
             <input
               required
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
-              placeholder="••••••••"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white font-medium"
+              placeholder="•••••••• (min 6 characters)"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-indigo-500/30 transition-all flex justify-center items-center gap-2 disabled:opacity-75"
+            className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold rounded-2xl shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 transition-all flex justify-center items-center gap-2 text-sm disabled:opacity-75 cursor-pointer mt-2"
           >
-            {loading ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div> : 'Register Account'}
+            {loading ? (
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            ) : (
+              <>Register & Get 6-Digit Code <ArrowRight className="w-4 h-4" /></>
+            )}
           </button>
         </form>
 
-        <div className="text-center mt-6 text-sm text-slate-500 dark:text-slate-400">
-          Already have an account?{' '}
-          <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">
-            Login here
+        <div className="text-center text-xs text-slate-500 dark:text-slate-400 font-medium">
+          Already registered?{' '}
+          <Link to="/login" className="text-indigo-600 dark:text-indigo-400 font-extrabold hover:underline">
+            Sign in here
           </Link>
         </div>
       </div>

@@ -157,6 +157,25 @@ export default function Login() {
       const { data, error: verifyErr } = await verifyOtpSafe(supabase, otpEmail, cleanToken, 'signup');
 
       if (verifyErr) {
+        // Smart Fallback: Check if user is already verified (e.g. clicked email confirmation link)
+        if (password) {
+          try {
+            const { data: signInData, error: signInErr } = await supabase.auth.signInWithPassword({
+              email: otpEmail,
+              password: password,
+            });
+            if (!signInErr && signInData?.session) {
+              setOtpSuccess('🎉 অ্যাকাউন্টটি ইতিমধ্যেই ভেরিফাইড হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+              setTimeout(() => {
+                navigate('/dashboard');
+              }, 1200);
+              return;
+            }
+          } catch (e) {
+            // Ignore
+          }
+        }
+
         const parsed = parseSupabaseError(verifyErr);
         throw new Error(parsed.message);
       }
@@ -168,6 +187,40 @@ export default function Login() {
 
     } catch (err) {
       setOtpError(err.message);
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleCheckEmailLink = async () => {
+    setOtpError('');
+    setOtpSuccess('');
+    setOtpLoading(true);
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setOtpSuccess('🎉 অ্যাকাউন্টটি সফলভাবে ভেরিফাই হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+        setTimeout(() => navigate('/dashboard'), 1000);
+        return;
+      }
+
+      const targetEmail = (otpEmail || email).toLowerCase().trim();
+      if (password) {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: targetEmail,
+          password: password,
+        });
+        if (!error && data?.session) {
+          setOtpSuccess('🎉 অ্যাকাউন্টটি সফলভাবে ভেরিফাই হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+          setTimeout(() => navigate('/dashboard'), 1000);
+          return;
+        }
+      }
+
+      setOtpError('⚠️ ইমেইলটি এখনো ভেরিফাই হয়নি। আপনার ইনবক্সে পাঠানো "Confirm My Email" লিঙ্কে ক্লিক করুন অথবা ৬ সংখ্যার কোডটি দিন।');
+    } catch (err) {
+      setOtpError(err.message || 'Verification check failed.');
     } finally {
       setOtpLoading(false);
     }
@@ -431,13 +484,28 @@ export default function Login() {
               </button>
             </div>
 
+            {/* Alternative: Link Verification Check Button */}
+            <div className="pt-2">
+              <button
+                type="button"
+                disabled={otpLoading}
+                onClick={handleCheckEmailLink}
+                className="w-full py-2.5 px-4 rounded-xl border border-indigo-200 dark:border-indigo-800/60 bg-indigo-50/50 hover:bg-indigo-50 dark:bg-indigo-950/20 dark:hover:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>🔗 Clicked the link in email? Click here to continue</span>
+              </button>
+            </div>
+
             {/* Spam Folder Reminder */}
             <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl p-4 text-xs text-amber-900 dark:text-amber-300 space-y-1.5 leading-relaxed">
               <div className="flex items-center gap-1.5 font-black uppercase tracking-wider text-amber-800 dark:text-amber-400">
-                <AlertCircle className="w-4 h-4 shrink-0" /> Check Spam Folder
+                <AlertCircle className="w-4 h-4 shrink-0" /> Important Notice
               </div>
               <p>
-                If the email is not in your Inbox, please check your <strong>Spam</strong> or <strong>Promotions</strong> folder. Max 3 resends allowed per day.
+                📧 <strong>Two Ways to Verify:</strong> Enter the 6-digit code, OR simply click the <strong>"Confirm My Email"</strong> link inside your email.
+              </p>
+              <p>
+                If the email is not in your Inbox, please check your <strong>Spam</strong> or <strong>Promotions</strong> folder.
               </p>
             </div>
 

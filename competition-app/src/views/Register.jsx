@@ -166,6 +166,28 @@ export default function Register() {
       const { data, error: verifyErr } = await verifyOtpSafe(supabase, email, cleanToken, 'signup');
 
       if (verifyErr) {
+        // Smart Fallback: Check if user is already verified (e.g. clicked confirmation link in email)
+        if (password) {
+          try {
+            const { data: signInData, error: signInErr } = await supabase.auth.signInWithPassword({
+              email: safeEmail,
+              password: password,
+            });
+            if (!signInErr && signInData?.session) {
+              setOtpSuccess('🎉 অ্যাকাউন্টটি ইতিমধ্যেই ভেরিফাইড হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+              sessionStorage.removeItem('catalyst_pending_verify_email');
+              sessionStorage.removeItem('catalyst_pending_verify_name');
+              sessionStorage.removeItem('catalyst_otp_expires_at');
+              setTimeout(() => {
+                navigate('/dashboard');
+              }, 1200);
+              return;
+            }
+          } catch (e) {
+            // Ignore signin error
+          }
+        }
+
         const parsed = parseSupabaseError(verifyErr);
         throw new Error(parsed.message);
       }
@@ -182,6 +204,46 @@ export default function Register() {
     } catch (err) {
       console.warn('OTP Verification Notice:', err.message);
       setOtpError(err.message);
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleCheckEmailLink = async () => {
+    setOtpError('');
+    setOtpSuccess('');
+    setOtpLoading(true);
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) {
+        setOtpSuccess('🎉 অ্যাকাউন্টটি সফলভাবে ভেরিফাই হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+        sessionStorage.removeItem('catalyst_pending_verify_email');
+        sessionStorage.removeItem('catalyst_pending_verify_name');
+        sessionStorage.removeItem('catalyst_otp_expires_at');
+        setTimeout(() => navigate('/dashboard'), 1000);
+        return;
+      }
+
+      const safeEmail = email.toLowerCase().trim();
+      if (password) {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: safeEmail,
+          password: password,
+        });
+        if (!error && data?.session) {
+          setOtpSuccess('🎉 অ্যাকাউন্টটি সফলভাবে ভেরিফাই হয়েছে! Dashboard-এ পাঠানো হচ্ছে...');
+          sessionStorage.removeItem('catalyst_pending_verify_email');
+          sessionStorage.removeItem('catalyst_pending_verify_name');
+          sessionStorage.removeItem('catalyst_otp_expires_at');
+          setTimeout(() => navigate('/dashboard'), 1000);
+          return;
+        }
+      }
+
+      setOtpError('⚠️ ইমেইলটি এখনো ভেরিফাই হয়নি। আপনার ইনবক্সে পাঠানো "Confirm My Email" লিঙ্কে ক্লিক করুন অথবা ৬ সংখ্যার কোডটি দিন।');
+    } catch (err) {
+      setOtpError(err.message || 'Verification check failed.');
     } finally {
       setOtpLoading(false);
     }
@@ -370,13 +432,28 @@ export default function Register() {
             </button>
           </div>
 
-          {/* Prominent Spam / Promotions Folder Notice */}
+          {/* Alternative: Link Verification Check Button */}
+          <div className="pt-2">
+            <button
+              type="button"
+              disabled={otpLoading}
+              onClick={handleCheckEmailLink}
+              className="w-full py-2.5 px-4 rounded-xl border border-indigo-200 dark:border-indigo-800/60 bg-indigo-50/50 hover:bg-indigo-50 dark:bg-indigo-950/20 dark:hover:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>🔗 Clicked the link in email? Click here to continue</span>
+            </button>
+          </div>
+
+          {/* Prominent Notice */}
           <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/40 rounded-2xl p-4 text-xs text-amber-900 dark:text-amber-300 space-y-2 leading-relaxed">
             <div className="flex items-center gap-1.5 font-black uppercase tracking-wider text-amber-800 dark:text-amber-400">
               <AlertCircle className="w-4 h-4 shrink-0" /> Important Notice:
             </div>
             <p>
-              🔍 <strong>Check Your Spam / Junk Folder:</strong> If you don't find the code in your main inbox within a minute, please check your <strong>Spam</strong>, <strong>Junk</strong>, or <strong>Promotions</strong> folder.
+              📧 <strong>Two Ways to Verify:</strong> Enter the <strong>6-digit code</strong> from your email, OR simply click the <strong>"Confirm My Email"</strong> link inside your email.
+            </p>
+            <p>
+              🔍 <strong>Check Spam / Promotions:</strong> If you don't find the email in your inbox, please check your <strong>Spam</strong>, <strong>Junk</strong>, or <strong>Promotions</strong> folder.
             </p>
             <p className="text-[11px] text-amber-800/80 dark:text-amber-400/80">
               ⏰ Code is valid for 10 minutes. Maximum 3 daily resend attempts allowed.

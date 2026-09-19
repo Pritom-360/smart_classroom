@@ -72,6 +72,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     let active = true;
 
+    // Clean up Supabase hash parameter if redirected from email confirmation link to keep HashRouter working smoothly
+    if (window.location.hash && window.location.hash.includes('access_token=')) {
+      setTimeout(() => {
+        if (window.location.hash.includes('access_token=')) {
+          window.location.hash = '#/dashboard';
+        }
+      }, 300);
+    }
+
     // Listen for auth changes (onAuthStateChange automatically runs once immediately on mount with initial session)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (!active) return;
@@ -110,13 +119,17 @@ export const AuthProvider = ({ children }) => {
     });
     if (error) throw error;
     
-    // Explicitly create profile just in case DB trigger is absent
-    if (data.user) {
-      await supabase.from('profiles').upsert({
-        id: data.user.id,
-        full_name: fullName,
-        role: 'user'
-      });
+    // Explicitly create profile only if user is confirmed and session is present
+    if (data?.session && data?.user) {
+      try {
+        await supabase.from('profiles').upsert({
+          id: data.user.id,
+          full_name: fullName,
+          role: 'user'
+        });
+      } catch (e) {
+        // Ignore unconfirmed RLS 401 error
+      }
     }
     return data;
   };

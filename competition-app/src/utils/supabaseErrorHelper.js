@@ -35,7 +35,7 @@ export const parseSupabaseError = (err) => {
   ) {
     return {
       message:
-        'কোডটি মেয়াদ উত্তীর্ণ বা ভুল। আপনি যদি একাধিক কোড রিকুয়েস্ট করে থাকেন, তাহলে শুধুমাত্র সর্বশেষ ইমেইলের কোডটি কাজ করবে। নিচের "Resend" বাটনে ক্লিক করে নতুন কোড নিন। (Token has expired or is invalid. Only the code from your latest email works.)',
+        'কোডটি মেয়াদ উত্তীর্ণ, ভুল বা ইতিমধ্যে ব্যবহার হয়েছে। ইমেইলের লিঙ্কে ক্লিক করা হয়ে থাকলে অ্যাকাউন্টটি ভেরিফাইড। নতুন কোড পেতে "Resend Code" বাটনে ক্লিক করুন। (Token has expired or is invalid. If you clicked the email link, your account is already verified. Click "Resend Code" for a new code.)',
       isRateLimit: false,
       isTokenInvalid: true,
     };
@@ -50,8 +50,8 @@ export const parseSupabaseError = (err) => {
 };
 
 /**
- * Verify an OTP with Supabase using ONLY the correct type.
- * Does NOT cascade through multiple types (which causes triple 403 errors).
+ * Verify an OTP with Supabase safely.
+ * Tries the primary type first ('signup' or 'recovery'). If 'signup' fails, falls back to 'email' type quietly.
  *
  * @param {object} supabase - Supabase client
  * @param {string} email - User email (will be lowercased/trimmed)
@@ -63,14 +63,26 @@ export const verifyOtpSafe = async (supabase, email, token, purpose = 'signup') 
   const safeEmail = email.toLowerCase().trim();
   const cleanToken = token.replace(/\s+/g, '').trim();
 
-  // Map purpose to the single correct Supabase OTP type
-  const otpType = purpose === 'recovery' ? 'recovery' : 'signup';
+  const primaryType = purpose === 'recovery' ? 'recovery' : 'signup';
 
-  const { data, error } = await supabase.auth.verifyOtp({
+  let { data, error } = await supabase.auth.verifyOtp({
     email: safeEmail,
     token: cleanToken,
-    type: otpType,
+    type: primaryType,
   });
+
+  // If primary 'signup' type fails, try fallback 'email' type quietly (used by some Supabase OTP configs)
+  if (error && purpose !== 'recovery') {
+    const fallbackResult = await supabase.auth.verifyOtp({
+      email: safeEmail,
+      token: cleanToken,
+      type: 'email',
+    });
+    if (!fallbackResult.error) {
+      data = fallbackResult.data;
+      error = null;
+    }
+  }
 
   return { data, error };
 };
@@ -108,3 +120,4 @@ export const resendOtpSafe = async (supabase, email, purpose = 'signup') => {
     return { success: false, error: err, parsed };
   }
 };
+

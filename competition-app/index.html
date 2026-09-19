@@ -10,6 +10,19 @@
       gtag('config', 'G-9WBZ6V352D');
     </script>
 
+    <script>
+      // Automatically migrate legacy /competition/:subpath URLs to HashRouter /competition/#/:subpath
+      (function() {
+        var path = window.location.pathname;
+        if (path.indexOf('/competition/') === 0 && path !== '/competition/' && path !== '/competition/index.html') {
+          var sub = path.substring('/competition'.length);
+          if (sub && !sub.startsWith('/assets/')) {
+            window.location.replace('/competition/#' + sub + window.location.search);
+          }
+        }
+      })();
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     

@@ -3,22 +3,18 @@
   "redirects": [
     {
       "source": "/competition.html",
-      "destination": "/competition",
+      "destination": "/competition/",
       "permanent": true
     },
     {
       "source": "/reset-password",
-      "destination": "/competition/reset-password",
+      "destination": "/competition/#/reset-password",
       "permanent": false
     }
   ],
   "rewrites": [
     {
-      "source": "/competition/(.*)",
-      "destination": "/competition/index.html"
-    },
-    {
-      "source": "/competition",
+      "source": "/competition/:path*",
       "destination": "/competition/index.html"
     }
   ]

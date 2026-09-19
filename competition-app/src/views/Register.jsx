@@ -104,6 +104,37 @@ export default function Register() {
     return () => clearInterval(timer);
   }, [isVerifying, expiresIn]);
 
+  // Live Auto-Detection: Polls every 3 seconds to check if user clicked the email confirmation link
+  useEffect(() => {
+    let pollInterval;
+    if (isVerifying && email && password) {
+      pollInterval = setInterval(async () => {
+        try {
+          const safeEmail = email.toLowerCase().trim();
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: safeEmail,
+            password: password,
+          });
+          if (!error && data?.session) {
+            clearInterval(pollInterval);
+            setOtpSuccess('🎉 ইমেইল নিশ্চিতকরণ সফল হয়েছে! Dashboard-এ নিয়ে যাওয়া হচ্ছে...');
+            sessionStorage.removeItem('catalyst_pending_verify_email');
+            sessionStorage.removeItem('catalyst_pending_verify_name');
+            sessionStorage.removeItem('catalyst_otp_expires_at');
+            setTimeout(() => {
+              navigate('/dashboard');
+            }, 800);
+          }
+        } catch (e) {
+          // silently wait for next tick
+        }
+      }, 3000);
+    }
+    return () => {
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [isVerifying, email, password, navigate]);
+
   // Format seconds to MM:SS string
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);

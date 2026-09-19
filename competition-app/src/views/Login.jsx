@@ -94,6 +94,34 @@ export default function Login() {
     return () => clearInterval(timer);
   }, [viewMode, expiresIn]);
 
+  // Live Auto-Detection: Polls every 3 seconds to check if unconfirmed user clicked the email confirmation link
+  useEffect(() => {
+    let pollInterval;
+    const targetEmail = (otpEmail || email).toLowerCase().trim();
+    if (viewMode === 'unconfirmed_verify' && targetEmail && password) {
+      pollInterval = setInterval(async () => {
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: targetEmail,
+            password: password,
+          });
+          if (!error && data?.session) {
+            clearInterval(pollInterval);
+            setOtpSuccess('🎉 ইমেইল নিশ্চিতকরণ সফল হয়েছে! Dashboard-এ নিয়ে যাওয়া হচ্ছে...');
+            setTimeout(() => {
+              navigate('/dashboard');
+            }, 800);
+          }
+        } catch (e) {
+          // silently wait for next tick
+        }
+      }, 3000);
+    }
+    return () => {
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [viewMode, otpEmail, email, password, navigate]);
+
   // Format seconds to MM:SS string
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
